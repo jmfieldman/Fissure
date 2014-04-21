@@ -8,10 +8,10 @@
 						"py" : 0.25,
 						"jx" : 0.03125,
 						"jy" : 0.0176,
-						"vx" : 0.3125,
-						"vy" : 0.176,
-						"friction" : 0.2
-						
+						"angle" : 0.5,
+						"speed" : 0.5,
+						"friction" : 0.2,
+						"frameInterval" : 5
 				}
 			],
 			

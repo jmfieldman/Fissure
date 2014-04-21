@@ -542,6 +542,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Fissure/Fissure-Prefix.pch";
 				INFOPLIST_FILE = "Fissure/Fissure-Info.plist";
+				OTHER_CFLAGS = "-DEXDEBUGENABLED";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -555,6 +556,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Fissure/Fissure-Prefix.pch";
 				INFOPLIST_FILE = "Fissure/Fissure-Info.plist";
+				OTHER_CFLAGS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};

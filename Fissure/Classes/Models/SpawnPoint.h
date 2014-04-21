@@ -8,13 +8,20 @@
 
 #import <Foundation/Foundation.h>
 
-@interface SpawnPoint : NSObject
+
+@interface SpawnPoint : NSObject {
+	/* Determine when to spawn */
+	int _frameCount;
+}
 
 @property (nonatomic, assign) CGPoint  position;
 @property (nonatomic, assign) CGSize   positionJitter;
 @property (nonatomic, assign) CGVector initialVelocity;
 @property (nonatomic, assign) float    friction;
+@property (nonatomic, assign) int      frameInterval;
 
 - (id) initWithDictionary:(NSDictionary*)dictionary forSceneSize:(CGSize)sceneSize;
+
+- (BOOL) shouldSpawnThisFrame;
 
 @end

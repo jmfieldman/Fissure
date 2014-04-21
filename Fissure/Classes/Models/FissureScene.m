@@ -20,7 +20,7 @@
 		self.physicsWorld.contactDelegate = self;
 		
 		/* Create spawn zone array */
-		_spawnZones = [NSMutableArray array];
+		_spawnPoints = [NSMutableArray array];
 		
 		/* Create controls */
 		_controls = [NSMutableArray array];
@@ -41,6 +41,23 @@
     return self;
 }
 
+- (void) loadFromLevelDictionary:(NSDictionary*)level {
+	
+	NSArray *spawnDics = level[@"spawns"];
+	for (NSDictionary *dic in spawnDics) {
+		SpawnPoint *spawn = [[SpawnPoint alloc] initWithDictionary:dic forSceneSize:self.size];
+		[_spawnPoints addObject:spawn];
+		EXLog(MODEL, DBG, @"Loaded spawn point at (%.2f, %.2f)", spawn.position.x, spawn.position.y);
+	}
+	
+	NSArray *controlDics = level[@"controls"];
+	for (NSDictionary *dic in controlDics) {
+		SceneControl *control = [[SceneControl alloc] initWithDictionary:dic forSceneSize:self.size];
+		[_controls addObject:control];
+		EXLog(MODEL, DBG, @"Loaded control of type %d at (%.2f, %.2f)", control.controlType, control.position.x, control.position.y);
+	}
+	
+}
 
 
 -(void)update:(CFTimeInterval)currentTime {
@@ -51,46 +68,54 @@
 		return;
 	}
 	
-	static int foo = 0;
-	foo = (foo + 1) % 6;
-	if (foo != 0) return;
-	//if (rand()%4 != 0) return;
-	
-	//SKSpriteNode *node = [[SKSpriteNode alloc] initWithColor:[UIColor grayColor] size:CGSizeMake(2,2)];
-	SKSpriteNode *node = [[SKSpriteNode alloc] initWithImageNamed:@"projectile.png"];
-	node.position = CGPointMake(rand()%20+20, rand()%20+20);
-	node.physicsBody = [SKPhysicsBody bodyWithCircleOfRadius:5];
-	node.physicsBody.friction = 0.2;
-	node.physicsBody.velocity = CGVectorMake(200,200);
-	node.physicsBody.collisionBitMask = 0;
-	node.physicsBody.contactTestBitMask = 1;
-	node.physicsBody.categoryBitMask = 2;
-	[self addChild:node];
-	
-	SKEmitterNode *emitter = [NSKeyedUnarchiver unarchiveObjectWithFile:[[NSBundle mainBundle] pathForResource:@"projectile_trail" ofType:@"sks"]];
-	emitter.targetNode = _projectileParticleLayerNode;
-	[node addChild:emitter];
+	/* Spawn if neeeded */
+	[self spawnProjectiles];
 	
 }
 
-- (void)didBeginContact:(SKPhysicsContact *)contact
-{
-    SKPhysicsBody *firstBody, *secondBody;
+- (void) spawnProjectiles {
+	for (SpawnPoint *point in _spawnPoints) {
+		if (![point shouldSpawnThisFrame]) continue;
+		
+		/* Create the projectile */
+		SKSpriteNode *node = [[SKSpriteNode alloc] initWithImageNamed:@"projectile.png"];
+		node.position = CGPointMake( point.position.x + (rand() % (int)point.positionJitter.width)  - point.positionJitter.width/2,
+									 point.position.y + (rand() % (int)point.positionJitter.height) - point.positionJitter.height/2);
+		
+		node.physicsBody = [SKPhysicsBody bodyWithCircleOfRadius:PROJECTILE_PHYS_RADIUS];
+		node.physicsBody.friction = point.friction;
+		node.physicsBody.velocity = point.initialVelocity;
+		
+		node.physicsBody.categoryBitMask = PHYS_CAT_PROJ;
+		node.physicsBody.collisionBitMask = 0;
+		node.physicsBody.contactTestBitMask = PHYS_CAT_EDGE;
+		
+		[self addChild:node];
+		
+		/* Create the particle effect behind it */
+		SKEmitterNode *emitter = [NSKeyedUnarchiver unarchiveObjectWithFile:[[NSBundle mainBundle] pathForResource:@"projectile_trail" ofType:@"sks"]];
+		emitter.targetNode = _projectileParticleLayerNode;
+		[node addChild:emitter];
+		
+		/* Attach it to the userData */
+		node.userData[@"emitter"] = emitter;
+	}
+}
+
+- (void)didBeginContact:(SKPhysicsContact *)contact {
+	SKPhysicsBody *firstBody, *secondBody;
 	
-    if (contact.bodyA.categoryBitMask < contact.bodyB.categoryBitMask)
-    {
-        firstBody = contact.bodyA;
-        secondBody = contact.bodyB;
-    }
-    else
-    {
-        firstBody = contact.bodyB;
-        secondBody = contact.bodyA;
-    }
-    if ((firstBody.categoryBitMask & 1) != 0)
-    {
-        [self removeChildrenInArray:@[secondBody.node]];
-    }
+	if (contact.bodyA.categoryBitMask < contact.bodyB.categoryBitMask) {
+		firstBody = contact.bodyA;
+		secondBody = contact.bodyB;
+	} else {
+		firstBody = contact.bodyB;
+		secondBody = contact.bodyA;
+	}
+    
+	if ((firstBody.categoryBitMask & 1) != 0) {
+		[self removeChildrenInArray:@[secondBody.node]];
+	}
 }
 
 @end
