@@ -17,7 +17,8 @@
 			
 			"controls" : [ {
 						  "type" : "push",
-						  "angle" : 1.57079632,
+						  "power" : 0.015,
+						  "angle" : 3.1457079632,
 						  "canRotate" : false,
 						  "px" : 0.75,
 						  "py" : 0.75,
@@ -25,9 +26,35 @@
 						  "minRadius" : 50,
 						  "maxRadius" : 100,
 						  "canScale" : true
+						  },
+						  {
+						  "type" : "push",
+						  "power" : 0.015,
+						  "angle" : 1.57079632,
+						  "canRotate" : false,
+						  "px" : 0.55,
+						  "py" : 0.75,
+						  "radius"  : 50,
+						  "minRadius" : 50,
+						  "maxRadius" : 100,
+						  "canScale" : true
 						  
-			
-				}
+						  
+						  },
+						  {
+						  "type" : "push",
+						  "power" : 0.035,
+						  "angle" : -1.57079632,
+						  "canRotate" : false,
+						  "px" : 0.55,
+						  "py" : 0.55,
+						  "radius"  : 50,
+						  "minRadius" : 50,
+						  "maxRadius" : 100,
+						  "canScale" : true
+						  
+						  
+						  }
 			]
 		}
 		

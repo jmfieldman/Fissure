@@ -29,9 +29,16 @@ typedef enum ControlType {
 @property (nonatomic, assign) float radius;
 @property (nonatomic, assign) float minRadius;
 @property (nonatomic, assign) float maxRadius;
+@property (nonatomic, assign) float power;
+@property (nonatomic, assign) CGVector powerVector;
 @property (nonatomic, assign) BOOL canScale;
 @property (nonatomic, assign) BOOL canRotate;
 
+@property (nonatomic, strong)   SKSpriteNode *node;
+@property (nonatomic, readonly) NSMutableArray *affectedProjectiles;
+
 - (id) initWithDictionary:(NSDictionary*)dictionary forSceneSize:(CGSize)sceneSize;
+
+- (void) updateAffectedProjectilesForDuration:(CFTimeInterval)duration;
 
 @end

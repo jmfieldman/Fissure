@@ -55,6 +55,8 @@
 		SceneControl *control = [[SceneControl alloc] initWithDictionary:dic forSceneSize:self.size];
 		[_controls addObject:control];
 		EXLog(MODEL, DBG, @"Loaded control of type %d at (%.2f, %.2f)", control.controlType, control.position.x, control.position.y);
+		
+		[self addChild:control.node];
 	}
 	
 }
@@ -71,6 +73,10 @@
 	/* Spawn if neeeded */
 	[self spawnProjectiles];
 	
+	/* Update projectiles */
+	for (SceneControl *control in _controls) {
+		[control updateAffectedProjectilesForDuration:elapsedTime];
+	}
 }
 
 - (void) spawnProjectiles {
@@ -88,7 +94,7 @@
 		
 		node.physicsBody.categoryBitMask = PHYS_CAT_PROJ;
 		node.physicsBody.collisionBitMask = 0;
-		node.physicsBody.contactTestBitMask = PHYS_CAT_EDGE;
+		node.physicsBody.contactTestBitMask = PHYS_CAT_EDGE | PHYS_CAT_CONTROL_TRANS;
 		
 		[self addChild:node];
 		
@@ -98,13 +104,16 @@
 		[node addChild:emitter];
 		
 		/* Attach it to the userData */
-		node.userData[@"emitter"] = emitter;
+		node.userData = [NSMutableDictionary dictionaryWithDictionary:@{@"emitter":emitter}];
 	}
 }
 
-- (void)didBeginContact:(SKPhysicsContact *)contact {
+#pragma mark Contact Checks
+
+- (void) didBeginContact:(SKPhysicsContact *)contact {
 	SKPhysicsBody *firstBody, *secondBody;
 	
+	/* Order the nodes by category for easier processing */
 	if (contact.bodyA.categoryBitMask < contact.bodyB.categoryBitMask) {
 		firstBody = contact.bodyA;
 		secondBody = contact.bodyB;
@@ -113,9 +122,93 @@
 		secondBody = contact.bodyA;
 	}
     
-	if ((firstBody.categoryBitMask & 1) != 0) {
+	/* If a projectile hits an edge, remove it */
+	if ((firstBody.categoryBitMask & PHYS_CAT_EDGE) && (secondBody.categoryBitMask & PHYS_CAT_PROJ)) {
 		[self removeChildrenInArray:@[secondBody.node]];
+		return;
+	}
+	
+	/* Check if a projectile hits a passable control */
+	if ((firstBody.categoryBitMask & PHYS_CAT_PROJ) && (secondBody.categoryBitMask & PHYS_CAT_CONTROL_TRANS)) {
+		SceneControl *control = secondBody.node.userData[@"control"];
+		[control.affectedProjectiles addObject:firstBody.node];
+		return;
+	}
+	
+}
+
+- (void) didEndContact:(SKPhysicsContact *)contact {
+	SKPhysicsBody *firstBody, *secondBody;
+	
+	/* Order the nodes by category for easier processing */
+	if (contact.bodyA.categoryBitMask < contact.bodyB.categoryBitMask) {
+		firstBody = contact.bodyA;
+		secondBody = contact.bodyB;
+	} else {
+		firstBody = contact.bodyB;
+		secondBody = contact.bodyA;
+	}
+	
+	/* Check if a projectile leaves a passable control */
+	if ((firstBody.categoryBitMask & PHYS_CAT_PROJ) && (secondBody.categoryBitMask & PHYS_CAT_CONTROL_TRANS)) {
+		SceneControl *control = secondBody.node.userData[@"control"];
+		[control.affectedProjectiles removeObjectIdenticalTo:firstBody.node];
+		return;
 	}
 }
+
+
+#pragma mark Touch Controls
+
+-(void)touchesBegan:(NSSet*) touches withEvent:(UIEvent*) event {
+	if ([touches count] == 1) {
+		CGPoint touchPoint = [[touches anyObject] locationInNode:self];
+		NSArray *touchedNodes = [self nodesAtPoint:touchPoint];
+	
+		NSMutableArray *touchedControls = [NSMutableArray array];
+		for (SKNode *node in touchedNodes) {
+			if (![node.userData[@"isControl"] boolValue]) continue;			
+			[touchedControls addObject:node.userData[@"control"]];
+			/*
+			for (SceneControl *control in _controls) {
+				if (control.node == node) {
+					[touchedControls addObject:control];
+					break;
+				}
+			}
+			 */
+		}
+		
+		/* No controls touched?  break */
+		if (![touchedControls count]) return;
+		
+		_draggedControl = nil;
+		float minDist = 1000000;
+		for (SceneControl *control in _controls) {
+			float dx = control.position.x - touchPoint.x;
+			float dy = control.position.y - touchPoint.y;
+			float dist = dx * dx + dy * dy;
+			if (dist < minDist) {
+				minDist = dist;
+				_draggedControl = control;
+				_dragOffset = CGPointMake(dx, dy);
+			}
+		}
+	}
+	
+}
+
+-(void)touchesMoved:(NSSet*) touches withEvent:(UIEvent*) event {
+	CGPoint touchPoint = [[touches anyObject] locationInNode:self];
+		
+	/* Update position of control (this should update the node position as well */
+	_draggedControl.position = CGPointMake(touchPoint.x + _dragOffset.x, touchPoint.y + _dragOffset.y);
+}
+
+-(void)touchesEnded:(NSSet*) touches withEvent:(UIEvent*) event {
+	_draggedControl = nil;
+	_scalingControl = nil;
+}
+
 
 @end

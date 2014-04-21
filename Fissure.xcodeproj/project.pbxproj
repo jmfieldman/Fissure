@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3596FF0B19057A03001AC338 /* disc@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3596FF0919057A03001AC338 /* disc@2x.png */; };
+		3596FF0C19057A03001AC338 /* disc.png in Resources */ = {isa = PBXBuildFile; fileRef = 3596FF0A19057A03001AC338 /* disc.png */; };
 		35DBD25F1904255C00116F8B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 35DBD25E1904255C00116F8B /* Foundation.framework */; };
 		35DBD2611904255C00116F8B /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 35DBD2601904255C00116F8B /* CoreGraphics.framework */; };
 		35DBD2631904255C00116F8B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 35DBD2621904255C00116F8B /* UIKit.framework */; };
@@ -52,6 +54,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3596FF0919057A03001AC338 /* disc@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "disc@2x.png"; sourceTree = "<group>"; };
+		3596FF0A19057A03001AC338 /* disc.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = disc.png; sourceTree = "<group>"; };
 		35DBD25B1904255C00116F8B /* Fissure.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Fissure.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		35DBD25E1904255C00116F8B /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		35DBD2601904255C00116F8B /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -291,6 +295,8 @@
 		35DBD2C919043AF600116F8B /* Game */ = {
 			isa = PBXGroup;
 			children = (
+				3596FF0919057A03001AC338 /* disc@2x.png */,
+				3596FF0A19057A03001AC338 /* disc.png */,
 				35DBD2CA19043AF600116F8B /* projectile.png */,
 			);
 			path = Game;
@@ -358,6 +364,9 @@
 				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = fieldman.org;
 				TargetAttributes = {
+					35DBD25A1904255C00116F8B = {
+						DevelopmentTeam = GGY9Q9R73R;
+					};
 					35DBD2751904255C00116F8B = {
 						TestTargetID = 35DBD25A1904255C00116F8B;
 					};
@@ -392,6 +401,8 @@
 				35DBD2C6190430F100116F8B /* projectile_trail.sks in Resources */,
 				35DBD2CF1904C23800116F8B /* level_info.json in Resources */,
 				35DBD2711904255C00116F8B /* Images.xcassets in Resources */,
+				3596FF0C19057A03001AC338 /* disc.png in Resources */,
+				3596FF0B19057A03001AC338 /* disc@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -539,11 +550,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Fissure/Fissure-Prefix.pch";
 				INFOPLIST_FILE = "Fissure/Fissure-Info.plist";
 				OTHER_CFLAGS = "-DEXDEBUGENABLED";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -553,11 +567,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Fissure/Fissure-Prefix.pch";
 				INFOPLIST_FILE = "Fissure/Fissure-Info.plist";
 				OTHER_CFLAGS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

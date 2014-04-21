@@ -27,6 +27,11 @@
 	
 	/* Holds projectile particle effects */
 	SKNode *_projectileParticleLayerNode;
+	
+	/* Which control am I dragging/scaling? */
+	SceneControl *_draggedControl;
+	CGPoint       _dragOffset;
+	SceneControl *_scalingControl;
 }
 
 @property (nonatomic, readonly) NSMutableArray *spawnPoints;
