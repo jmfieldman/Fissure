@@ -10,7 +10,6 @@
 
 #define SCALE_RADIUS_WIDTH 20
 
-static int s_test = 0;
 
 @implementation FissureScene
 
@@ -74,9 +73,6 @@ static int s_test = 0;
 		return;
 	}
 	
-	EXLog(ANY, DBG, @"s_test: %d", s_test);
-	s_test = 0;
-	
 	/* Spawn if neeeded */
 	[self spawnProjectiles];
 	
@@ -84,6 +80,16 @@ static int s_test = 0;
 	for (SceneControl *control in _controls) {
 		[control updateAffectedProjectilesForDuration:elapsedTime];
 	}
+	
+	EXLog(ANY, DBG, @"update:");
+}
+
+- (void)didEvaluateActions {
+	EXLog(ANY, DBG, @"didEvaluateActions");
+}
+
+- (void)didSimulatePhysics {
+	EXLog(ANY, DBG, @"didSimulatePhysics");
 }
 
 - (void) spawnProjectiles {
@@ -98,6 +104,8 @@ static int s_test = 0;
 		node.physicsBody = [SKPhysicsBody bodyWithCircleOfRadius:PROJECTILE_PHYS_RADIUS];
 		node.physicsBody.friction = point.friction;
 		node.physicsBody.velocity = point.initialVelocity;
+		node.physicsBody.affectedByGravity = NO;
+		node.physicsBody.allowsRotation = NO;
 		
 		node.physicsBody.categoryBitMask = PHYS_CAT_PROJ;
 		node.physicsBody.collisionBitMask = 0;
@@ -120,7 +128,6 @@ static int s_test = 0;
 - (void) didBeginContact:(SKPhysicsContact *)contact {
 	SKPhysicsBody *firstBody, *secondBody;
 	
-	s_test++;
 	/* Order the nodes by category for easier processing */
 	if (contact.bodyA.categoryBitMask < contact.bodyB.categoryBitMask) {
 		firstBody = contact.bodyA;
