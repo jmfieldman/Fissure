@@ -22,9 +22,9 @@
 						  "canRotate" : false,
 						  "px" : 0.75,
 						  "py" : 0.75,
-						  "radius"  : 50,
-						  "minRadius" : 50,
-						  "maxRadius" : 100,
+						  "radius"  : 0.20,
+						  "minRadiusScale" : 1,
+						  "maxRadiusScale" : 2,
 						  "canScale" : true
 						  },
 						  {
@@ -34,9 +34,9 @@
 						  "canRotate" : false,
 						  "px" : 0.55,
 						  "py" : 0.75,
-						  "radius"  : 50,
-						  "minRadius" : 50,
-						  "maxRadius" : 100,
+						  "radius"  : 0.20,
+						  "minRadiusScale" : 1,
+						  "maxRadiusScale" : 2,
 						  "canScale" : true
 						  
 						  
@@ -48,9 +48,9 @@
 						  "canRotate" : false,
 						  "px" : 0.55,
 						  "py" : 0.55,
-						  "radius"  : 50,
-						  "minRadius" : 50,
-						  "maxRadius" : 100,
+						  "radius"  : 0.20,
+						  "minRadiusScale" : 1,
+						  "maxRadiusScale" : 2,
 						  "canScale" : true
 						  
 						  

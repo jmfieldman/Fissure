@@ -21,7 +21,10 @@ typedef enum ControlType {
 
 
 
-@interface SceneControl : NSObject
+@interface SceneControl : NSObject {
+	/* Needed to change the scale */
+	float _initialRadius;
+}
 
 @property (nonatomic, assign) ControlType_t controlType;
 @property (nonatomic, assign) float angle;

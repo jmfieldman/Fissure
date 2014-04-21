@@ -32,6 +32,7 @@
 	SceneControl *_draggedControl;
 	CGPoint       _dragOffset;
 	SceneControl *_scalingControl;
+	float         _scalingOffset;
 }
 
 @property (nonatomic, readonly) NSMutableArray *spawnPoints;

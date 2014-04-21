@@ -26,9 +26,9 @@ static NSString *s_controlStrings[NUM_CONTROL_TYPES] = {
 		_controlType     = [self controlTypeForString:dictionary[@"type"]];
 		_angle           = [dictionary[@"angle"] floatValue];
 		_position        = CGPointMake( [dictionary[@"px"] floatValue] * sceneSize.width, [dictionary[@"py"] floatValue] * sceneSize.height );
-		_radius          = [dictionary[@"radius"] floatValue];
-		_minRadius       = [dictionary[@"minRadius"] floatValue];
-		_maxRadius       = [dictionary[@"maxRadius"] floatValue];
+		_radius          = [dictionary[@"radius"] floatValue] * sceneSize.width;
+		_minRadius       = [dictionary[@"minRadiusScale"] floatValue] * _radius;
+		_maxRadius       = [dictionary[@"maxRadiusScale"] floatValue] * _radius;
 		_canRotate       = [dictionary[@"canRotate"] boolValue];
 		_canScale        = [dictionary[@"canScale"] boolValue];
 		_power           = [dictionary[@"power"] floatValue];
@@ -39,11 +39,14 @@ static NSString *s_controlStrings[NUM_CONTROL_TYPES] = {
 		CHECK_VALUE(@"type");
 		CHECK_VALUE(@"angle");
 		CHECK_VALUE(@"radius");
-		CHECK_VALUE(@"maxRadius");
-		CHECK_VALUE(@"minRadius");
+		CHECK_VALUE(@"maxRadiusScale");
+		CHECK_VALUE(@"minRadiusScale");
 		CHECK_VALUE(@"canRotate");
 		CHECK_VALUE(@"canScale");
 		CHECK_VALUE(@"power");
+		
+		/* Initial values */
+		_initialRadius = _radius;
 		
 		/* Create affected array */
 		_affectedProjectiles = [NSMutableArray array];
@@ -82,9 +85,20 @@ static NSString *s_controlStrings[NUM_CONTROL_TYPES] = {
 	_node.position = position;
 }
 
+- (void) setRadius:(float)radius {
+	if (radius < _minRadius) radius = _minRadius;
+	if (radius > _maxRadius) radius = _maxRadius;
+	if (radius == _radius) return;
+	
+	/* Update */
+	_radius = radius;
+	[_node setScale:_radius / _initialRadius];
+}
+
 - (void) updateAffectedProjectilesForDuration:(CFTimeInterval)duration {
 	switch (_controlType) {
 		case CONTROL_TYPE_PUSH:
+			EXLog(MODEL, DBG, @"Affecting %d nodes", [_affectedProjectiles count]);
 			for (SKNode *node in _affectedProjectiles) {
 				node.physicsBody.velocity = CGVectorMake(node.physicsBody.velocity.dx + _powerVector.dx, node.physicsBody.velocity.dy + _powerVector.dy);;
 			}

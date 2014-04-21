@@ -8,6 +8,10 @@
 
 #import "FissureScene.h"
 
+#define SCALE_RADIUS_WIDTH 20
+
+static int s_test = 0;
+
 @implementation FissureScene
 
 
@@ -70,6 +74,9 @@
 		return;
 	}
 	
+	EXLog(ANY, DBG, @"s_test: %d", s_test);
+	s_test = 0;
+	
 	/* Spawn if neeeded */
 	[self spawnProjectiles];
 	
@@ -113,6 +120,7 @@
 - (void) didBeginContact:(SKPhysicsContact *)contact {
 	SKPhysicsBody *firstBody, *secondBody;
 	
+	s_test++;
 	/* Order the nodes by category for easier processing */
 	if (contact.bodyA.categoryBitMask < contact.bodyB.categoryBitMask) {
 		firstBody = contact.bodyA;
@@ -182,27 +190,49 @@
 		/* No controls touched?  break */
 		if (![touchedControls count]) return;
 		
+		/* Default to drag behavior */
 		_draggedControl = nil;
 		float minDist = 1000000;
 		for (SceneControl *control in _controls) {
 			float dx = control.position.x - touchPoint.x;
 			float dy = control.position.y - touchPoint.y;
-			float dist = dx * dx + dy * dy;
+			float dist = sqrt(dx * dx + dy * dy);
 			if (dist < minDist) {
 				minDist = dist;
 				_draggedControl = control;
 				_dragOffset = CGPointMake(dx, dy);
 			}
 		}
+		
+		/* See if it's scaling instead */
+		if (minDist > (_draggedControl.radius - SCALE_RADIUS_WIDTH)) {
+			_scalingControl = _draggedControl; _draggedControl = nil;
+			_scalingOffset  = _scalingControl.radius - minDist;
+		}
 	}
 	
 }
 
 -(void)touchesMoved:(NSSet*) touches withEvent:(UIEvent*) event {
+	if ([touches count] > 1) return;
+	
 	CGPoint touchPoint = [[touches anyObject] locationInNode:self];
 		
-	/* Update position of control (this should update the node position as well */
-	_draggedControl.position = CGPointMake(touchPoint.x + _dragOffset.x, touchPoint.y + _dragOffset.y);
+	if (_draggedControl) {
+
+		/* Update position of control (this should update the node position as well */
+		_draggedControl.position = CGPointMake(touchPoint.x + _dragOffset.x, touchPoint.y + _dragOffset.y);
+		
+	} else if (_scalingControl) {
+		
+		/* Update radius of control */
+		float dx = touchPoint.x - _scalingControl.position.x;
+		float dy = touchPoint.y - _scalingControl.position.y;
+		float dist = sqrt(dx * dx + dy * dy);
+		float radius = dist + _scalingOffset;
+		
+		_scalingControl.radius = radius;
+	}
 }
 
 -(void)touchesEnded:(NSSet*) touches withEvent:(UIEvent*) event {
