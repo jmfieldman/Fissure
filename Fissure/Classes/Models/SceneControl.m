@@ -61,7 +61,7 @@ static NSString *s_controlStrings[NUM_CONTROL_TYPES] = {
 		_node.userData = [NSMutableDictionary dictionaryWithDictionary:@{@"isControl":@(YES), @"control":self}];
 		
 		_node.physicsBody = [SKPhysicsBody bodyWithCircleOfRadius:_radius];
-		_node.physicsBody.dynamic = NO;
+		_node.physicsBody.dynamic = YES;
 		_node.physicsBody.categoryBitMask = PHYS_CAT_CONTROL_TRANS;
 		_node.physicsBody.collisionBitMask = 0;
 		_node.physicsBody.contactTestBitMask = 0;

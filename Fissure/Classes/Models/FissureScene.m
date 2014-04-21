@@ -81,9 +81,10 @@
 		[control updateAffectedProjectilesForDuration:elapsedTime];
 	}
 	
-	EXLog(ANY, DBG, @"update:");
+	//EXLog(ANY, DBG, @"update:");
 }
 
+/*
 - (void)didEvaluateActions {
 	EXLog(ANY, DBG, @"didEvaluateActions");
 }
@@ -91,6 +92,7 @@
 - (void)didSimulatePhysics {
 	EXLog(ANY, DBG, @"didSimulatePhysics");
 }
+ */
 
 - (void) spawnProjectiles {
 	for (SpawnPoint *point in _spawnPoints) {
