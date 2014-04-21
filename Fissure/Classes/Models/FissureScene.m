@@ -22,16 +22,21 @@
 		/* Create spawn zone array */
 		_spawnZones = [NSMutableArray array];
 		
+		/* Create controls */
+		_controls = [NSMutableArray array];
+		
 		/* Initialize timing */
 		_lastFrameTime = 0;
 		
 		/* Create boundary */
-		self.physicsBody = [SKPhysicsBody bodyWithEdgeLoopFromRect:self.frame];
-		self.physicsBody.categoryBitMask = 1;
+		self.physicsBody = [SKPhysicsBody bodyWithEdgeLoopFromRect:CGRectInset(self.frame, -75, -75)];
+		self.physicsBody.categoryBitMask = PHYS_CAT_EDGE;
 		
+		/* Create the projectile particle layer */
 		_projectileParticleLayerNode = [SKNode node];
 		_projectileParticleLayerNode.position = CGPointMake(50, 200);
 		[self addChild:_projectileParticleLayerNode];
+		
     }
     return self;
 }

@@ -36,6 +36,9 @@
 		35DBD2C6190430F100116F8B /* projectile_trail.sks in Resources */ = {isa = PBXBuildFile; fileRef = 35DBD2C4190430F100116F8B /* projectile_trail.sks */; };
 		35DBD2C7190430F100116F8B /* spark.png in Resources */ = {isa = PBXBuildFile; fileRef = 35DBD2C5190430F100116F8B /* spark.png */; };
 		35DBD2CC19043AF600116F8B /* projectile.png in Resources */ = {isa = PBXBuildFile; fileRef = 35DBD2CA19043AF600116F8B /* projectile.png */; };
+		35DBD2CF1904C23800116F8B /* level_info.json in Resources */ = {isa = PBXBuildFile; fileRef = 35DBD2CE1904C23800116F8B /* level_info.json */; };
+		35DBD2D21904C40700116F8B /* SpawnPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = 35DBD2D11904C40700116F8B /* SpawnPoint.m */; };
+		35DBD2D51904C41B00116F8B /* SceneControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 35DBD2D41904C41B00116F8B /* SceneControl.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -91,6 +94,11 @@
 		35DBD2C4190430F100116F8B /* projectile_trail.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = projectile_trail.sks; sourceTree = "<group>"; };
 		35DBD2C5190430F100116F8B /* spark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spark.png; sourceTree = "<group>"; };
 		35DBD2CA19043AF600116F8B /* projectile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = projectile.png; sourceTree = "<group>"; };
+		35DBD2CE1904C23800116F8B /* level_info.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = level_info.json; sourceTree = "<group>"; };
+		35DBD2D01904C40700116F8B /* SpawnPoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpawnPoint.h; sourceTree = "<group>"; };
+		35DBD2D11904C40700116F8B /* SpawnPoint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpawnPoint.m; sourceTree = "<group>"; };
+		35DBD2D31904C41B00116F8B /* SceneControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SceneControl.h; sourceTree = "<group>"; };
+		35DBD2D41904C41B00116F8B /* SceneControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SceneControl.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -172,6 +180,7 @@
 		35DBD2651904255C00116F8B /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				35DBD2CD1904C22600116F8B /* Levels */,
 				35DBD2C819043AF600116F8B /* Images */,
 				35DBD2C3190430D700116F8B /* Particles */,
 				35DBD2661904255C00116F8B /* Fissure-Info.plist */,
@@ -253,6 +262,10 @@
 			children = (
 				35DBD2B4190427AC00116F8B /* FissureScene.h */,
 				35DBD2B5190427AC00116F8B /* FissureScene.m */,
+				35DBD2D01904C40700116F8B /* SpawnPoint.h */,
+				35DBD2D11904C40700116F8B /* SpawnPoint.m */,
+				35DBD2D31904C41B00116F8B /* SceneControl.h */,
+				35DBD2D41904C41B00116F8B /* SceneControl.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -288,6 +301,14 @@
 			children = (
 			);
 			path = UI;
+			sourceTree = "<group>";
+		};
+		35DBD2CD1904C22600116F8B /* Levels */ = {
+			isa = PBXGroup;
+			children = (
+				35DBD2CE1904C23800116F8B /* level_info.json */,
+			);
+			path = Levels;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -369,6 +390,7 @@
 				35DBD2C7190430F100116F8B /* spark.png in Resources */,
 				35DBD2CC19043AF600116F8B /* projectile.png in Resources */,
 				35DBD2C6190430F100116F8B /* projectile_trail.sks in Resources */,
+				35DBD2CF1904C23800116F8B /* level_info.json in Resources */,
 				35DBD2711904255C00116F8B /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -389,11 +411,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				35DBD2B6190427AC00116F8B /* FissureScene.m in Sources */,
+				35DBD2D51904C41B00116F8B /* SceneControl.m in Sources */,
 				35DBD2A6190425ED00116F8B /* SingletonHelper.m in Sources */,
 				35DBD2A5190425ED00116F8B /* PersistentDictionary.m in Sources */,
 				35DBD2A1190425ED00116F8B /* EXDebug.m in Sources */,
 				35DBD2A2190425ED00116F8B /* EXRemoteLog.m in Sources */,
 				35DBD26F1904255C00116F8B /* AppDelegate.m in Sources */,
+				35DBD2D21904C40700116F8B /* SpawnPoint.m in Sources */,
 				35DBD291190425A400116F8B /* GameEngineViewController.m in Sources */,
 				35DBD26B1904255C00116F8B /* main.m in Sources */,
 				35DBD2A3190425ED00116F8B /* MathHelper.m in Sources */,
@@ -595,6 +619,7 @@
 				35DBD2891904255C00116F8B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		35DBD28A1904255C00116F8B /* Build configuration list for PBXNativeTarget "FissureTests" */ = {
 			isa = XCConfigurationList;
@@ -603,6 +628,7 @@
 				35DBD28C1904255C00116F8B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

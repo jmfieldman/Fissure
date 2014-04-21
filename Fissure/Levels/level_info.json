@@ -1,0 +1,37 @@
+{
+	"levels" : {
+		
+		"test1" : {
+			
+			"spawns" : [ {
+						"px" : 0.25,
+						"py" : 0.25,
+						"jx" : 0.03125,
+						"jy" : 0.0176,
+						"vx" : 0.3125,
+						"vy" : 0.176,
+						"friction" : 0.2
+						
+				}
+			],
+			
+			"controls" : [ {
+						  "type" : "push",
+						  "angle" : 1.57079632,
+						  "canRotate" : false,
+						  "px" : 0.75,
+						  "py" : 0.75,
+						  "radius"  : 50,
+						  "minRadius" : 50,
+						  "maxRadius" : 100,
+						  "canScale" : true
+						  
+			
+				}
+			]
+		}
+		
+	}
+	
+	
+}
