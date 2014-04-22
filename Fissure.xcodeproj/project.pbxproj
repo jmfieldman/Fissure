@@ -41,6 +41,7 @@
 		35DBD2CF1904C23800116F8B /* level_info.json in Resources */ = {isa = PBXBuildFile; fileRef = 35DBD2CE1904C23800116F8B /* level_info.json */; };
 		35DBD2D21904C40700116F8B /* SpawnPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = 35DBD2D11904C40700116F8B /* SpawnPoint.m */; };
 		35DBD2D51904C41B00116F8B /* SceneControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 35DBD2D41904C41B00116F8B /* SceneControl.m */; };
+		35DBD2D71905E64000116F8B /* disc_push@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 35DBD2D61905E64000116F8B /* disc_push@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -103,6 +104,7 @@
 		35DBD2D11904C40700116F8B /* SpawnPoint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpawnPoint.m; sourceTree = "<group>"; };
 		35DBD2D31904C41B00116F8B /* SceneControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SceneControl.h; sourceTree = "<group>"; };
 		35DBD2D41904C41B00116F8B /* SceneControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SceneControl.m; sourceTree = "<group>"; };
+		35DBD2D61905E64000116F8B /* disc_push@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "disc_push@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -295,6 +297,7 @@
 		35DBD2C919043AF600116F8B /* Game */ = {
 			isa = PBXGroup;
 			children = (
+				35DBD2D61905E64000116F8B /* disc_push@2x.png */,
 				3596FF0919057A03001AC338 /* disc@2x.png */,
 				3596FF0A19057A03001AC338 /* disc.png */,
 				35DBD2CA19043AF600116F8B /* projectile.png */,
@@ -398,6 +401,7 @@
 				35DBD2691904255C00116F8B /* InfoPlist.strings in Resources */,
 				35DBD2C7190430F100116F8B /* spark.png in Resources */,
 				35DBD2CC19043AF600116F8B /* projectile.png in Resources */,
+				35DBD2D71905E64000116F8B /* disc_push@2x.png in Resources */,
 				35DBD2C6190430F100116F8B /* projectile_trail.sks in Resources */,
 				35DBD2CF1904C23800116F8B /* level_info.json in Resources */,
 				35DBD2711904255C00116F8B /* Images.xcassets in Resources */,

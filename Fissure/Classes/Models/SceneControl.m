@@ -18,6 +18,8 @@ static NSString *s_controlStrings[NUM_CONTROL_TYPES] = {
 	@"slow",
 };
 
+
+
 @implementation SceneControl
 
 - (id) initWithDictionary:(NSDictionary*)dictionary forSceneSize:(CGSize)sceneSize {
@@ -65,6 +67,25 @@ static NSString *s_controlStrings[NUM_CONTROL_TYPES] = {
 		_node.physicsBody.categoryBitMask = PHYS_CAT_CONTROL_TRANS;
 		_node.physicsBody.collisionBitMask = 0;
 		_node.physicsBody.contactTestBitMask = 0;
+		
+		/* Create control icon */
+		switch (_controlType) {
+			case CONTROL_TYPE_PUSH:
+				_icon = [SKSpriteNode spriteNodeWithImageNamed:@"disc_push"];
+				_icon.zRotation = _angle - (M_PI/2); /* Because the icon is facing up */
+				_node.color = [UIColor colorWithRed:0 green:0.4 blue:1 alpha:1];
+				break;
+				
+			default:
+				break;
+		}
+		
+		if (_icon) {
+			_icon.color = [UIColor colorWithWhite:0 alpha:0.3];
+			_icon.colorBlendFactor = 1;
+			_icon.position = _position;
+			
+		}
 	}
 	return self;
 }
@@ -83,6 +104,7 @@ static NSString *s_controlStrings[NUM_CONTROL_TYPES] = {
 	
 	/* Update node position */
 	_node.position = position;
+	_icon.position = position;
 }
 
 - (void) setRadius:(float)radius {

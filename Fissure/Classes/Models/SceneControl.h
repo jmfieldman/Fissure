@@ -37,8 +37,9 @@ typedef enum ControlType {
 @property (nonatomic, assign) BOOL canScale;
 @property (nonatomic, assign) BOOL canRotate;
 
-@property (nonatomic, strong)   SKSpriteNode *node;
-@property (nonatomic, readonly) NSMutableArray *affectedProjectiles;
+@property (nonatomic, strong, readonly) SKSpriteNode *node;
+@property (nonatomic, strong, readonly) SKSpriteNode *icon;
+@property (nonatomic, strong, readonly) NSMutableArray *affectedProjectiles;
 
 - (id) initWithDictionary:(NSDictionary*)dictionary forSceneSize:(CGSize)sceneSize;
 

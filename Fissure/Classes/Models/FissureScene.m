@@ -60,6 +60,7 @@
 		EXLog(MODEL, DBG, @"Loaded control of type %d at (%.2f, %.2f)", control.controlType, control.position.x, control.position.y);
 		
 		[self addChild:control.node];
+		[self addChild:control.icon];
 	}
 	
 }
