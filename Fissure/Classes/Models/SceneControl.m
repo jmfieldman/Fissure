@@ -121,8 +121,7 @@ static NSString *s_controlStrings[NUM_CONTROL_TYPES] = {
 
 - (void) updateAffectedProjectilesForDuration:(CFTimeInterval)duration {
 	switch (_controlType) {
-		case CONTROL_TYPE_PUSH:
-			//EXLog(MODEL, DBG, @"Affecting %d nodes", [_affectedProjectiles count]);
+		case CONTROL_TYPE_PUSH:			
 			for (SKNode *node in _affectedProjectiles) {
 				node.physicsBody.velocity = CGVectorMake(node.physicsBody.velocity.dx + _powerVector.dx, node.physicsBody.velocity.dy + _powerVector.dy);;
 			}
