@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		3596FF0B19057A03001AC338 /* disc@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3596FF0919057A03001AC338 /* disc@2x.png */; };
 		3596FF0C19057A03001AC338 /* disc.png in Resources */ = {isa = PBXBuildFile; fileRef = 3596FF0A19057A03001AC338 /* disc.png */; };
+		3596FF0F1906B6A1001AC338 /* fissure.sks in Resources */ = {isa = PBXBuildFile; fileRef = 3596FF0D1906B6A1001AC338 /* fissure.sks */; };
+		3596FF101906B6A1001AC338 /* bokeh.png in Resources */ = {isa = PBXBuildFile; fileRef = 3596FF0E1906B6A1001AC338 /* bokeh.png */; };
+		3596FF131906B905001AC338 /* Fissure.m in Sources */ = {isa = PBXBuildFile; fileRef = 3596FF121906B905001AC338 /* Fissure.m */; };
 		35C0D0C81905F8D700E225D5 /* Target.m in Sources */ = {isa = PBXBuildFile; fileRef = 35C0D0C71905F8D700E225D5 /* Target.m */; };
 		35C0D0D01905FF7F00E225D5 /* activity_disc_1.png in Resources */ = {isa = PBXBuildFile; fileRef = 35C0D0C91905FF7F00E225D5 /* activity_disc_1.png */; };
 		35C0D0D11905FF7F00E225D5 /* activity_disc_2.png in Resources */ = {isa = PBXBuildFile; fileRef = 35C0D0CA1905FF7F00E225D5 /* activity_disc_2.png */; };
@@ -65,6 +68,10 @@
 /* Begin PBXFileReference section */
 		3596FF0919057A03001AC338 /* disc@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "disc@2x.png"; sourceTree = "<group>"; };
 		3596FF0A19057A03001AC338 /* disc.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = disc.png; sourceTree = "<group>"; };
+		3596FF0D1906B6A1001AC338 /* fissure.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = fissure.sks; sourceTree = "<group>"; };
+		3596FF0E1906B6A1001AC338 /* bokeh.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bokeh.png; sourceTree = "<group>"; };
+		3596FF111906B905001AC338 /* Fissure.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Fissure.h; sourceTree = "<group>"; };
+		3596FF121906B905001AC338 /* Fissure.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Fissure.m; sourceTree = "<group>"; };
 		35C0D0C61905F8D700E225D5 /* Target.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Target.h; sourceTree = "<group>"; };
 		35C0D0C71905F8D700E225D5 /* Target.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Target.m; sourceTree = "<group>"; };
 		35C0D0C91905FF7F00E225D5 /* activity_disc_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = activity_disc_1.png; sourceTree = "<group>"; };
@@ -291,6 +298,8 @@
 				35DBD2D41904C41B00116F8B /* SceneControl.m */,
 				35C0D0C61905F8D700E225D5 /* Target.h */,
 				35C0D0C71905F8D700E225D5 /* Target.m */,
+				3596FF111906B905001AC338 /* Fissure.h */,
+				3596FF121906B905001AC338 /* Fissure.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -300,6 +309,8 @@
 			children = (
 				35DBD2C4190430F100116F8B /* projectile_trail.sks */,
 				35DBD2C5190430F100116F8B /* spark.png */,
+				3596FF0D1906B6A1001AC338 /* fissure.sks */,
+				3596FF0E1906B6A1001AC338 /* bokeh.png */,
 			);
 			path = Particles;
 			sourceTree = "<group>";
@@ -434,6 +445,8 @@
 				35DBD2D71905E64000116F8B /* disc_push@2x.png in Resources */,
 				35DBD2C6190430F100116F8B /* projectile_trail.sks in Resources */,
 				35C0D0D01905FF7F00E225D5 /* activity_disc_1.png in Resources */,
+				3596FF0F1906B6A1001AC338 /* fissure.sks in Resources */,
+				3596FF101906B6A1001AC338 /* bokeh.png in Resources */,
 				35DBD2CF1904C23800116F8B /* level_info.json in Resources */,
 				35C0D0D41905FF7F00E225D5 /* activity_disc_5.png in Resources */,
 				35DBD2711904255C00116F8B /* Images.xcassets in Resources */,
@@ -471,6 +484,7 @@
 				35DBD26B1904255C00116F8B /* main.m in Sources */,
 				35DBD2A3190425ED00116F8B /* MathHelper.m in Sources */,
 				35DBD2A7190425ED00116F8B /* SKBounceAnimation.m in Sources */,
+				3596FF131906B905001AC338 /* Fissure.m in Sources */,
 				35DBD2A4190425ED00116F8B /* NS+Hashes.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

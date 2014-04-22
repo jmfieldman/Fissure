@@ -31,6 +31,9 @@
 		/* Create targets */
 		_targets = [NSMutableArray array];
 		
+		/* Create fissures */
+		_fissures = [NSMutableArray array];
+		
 		/* Initialize timing */
 		_lastFrameTime = 0;
 		
@@ -76,6 +79,16 @@
 		
 		[self addChild:target.node];
 	}
+	
+	NSArray *fissureDics = level[@"fissures"];
+	for (NSDictionary *dic in fissureDics) {
+		Fissure *fissure = [[Fissure alloc] initWithDictionary:dic forSceneSize:self.size];
+		[_fissures addObject:fissure];
+		EXLog(MODEL, DBG, @"Loaded fissure at (%.2f, %.2f)", fissure.position.x, fissure.position.y);
+		
+		[self addChild:fissure];
+	}
+	
 }
 
 
@@ -132,7 +145,7 @@
 		
 		node.physicsBody.categoryBitMask = PHYS_CAT_PROJ;
 		node.physicsBody.collisionBitMask = 0;
-		node.physicsBody.contactTestBitMask = PHYS_CAT_EDGE | PHYS_CAT_CONTROL_TRANS | PHYS_CAT_TARGET;
+		node.physicsBody.contactTestBitMask = PHYS_CAT_EDGE | PHYS_CAT_CONTROL_TRANS | PHYS_CAT_TARGET | PHYS_CAT_FISSURE;
 		
 		[self addChild:node];
 		
@@ -167,17 +180,29 @@
 	}
 	
 	/* Check if a projectile hits a passable control */
-	if ((firstBody.categoryBitMask & PHYS_CAT_PROJ) && (secondBody.categoryBitMask & PHYS_CAT_CONTROL_TRANS)) {
-		SceneControl *control = secondBody.node.userData[@"control"];
-		[control.affectedProjectiles addObject:firstBody.node];
-		return;
-	}
-	
-	/* Check if a projectile hits a target */
-	if ((firstBody.categoryBitMask & PHYS_CAT_PROJ) && (secondBody.categoryBitMask & PHYS_CAT_TARGET)) {
-		Target *target = secondBody.node.userData[@"target"];
-		[target hitByProjectile];
-		return;
+	if (firstBody.categoryBitMask & PHYS_CAT_PROJ) {
+		if (secondBody.categoryBitMask & PHYS_CAT_CONTROL_TRANS) {
+			SceneControl *control = secondBody.node.userData[@"control"];
+			[control.affectedProjectiles addObject:firstBody.node];
+			return;
+		}
+		
+		/* Check if a projectile hits a target */
+		if (secondBody.categoryBitMask & PHYS_CAT_TARGET) {
+			Target *target = secondBody.node.userData[@"target"];
+			[target hitByProjectile];
+			return;
+		}
+		
+		/* Check if a projectile hits a fissure */
+		if (secondBody.categoryBitMask & PHYS_CAT_FISSURE) {
+			Fissure *fissure = (Fissure*)secondBody.node;
+			SKSpriteNode *proj = (SKSpriteNode*)firstBody.node;
+			proj.color = fissure.color;
+			proj.colorBlendFactor = 0.5;
+			NSLog(@"test");
+			return;
+		}
 	}
 }
 
