@@ -9,6 +9,14 @@
 /* Begin PBXBuildFile section */
 		3596FF0B19057A03001AC338 /* disc@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3596FF0919057A03001AC338 /* disc@2x.png */; };
 		3596FF0C19057A03001AC338 /* disc.png in Resources */ = {isa = PBXBuildFile; fileRef = 3596FF0A19057A03001AC338 /* disc.png */; };
+		35C0D0C81905F8D700E225D5 /* Target.m in Sources */ = {isa = PBXBuildFile; fileRef = 35C0D0C71905F8D700E225D5 /* Target.m */; };
+		35C0D0D01905FF7F00E225D5 /* activity_disc_1.png in Resources */ = {isa = PBXBuildFile; fileRef = 35C0D0C91905FF7F00E225D5 /* activity_disc_1.png */; };
+		35C0D0D11905FF7F00E225D5 /* activity_disc_2.png in Resources */ = {isa = PBXBuildFile; fileRef = 35C0D0CA1905FF7F00E225D5 /* activity_disc_2.png */; };
+		35C0D0D21905FF7F00E225D5 /* activity_disc_3.png in Resources */ = {isa = PBXBuildFile; fileRef = 35C0D0CB1905FF7F00E225D5 /* activity_disc_3.png */; };
+		35C0D0D31905FF7F00E225D5 /* activity_disc_4.png in Resources */ = {isa = PBXBuildFile; fileRef = 35C0D0CC1905FF7F00E225D5 /* activity_disc_4.png */; };
+		35C0D0D41905FF7F00E225D5 /* activity_disc_5.png in Resources */ = {isa = PBXBuildFile; fileRef = 35C0D0CD1905FF7F00E225D5 /* activity_disc_5.png */; };
+		35C0D0D51905FF7F00E225D5 /* activity_disc_6.png in Resources */ = {isa = PBXBuildFile; fileRef = 35C0D0CE1905FF7F00E225D5 /* activity_disc_6.png */; };
+		35C0D0D61905FF7F00E225D5 /* activity_disc_0.png in Resources */ = {isa = PBXBuildFile; fileRef = 35C0D0CF1905FF7F00E225D5 /* activity_disc_0.png */; };
 		35DBD25F1904255C00116F8B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 35DBD25E1904255C00116F8B /* Foundation.framework */; };
 		35DBD2611904255C00116F8B /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 35DBD2601904255C00116F8B /* CoreGraphics.framework */; };
 		35DBD2631904255C00116F8B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 35DBD2621904255C00116F8B /* UIKit.framework */; };
@@ -37,7 +45,7 @@
 		35DBD2B6190427AC00116F8B /* FissureScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 35DBD2B5190427AC00116F8B /* FissureScene.m */; };
 		35DBD2C6190430F100116F8B /* projectile_trail.sks in Resources */ = {isa = PBXBuildFile; fileRef = 35DBD2C4190430F100116F8B /* projectile_trail.sks */; };
 		35DBD2C7190430F100116F8B /* spark.png in Resources */ = {isa = PBXBuildFile; fileRef = 35DBD2C5190430F100116F8B /* spark.png */; };
-		35DBD2CC19043AF600116F8B /* projectile.png in Resources */ = {isa = PBXBuildFile; fileRef = 35DBD2CA19043AF600116F8B /* projectile.png */; };
+		35DBD2CC19043AF600116F8B /* projectile@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 35DBD2CA19043AF600116F8B /* projectile@2x.png */; };
 		35DBD2CF1904C23800116F8B /* level_info.json in Resources */ = {isa = PBXBuildFile; fileRef = 35DBD2CE1904C23800116F8B /* level_info.json */; };
 		35DBD2D21904C40700116F8B /* SpawnPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = 35DBD2D11904C40700116F8B /* SpawnPoint.m */; };
 		35DBD2D51904C41B00116F8B /* SceneControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 35DBD2D41904C41B00116F8B /* SceneControl.m */; };
@@ -57,6 +65,15 @@
 /* Begin PBXFileReference section */
 		3596FF0919057A03001AC338 /* disc@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "disc@2x.png"; sourceTree = "<group>"; };
 		3596FF0A19057A03001AC338 /* disc.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = disc.png; sourceTree = "<group>"; };
+		35C0D0C61905F8D700E225D5 /* Target.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Target.h; sourceTree = "<group>"; };
+		35C0D0C71905F8D700E225D5 /* Target.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Target.m; sourceTree = "<group>"; };
+		35C0D0C91905FF7F00E225D5 /* activity_disc_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = activity_disc_1.png; sourceTree = "<group>"; };
+		35C0D0CA1905FF7F00E225D5 /* activity_disc_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = activity_disc_2.png; sourceTree = "<group>"; };
+		35C0D0CB1905FF7F00E225D5 /* activity_disc_3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = activity_disc_3.png; sourceTree = "<group>"; };
+		35C0D0CC1905FF7F00E225D5 /* activity_disc_4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = activity_disc_4.png; sourceTree = "<group>"; };
+		35C0D0CD1905FF7F00E225D5 /* activity_disc_5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = activity_disc_5.png; sourceTree = "<group>"; };
+		35C0D0CE1905FF7F00E225D5 /* activity_disc_6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = activity_disc_6.png; sourceTree = "<group>"; };
+		35C0D0CF1905FF7F00E225D5 /* activity_disc_0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = activity_disc_0.png; sourceTree = "<group>"; };
 		35DBD25B1904255C00116F8B /* Fissure.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Fissure.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		35DBD25E1904255C00116F8B /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		35DBD2601904255C00116F8B /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -98,7 +115,7 @@
 		35DBD2B5190427AC00116F8B /* FissureScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FissureScene.m; sourceTree = "<group>"; };
 		35DBD2C4190430F100116F8B /* projectile_trail.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = projectile_trail.sks; sourceTree = "<group>"; };
 		35DBD2C5190430F100116F8B /* spark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spark.png; sourceTree = "<group>"; };
-		35DBD2CA19043AF600116F8B /* projectile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = projectile.png; sourceTree = "<group>"; };
+		35DBD2CA19043AF600116F8B /* projectile@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "projectile@2x.png"; sourceTree = "<group>"; };
 		35DBD2CE1904C23800116F8B /* level_info.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = level_info.json; sourceTree = "<group>"; };
 		35DBD2D01904C40700116F8B /* SpawnPoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpawnPoint.h; sourceTree = "<group>"; };
 		35DBD2D11904C40700116F8B /* SpawnPoint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpawnPoint.m; sourceTree = "<group>"; };
@@ -272,6 +289,8 @@
 				35DBD2D11904C40700116F8B /* SpawnPoint.m */,
 				35DBD2D31904C41B00116F8B /* SceneControl.h */,
 				35DBD2D41904C41B00116F8B /* SceneControl.m */,
+				35C0D0C61905F8D700E225D5 /* Target.h */,
+				35C0D0C71905F8D700E225D5 /* Target.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -297,10 +316,17 @@
 		35DBD2C919043AF600116F8B /* Game */ = {
 			isa = PBXGroup;
 			children = (
+				35C0D0C91905FF7F00E225D5 /* activity_disc_1.png */,
+				35C0D0CA1905FF7F00E225D5 /* activity_disc_2.png */,
+				35C0D0CB1905FF7F00E225D5 /* activity_disc_3.png */,
+				35C0D0CC1905FF7F00E225D5 /* activity_disc_4.png */,
+				35C0D0CD1905FF7F00E225D5 /* activity_disc_5.png */,
+				35C0D0CE1905FF7F00E225D5 /* activity_disc_6.png */,
+				35C0D0CF1905FF7F00E225D5 /* activity_disc_0.png */,
 				35DBD2D61905E64000116F8B /* disc_push@2x.png */,
 				3596FF0919057A03001AC338 /* disc@2x.png */,
 				3596FF0A19057A03001AC338 /* disc.png */,
-				35DBD2CA19043AF600116F8B /* projectile.png */,
+				35DBD2CA19043AF600116F8B /* projectile@2x.png */,
 			);
 			path = Game;
 			sourceTree = "<group>";
@@ -399,14 +425,21 @@
 			buildActionMask = 2147483647;
 			files = (
 				35DBD2691904255C00116F8B /* InfoPlist.strings in Resources */,
+				35C0D0D31905FF7F00E225D5 /* activity_disc_4.png in Resources */,
+				35C0D0D11905FF7F00E225D5 /* activity_disc_2.png in Resources */,
 				35DBD2C7190430F100116F8B /* spark.png in Resources */,
-				35DBD2CC19043AF600116F8B /* projectile.png in Resources */,
+				35C0D0D61905FF7F00E225D5 /* activity_disc_0.png in Resources */,
+				35DBD2CC19043AF600116F8B /* projectile@2x.png in Resources */,
+				35C0D0D51905FF7F00E225D5 /* activity_disc_6.png in Resources */,
 				35DBD2D71905E64000116F8B /* disc_push@2x.png in Resources */,
 				35DBD2C6190430F100116F8B /* projectile_trail.sks in Resources */,
+				35C0D0D01905FF7F00E225D5 /* activity_disc_1.png in Resources */,
 				35DBD2CF1904C23800116F8B /* level_info.json in Resources */,
+				35C0D0D41905FF7F00E225D5 /* activity_disc_5.png in Resources */,
 				35DBD2711904255C00116F8B /* Images.xcassets in Resources */,
 				3596FF0C19057A03001AC338 /* disc.png in Resources */,
 				3596FF0B19057A03001AC338 /* disc@2x.png in Resources */,
+				35C0D0D21905FF7F00E225D5 /* activity_disc_3.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -427,6 +460,7 @@
 			files = (
 				35DBD2B6190427AC00116F8B /* FissureScene.m in Sources */,
 				35DBD2D51904C41B00116F8B /* SceneControl.m in Sources */,
+				35C0D0C81905F8D700E225D5 /* Target.m in Sources */,
 				35DBD2A6190425ED00116F8B /* SingletonHelper.m in Sources */,
 				35DBD2A5190425ED00116F8B /* PersistentDictionary.m in Sources */,
 				35DBD2A1190425ED00116F8B /* EXDebug.m in Sources */,
@@ -559,9 +593,11 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Fissure/Fissure-Prefix.pch";
 				INFOPLIST_FILE = "Fissure/Fissure-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				OTHER_CFLAGS = "-DEXDEBUGENABLED";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -576,9 +612,11 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Fissure/Fissure-Prefix.pch";
 				INFOPLIST_FILE = "Fissure/Fissure-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				OTHER_CFLAGS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

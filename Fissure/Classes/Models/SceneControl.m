@@ -33,6 +33,7 @@ static NSString *s_controlStrings[NUM_CONTROL_TYPES] = {
 		_maxRadius       = [dictionary[@"maxRadiusScale"] floatValue] * _radius;
 		_canRotate       = [dictionary[@"canRotate"] boolValue];
 		_canScale        = [dictionary[@"canScale"] boolValue];
+		_canMove         = [dictionary[@"canMove"] boolValue];
 		_power           = [dictionary[@"power"] floatValue];
 		_powerVector     = CGVectorMake(_power * sceneSize.width * cos(_angle), _power * sceneSize.width * sin(_angle));
 		
@@ -45,6 +46,7 @@ static NSString *s_controlStrings[NUM_CONTROL_TYPES] = {
 		CHECK_VALUE(@"minRadiusScale");
 		CHECK_VALUE(@"canRotate");
 		CHECK_VALUE(@"canScale");
+		CHECK_VALUE(@"canMove");
 		CHECK_VALUE(@"power");
 		
 		/* Initial values */

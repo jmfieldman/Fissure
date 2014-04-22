@@ -28,6 +28,9 @@
 		/* Create controls */
 		_controls = [NSMutableArray array];
 		
+		/* Create targets */
+		_targets = [NSMutableArray array];
+		
 		/* Initialize timing */
 		_lastFrameTime = 0;
 		
@@ -63,6 +66,14 @@
 		[self addChild:control.icon];
 	}
 	
+	NSArray *targetDics = level[@"targets"];
+	for (NSDictionary *dic in targetDics) {
+		Target *target = [[Target alloc] initWithDictionary:dic forSceneSize:self.size];
+		[_targets addObject:target];
+		EXLog(MODEL, DBG, @"Loaded target at (%.2f, %.2f)", target.position.x, target.position.y);
+		
+		[self addChild:target.node];
+	}
 }
 
 
@@ -80,6 +91,11 @@
 	/* Update projectiles */
 	for (SceneControl *control in _controls) {
 		[control updateAffectedProjectilesForDuration:elapsedTime];
+	}
+	
+	/* Update targets */
+	for (Target *target in _targets) {
+		[target updateForDuration:elapsedTime];
 	}
 	
 	//EXLog(ANY, DBG, @"update:");
@@ -109,10 +125,11 @@
 		node.physicsBody.velocity = point.initialVelocity;
 		node.physicsBody.affectedByGravity = NO;
 		node.physicsBody.allowsRotation = NO;
+		node.physicsBody.linearDamping = 0;
 		
 		node.physicsBody.categoryBitMask = PHYS_CAT_PROJ;
 		node.physicsBody.collisionBitMask = 0;
-		node.physicsBody.contactTestBitMask = PHYS_CAT_EDGE | PHYS_CAT_CONTROL_TRANS;
+		node.physicsBody.contactTestBitMask = PHYS_CAT_EDGE | PHYS_CAT_CONTROL_TRANS | PHYS_CAT_TARGET;
 		
 		[self addChild:node];
 		
@@ -153,6 +170,12 @@
 		return;
 	}
 	
+	/* Check if a projectile hits a target */
+	if ((firstBody.categoryBitMask & PHYS_CAT_PROJ) && (secondBody.categoryBitMask & PHYS_CAT_TARGET)) {
+		Target *target = secondBody.node.userData[@"target"];
+		[target hitByProjectile];
+		return;
+	}
 }
 
 - (void) didEndContact:(SKPhysicsContact *)contact {
@@ -185,8 +208,10 @@
 	
 		NSMutableArray *touchedControls = [NSMutableArray array];
 		for (SKNode *node in touchedNodes) {
-			if (![node.userData[@"isControl"] boolValue]) continue;			
-			[touchedControls addObject:node.userData[@"control"]];
+			if (![node.userData[@"isControl"] boolValue]) continue;
+			SceneControl *control = node.userData[@"control"];
+			if (!control.canMove) continue;
+			[touchedControls addObject:control];
 			/*
 			for (SceneControl *control in _controls) {
 				if (control.node == node) {
@@ -203,7 +228,7 @@
 		/* Default to drag behavior */
 		_draggedControl = nil;
 		float minDist = 1000000;
-		for (SceneControl *control in _controls) {
+		for (SceneControl *control in touchedControls) {
 			float dx = control.position.x - touchPoint.x;
 			float dy = control.position.y - touchPoint.y;
 			float dist = sqrt(dx * dx + dy * dy);
@@ -215,6 +240,7 @@
 		}
 		
 		/* See if it's scaling instead */
+		if (!_draggedControl.canScale) return;
 		if (minDist > (_draggedControl.radius - SCALE_RADIUS_WIDTH)) {
 			_scalingControl = _draggedControl; _draggedControl = nil;
 			_scalingOffset  = _scalingControl.radius - minDist;

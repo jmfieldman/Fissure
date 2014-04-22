@@ -9,10 +9,11 @@
 #import <SpriteKit/SpriteKit.h>
 #import "SpawnPoint.h"
 #import "SceneControl.h"
+#import "Target.h"
 
 #define PHYS_CAT_EDGE              0x0001
 #define PHYS_CAT_PROJ              0x0002
-#define PHYS_CAT_GOAL              0x0004
+#define PHYS_CAT_TARGET            0x0004
 
 #define PHYS_CAT_CONTROL_TRANS     0x0100
 
@@ -37,7 +38,7 @@
 
 @property (nonatomic, readonly) NSMutableArray *spawnPoints;
 @property (nonatomic, readonly) NSMutableArray *controls;
-
+@property (nonatomic, readonly) NSMutableArray *targets;
 
 - (void) loadFromLevelDictionary:(NSDictionary*)level;
 
