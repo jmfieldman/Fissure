@@ -19,7 +19,7 @@
 @property (nonatomic, readonly) float          lossPerTime;
 
 @property (nonatomic, strong, readonly) NSMutableArray *dials;
-@property (nonatomic, weak,   readonly) SKNode         *node;
+@property (nonatomic, strong, readonly) SKNode         *node;
 
 - (id) initWithDictionary:(NSDictionary*)dictionary forSceneSize:(CGSize)sceneSize;
 
