@@ -20,7 +20,7 @@ SINGLETON_IMPL(GameEngineViewController);
 - (id)init {
 	if ((self = [super init])) {
 
-		self.view = [[UIView alloc] initWithFrame:[UIScreen mainScreen].bounds];
+		self.view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.height, [UIScreen mainScreen].bounds.size.width)];
 		self.view.backgroundColor = [UIColor redColor];
 		
 		_sceneView = [[SKView alloc] initWithFrame:self.view.bounds];
@@ -37,6 +37,10 @@ SINGLETON_IMPL(GameEngineViewController);
 	return self;
 }
 
+/* We don't want a status bar */
+- (BOOL)prefersStatusBarHidden {
+    return YES;
+}
 
 
 @end

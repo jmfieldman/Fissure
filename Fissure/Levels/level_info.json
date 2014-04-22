@@ -22,9 +22,9 @@
 						  "canRotate" : false,
 						  "px" : 0.75,
 						  "py" : 0.75,
-						  "radius"  : 0.20,
+						  "radius"  : 0.075,
 						  "minRadiusScale" : 1,
-						  "maxRadiusScale" : 2,
+						  "maxRadiusScale" : 3,
 						  "canScale" : true,
 						  "canMove" : true
 						  },
@@ -35,9 +35,9 @@
 						  "canRotate" : false,
 						  "px" : 0.55,
 						  "py" : 0.75,
-						  "radius"  : 0.20,
+						  "radius"  : 0.075,
 						  "minRadiusScale" : 1,
-						  "maxRadiusScale" : 2,
+						  "maxRadiusScale" : 3,
 						  "canScale" : true,
 						  "canMove" : true
 						  
@@ -49,9 +49,9 @@
 						  "canRotate" : false,
 						  "px" : 0.55,
 						  "py" : 0.55,
-						  "radius"  : 0.20,
+						  "radius"  : 0.075,
 						  "minRadiusScale" : 1,
-						  "maxRadiusScale" : 2,
+						  "maxRadiusScale" : 3,
 						  "canScale" : true,
 						  "canMove" : true
 						  
@@ -68,7 +68,7 @@
 			"fissures" : [ {
 						  "px" : 0.35,
 						  "py" : 0.70,
-						  "color" : { "r" : 1, "g" : 0, "b" : 0, "a" : 1 },
+						  "color" : { "r" : 0, "g" : 0.4, "b" : 1, "a" : 1 },
 						  "radius" : 0.05
 						  }
 			]

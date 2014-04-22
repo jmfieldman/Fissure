@@ -115,7 +115,7 @@
 - (void) updateDialSpeed {
 	int i = 0;
 	for (SKSpriteNode *dial in _dials) {
-		dial.physicsBody.angularVelocity = 2 * ((i<3)?1:-1) * (float)(i+2)/DIALS_PER_TARGET * _progress;
+		dial.physicsBody.angularVelocity = 4 * ((i<3)?1:-1) * (float)(i+2)/DIALS_PER_TARGET * _progress;
 		i++;
 	}
 }

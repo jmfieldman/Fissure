@@ -193,16 +193,7 @@
 			[target hitByProjectile];
 			return;
 		}
-		
-		/* Check if a projectile hits a fissure */
-		if (secondBody.categoryBitMask & PHYS_CAT_FISSURE) {
-			Fissure *fissure = (Fissure*)secondBody.node;
-			SKSpriteNode *proj = (SKSpriteNode*)firstBody.node;
-			proj.color = fissure.color;
-			proj.colorBlendFactor = 0.5;
-			NSLog(@"test");
-			return;
-		}
+				
 	}
 }
 
@@ -217,12 +208,31 @@
 		firstBody = contact.bodyB;
 		secondBody = contact.bodyA;
 	}
+		
 	
-	/* Check if a projectile leaves a passable control */
-	if ((firstBody.categoryBitMask & PHYS_CAT_PROJ) && (secondBody.categoryBitMask & PHYS_CAT_CONTROL_TRANS)) {
-		SceneControl *control = secondBody.node.userData[@"control"];
-		[control.affectedProjectiles removeObjectIdenticalTo:firstBody.node];
-		return;
+	if (firstBody.categoryBitMask & PHYS_CAT_PROJ) {
+		
+		/* Projectile leaves a control */
+		if (secondBody.categoryBitMask & PHYS_CAT_CONTROL_TRANS) {
+			SceneControl *control = secondBody.node.userData[@"control"];
+			[control.affectedProjectiles removeObjectIdenticalTo:firstBody.node];
+			return;
+		}
+		
+		/* Check if a projectile hits a fissure */
+		if (secondBody.categoryBitMask & PHYS_CAT_FISSURE) {
+			Fissure *fissure = (Fissure*)secondBody.node;
+			SKSpriteNode *proj = (SKSpriteNode*)firstBody.node;
+			proj.color = fissure.color;
+			proj.colorBlendFactor = 0.95;
+			
+			SKEmitterNode *emitter = (SKEmitterNode*)proj.userData[@"emitter"];
+			CGFloat r,g,b,a;
+			[fissure.color getRed:&r green:&g blue:&b alpha:&a];
+			emitter.particleColorSequence = [[SKKeyframeSequence alloc] initWithKeyframeValues:@[[UIColor colorWithRed:r green:g blue:b alpha:0.15],
+																								 [UIColor colorWithRed:r green:g blue:b alpha:0]] times:@[@(0), @(1)]];;
+			return;
+		}
 	}
 }
 

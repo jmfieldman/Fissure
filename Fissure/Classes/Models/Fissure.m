@@ -45,7 +45,7 @@
 }
 
 - (SKKeyframeSequence*) sequenceForColor:(UIColor*)color {
-	return [[SKKeyframeSequence alloc] initWithKeyframeValues:@[color, [UIColor colorWithWhite:0.2 alpha:0]] times:@[@(0), @(1)]];
+	return [[SKKeyframeSequence alloc] initWithKeyframeValues:@[color, [UIColor colorWithWhite:0.4 alpha:0]] times:@[@(0), @(1)]];
 }
 
 @end
