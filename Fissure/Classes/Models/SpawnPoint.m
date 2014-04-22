@@ -34,6 +34,14 @@
 		CHECK_VALUE(@"frameInterval");
 		
 		_frameCount = 1;
+		
+		/* Create spawn node */
+		_node = [SKSpriteNode spriteNodeWithImageNamed:@"disc"];
+		_node.alpha = 0.1;
+		_node.color = [UIColor blackColor];
+		_node.colorBlendFactor = 1;
+		_node.size = CGSizeMake(MAX(_positionJitter.width, _positionJitter.height) + 5, MAX(_positionJitter.width, _positionJitter.height) + 5);
+		_node.position = _position;
 	}
 	return self;
 }

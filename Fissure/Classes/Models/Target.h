@@ -16,6 +16,7 @@
 @property (nonatomic, readonly) float          progressPerHit;
 @property (nonatomic, readonly) CFTimeInterval currentTime;
 @property (nonatomic, readonly) CFTimeInterval lastHitTime;
+@property (nonatomic, readonly) CFTimeInterval timeFull;
 @property (nonatomic, readonly) float          lossPerTime;
 
 @property (nonatomic, strong, readonly) NSMutableArray *dials;

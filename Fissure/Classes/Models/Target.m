@@ -93,6 +93,13 @@
 - (void) updateForDuration:(CFTimeInterval)duration {
 	_currentTime += duration;
 	
+	/* Full? */
+	if (_progress >= 1) {
+		_timeFull += duration;
+	} else {
+		_timeFull = 0;
+	}
+	
 	/* If already resting, no need to update */
 	if (_progress <= 0) return;
 	

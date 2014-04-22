@@ -54,6 +54,8 @@
 		SpawnPoint *spawn = [[SpawnPoint alloc] initWithDictionary:dic forSceneSize:self.size];
 		[_spawnPoints addObject:spawn];
 		EXLog(MODEL, DBG, @"Loaded spawn point at (%.2f, %.2f)", spawn.position.x, spawn.position.y);
+		
+		[self addChild:spawn.node];
 	}
 	
 	NSArray *controlDics = level[@"controls"];
@@ -94,22 +96,23 @@
 	}
 	
 	/* Update targets */
+	BOOL allFull = YES;
 	for (Target *target in _targets) {
 		[target updateForDuration:elapsedTime];
+		if (target.timeFull < (target.hysteresis * 2)) allFull = NO;
 	}
 	
-	//EXLog(ANY, DBG, @"update:");
+	if (allFull) {
+		[self allTargetsFull];
+	}
+	
 }
 
-/*
-- (void)didEvaluateActions {
-	EXLog(ANY, DBG, @"didEvaluateActions");
+
+- (void) allTargetsFull {
+	
 }
 
-- (void)didSimulatePhysics {
-	EXLog(ANY, DBG, @"didSimulatePhysics");
-}
- */
 
 - (void) spawnProjectiles {
 	for (SpawnPoint *point in _spawnPoints) {
