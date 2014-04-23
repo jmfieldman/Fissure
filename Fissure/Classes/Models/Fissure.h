@@ -11,6 +11,7 @@
 @interface Fissure : SKNode
 
 @property (nonatomic, strong) UIColor *color;
+@property (nonatomic, assign) int      fissureIndex;
 
 - (id) initWithDictionary:(NSDictionary*)dictionary forSceneSize:(CGSize)sceneSize;
 

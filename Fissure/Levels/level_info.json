@@ -11,7 +11,7 @@
 						"angle" : 0.5,
 						"speed" : 0.5,
 						"friction" : 0.2,
-						"frameInterval" : 1
+						"frameInterval" : 2
 				}
 			],
 			
@@ -60,8 +60,9 @@
 			],
 			
 			"targets" : [ {
-						 "px" : 0.75,
-						 "py" : 0.25
+						 "px" : 0.15,
+						 "py" : 0.85,
+						 "matchedFissure" : 1
 						 }
 			],
 			

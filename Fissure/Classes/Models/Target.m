@@ -22,6 +22,7 @@
 	if ((self = [super init])) {
 		
 		_position        = CGPointMake( [dictionary[@"px"] floatValue] * sceneSize.width, [dictionary[@"py"] floatValue] * sceneSize.height );
+		_matchedFissure  = [dictionary[@"matchedFissure"] intValue];
 		
 		CHECK_VALUE(@"px");
 		CHECK_VALUE(@"py");
@@ -77,6 +78,14 @@
 	return self;
 }
 
+- (void) setColor:(UIColor *)color {
+	_color = color;
+	
+	for (SKSpriteNode *dial in _dials) {
+		dial.color = color;
+		dial.alpha = 0.4;
+	}
+}
 
 - (void) hitByProjectile {
 	_lastHitTime = _currentTime;

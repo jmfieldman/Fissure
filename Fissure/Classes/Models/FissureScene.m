@@ -71,23 +71,32 @@
 		[self addChild:control.icon];
 	}
 	
+	NSArray *fissureDics = level[@"fissures"];
+	int fissureIndex = 1;
+	for (NSDictionary *dic in fissureDics) {
+		Fissure *fissure = [[Fissure alloc] initWithDictionary:dic forSceneSize:self.size];
+		fissure.fissureIndex = fissureIndex;
+		[_fissures addObject:fissure];
+		EXLog(MODEL, DBG, @"Loaded fissure at (%.2f, %.2f)", fissure.position.x, fissure.position.y);
+		
+		[self addChild:fissure];
+		fissureIndex++;
+	}
+	
 	NSArray *targetDics = level[@"targets"];
 	for (NSDictionary *dic in targetDics) {
 		Target *target = [[Target alloc] initWithDictionary:dic forSceneSize:self.size];
+		if (target.matchedFissure) {
+			target.color = ((Fissure*)_fissures[target.matchedFissure-1]).color;
+		}
+		
 		[_targets addObject:target];
 		EXLog(MODEL, DBG, @"Loaded target at (%.2f, %.2f)", target.position.x, target.position.y);
 		
 		[self addChild:target.node];
 	}
 	
-	NSArray *fissureDics = level[@"fissures"];
-	for (NSDictionary *dic in fissureDics) {
-		Fissure *fissure = [[Fissure alloc] initWithDictionary:dic forSceneSize:self.size];
-		[_fissures addObject:fissure];
-		EXLog(MODEL, DBG, @"Loaded fissure at (%.2f, %.2f)", fissure.position.x, fissure.position.y);
-		
-		[self addChild:fissure];
-	}
+	
 	
 }
 
@@ -132,9 +141,11 @@
 		if (![point shouldSpawnThisFrame]) continue;
 		
 		/* Create the projectile */
-		SKSpriteNode *node = [[SKSpriteNode alloc] initWithImageNamed:@"projectile.png"];
+		SKSpriteNode *node = [[SKSpriteNode alloc] initWithImageNamed:@"line5x1"];
 		node.position = CGPointMake( point.position.x + (rand() % (int)point.positionJitter.width)  - point.positionJitter.width/2,
 									 point.position.y + (rand() % (int)point.positionJitter.height) - point.positionJitter.height/2);
+		node.color = [UIColor grayColor];
+		node.colorBlendFactor = 1;
 		
 		node.physicsBody = [SKPhysicsBody bodyWithCircleOfRadius:PROJECTILE_PHYS_RADIUS];
 		node.physicsBody.friction = point.friction;
@@ -142,7 +153,7 @@
 		node.physicsBody.affectedByGravity = NO;
 		node.physicsBody.allowsRotation = NO;
 		node.physicsBody.linearDamping = 0;
-		//node.zRotation = atan2(node.physicsBody.velocity.dy, node.physicsBody.velocity.dx);
+		node.zRotation = atan2(node.physicsBody.velocity.dy, node.physicsBody.velocity.dx);
 		
 		node.physicsBody.categoryBitMask = PHYS_CAT_PROJ;
 		node.physicsBody.collisionBitMask = 0;
@@ -191,7 +202,11 @@
 		/* Check if a projectile hits a target */
 		if (secondBody.categoryBitMask & PHYS_CAT_TARGET) {
 			Target *target = secondBody.node.userData[@"target"];
-			[target hitByProjectile];
+			SKSpriteNode *proj = (SKSpriteNode*)firstBody.node;
+			
+			if ([proj.userData[@"fissureIndex"] intValue] == target.matchedFissure) {
+				[target hitByProjectile];
+			}
 			return;
 		}
 				
@@ -222,11 +237,14 @@
 		
 		/* Check if a projectile hits a fissure */
 		if (secondBody.categoryBitMask & PHYS_CAT_FISSURE) {
+			/* Update fissure */
 			Fissure *fissure = (Fissure*)secondBody.node;
 			SKSpriteNode *proj = (SKSpriteNode*)firstBody.node;
 			proj.color = fissure.color;
 			proj.colorBlendFactor = 0.95;
+			proj.userData[@"fissureIndex"] = @(fissure.fissureIndex);
 			
+			/* Update emitter color */
 			SKEmitterNode *emitter = (SKEmitterNode*)proj.userData[@"emitter"];
 			CGFloat r,g,b,a;
 			[fissure.color getRed:&r green:&g blue:&b alpha:&a];

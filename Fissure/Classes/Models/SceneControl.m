@@ -68,7 +68,7 @@ static NSString *s_controlStrings[NUM_CONTROL_TYPES] = {
 		_node.physicsBody.dynamic = YES;
 		_node.physicsBody.categoryBitMask = PHYS_CAT_CONTROL_TRANS;
 		_node.physicsBody.collisionBitMask = 0;
-		_node.physicsBody.contactTestBitMask = 0;
+		_node.physicsBody.contactTestBitMask = PHYS_CAT_PROJ;
 		
 		/* Create control icon */
 		switch (_controlType) {
