@@ -124,6 +124,7 @@ static NSString *s_controlStrings[NUM_CONTROL_TYPES] = {
 		case CONTROL_TYPE_PUSH:			
 			for (SKNode *node in _affectedProjectiles) {
 				node.physicsBody.velocity = CGVectorMake(node.physicsBody.velocity.dx + _powerVector.dx, node.physicsBody.velocity.dy + _powerVector.dy);;
+				node.zRotation = atan2(node.physicsBody.velocity.dy, node.physicsBody.velocity.dx);
 			}
 			break;
 			

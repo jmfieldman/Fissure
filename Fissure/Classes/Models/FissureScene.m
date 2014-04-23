@@ -142,6 +142,7 @@
 		node.physicsBody.affectedByGravity = NO;
 		node.physicsBody.allowsRotation = NO;
 		node.physicsBody.linearDamping = 0;
+		//node.zRotation = atan2(node.physicsBody.velocity.dy, node.physicsBody.velocity.dx);
 		
 		node.physicsBody.categoryBitMask = PHYS_CAT_PROJ;
 		node.physicsBody.collisionBitMask = 0;

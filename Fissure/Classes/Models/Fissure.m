@@ -45,7 +45,9 @@
 }
 
 - (SKKeyframeSequence*) sequenceForColor:(UIColor*)color {
-	return [[SKKeyframeSequence alloc] initWithKeyframeValues:@[color, [UIColor colorWithWhite:0.4 alpha:0]] times:@[@(0), @(1)]];
+	CGFloat r, g, b, a;
+	[color getRed:&r green:&g blue:&b alpha:&a];
+	return [[SKKeyframeSequence alloc] initWithKeyframeValues:@[[UIColor colorWithRed:r green:g blue:b alpha:0.5], [UIColor colorWithWhite:0.4 alpha:0]] times:@[@(0), @(1)]];
 }
 
 @end
