@@ -17,7 +17,7 @@
 			
 			"controls" : [ {
 						  "type" : "push",
-						  "power" : 0.015,
+						  "power" : 1.15,
 						  "angle" : 3.1457079632,
 						  "canRotate" : false,
 						  "px" : 0.75,
@@ -30,7 +30,7 @@
 						  },
 						  {
 						  "type" : "push",
-						  "power" : 0.015,
+						  "power" : 1.15,
 						  "angle" : 1.57079632,
 						  "canRotate" : false,
 						  "px" : 0.55,
@@ -44,7 +44,7 @@
 						  },
 						  {
 						  "type" : "push",
-						  "power" : 0.035,
+						  "power" : 1.15,
 						  "angle" : -1.57079632,
 						  "canRotate" : false,
 						  "px" : 0.55,

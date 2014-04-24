@@ -121,13 +121,16 @@ static NSString *s_controlStrings[NUM_CONTROL_TYPES] = {
 
 - (void) updateAffectedProjectilesForDuration:(CFTimeInterval)duration {
 	switch (_controlType) {
-		case CONTROL_TYPE_PUSH:			
+		case CONTROL_TYPE_PUSH: {
+			float xmag = _powerVector.dx * duration;
+			float ymag = _powerVector.dy * duration;
 			for (SKNode *node in _affectedProjectiles) {
-				node.physicsBody.velocity = CGVectorMake(node.physicsBody.velocity.dx + _powerVector.dx, node.physicsBody.velocity.dy + _powerVector.dy);;
+				node.physicsBody.velocity = CGVectorMake(node.physicsBody.velocity.dx + xmag, node.physicsBody.velocity.dy + ymag);
 				node.zRotation = atan2(node.physicsBody.velocity.dy, node.physicsBody.velocity.dx);
 			}
 			break;
-			
+		}
+		
 		default:
 			break;
 	}
