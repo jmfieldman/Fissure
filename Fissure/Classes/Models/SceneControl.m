@@ -184,7 +184,7 @@ static NSString *s_controlStrings[NUM_CONTROL_TYPES] = {
 				int distance = FastIntSQRT((int)(dx * dx + dy * dy));
 				distance += _radius / 2;
 				
-				float force = multiplier * 1000 / (distance );
+				float force = multiplier * 50000 / (distance * distance);
 				
 				node.physicsBody.velocity = CGVectorMake((node.physicsBody.velocity.dx + dx * force) * 0.98, (node.physicsBody.velocity.dy + dy * force) * 0.98);
 				node.zRotation = atan2(node.physicsBody.velocity.dy, node.physicsBody.velocity.dx);
