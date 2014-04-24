@@ -14,6 +14,7 @@
 static NSString *s_controlStrings[NUM_CONTROL_TYPES] = {
 	@"push",
 	@"gravity",
+	@"repel",
 	@"propel",
 	@"slow",
 };
@@ -91,6 +92,12 @@ static NSString *s_controlStrings[NUM_CONTROL_TYPES] = {
 				
 			case CONTROL_TYPE_GRAVITY:
 				_icon = [SKSpriteNode spriteNodeWithImageNamed:@"disc_attract"];
+				_icon.zRotation = M_PI / 2;
+				_node.color = [UIColor colorWithRed:1 green:0.5 blue:0 alpha:1];
+				break;
+				
+			case CONTROL_TYPE_REPEL:
+				_icon = [SKSpriteNode spriteNodeWithImageNamed:@"disc_repel"];
 				_icon.zRotation = M_PI / 2;
 				_node.color = [UIColor colorWithRed:1 green:0.4 blue:1 alpha:1];
 				break;
@@ -202,6 +209,25 @@ static NSString *s_controlStrings[NUM_CONTROL_TYPES] = {
 					[_affectedProjectiles removeObjectIdenticalTo:node];
 					[node removeFromParent];
 				}
+			}
+			break;
+		}
+			
+		case CONTROL_TYPE_REPEL: {
+			float multiplier = _power * duration;
+			for (SKNode *node in _affectedProjectiles) {
+				
+				float dx = node.position.x - _node.position.x;
+				float dy = node.position.y - _node.position.y;
+				int distance = FastIntSQRT((int)(dx * dx + dy * dy));
+				distance += _radius / 2;
+				
+				float force = multiplier * 50000 / (distance * distance);
+				
+				node.physicsBody.velocity = CGVectorMake((node.physicsBody.velocity.dx + dx * force) * 0.98, (node.physicsBody.velocity.dy + dy * force) * 0.98);
+				node.zRotation = atan2(node.physicsBody.velocity.dy, node.physicsBody.velocity.dx);
+				
+				
 			}
 			break;
 		}

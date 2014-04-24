@@ -24,6 +24,7 @@
 		35C0D0D41905FF7F00E225D5 /* activity_disc_5.png in Resources */ = {isa = PBXBuildFile; fileRef = 35C0D0CD1905FF7F00E225D5 /* activity_disc_5.png */; };
 		35C0D0D51905FF7F00E225D5 /* activity_disc_6.png in Resources */ = {isa = PBXBuildFile; fileRef = 35C0D0CE1905FF7F00E225D5 /* activity_disc_6.png */; };
 		35C0D0D61905FF7F00E225D5 /* activity_disc_0.png in Resources */ = {isa = PBXBuildFile; fileRef = 35C0D0CF1905FF7F00E225D5 /* activity_disc_0.png */; };
+		35CB92A81909A9DA002E03FA /* disc_repel@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 35CB92A71909A9DA002E03FA /* disc_repel@2x.png */; };
 		35DBD25F1904255C00116F8B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 35DBD25E1904255C00116F8B /* Foundation.framework */; };
 		35DBD2611904255C00116F8B /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 35DBD2601904255C00116F8B /* CoreGraphics.framework */; };
 		35DBD2631904255C00116F8B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 35DBD2621904255C00116F8B /* UIKit.framework */; };
@@ -89,6 +90,7 @@
 		35C0D0CD1905FF7F00E225D5 /* activity_disc_5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = activity_disc_5.png; sourceTree = "<group>"; };
 		35C0D0CE1905FF7F00E225D5 /* activity_disc_6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = activity_disc_6.png; sourceTree = "<group>"; };
 		35C0D0CF1905FF7F00E225D5 /* activity_disc_0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = activity_disc_0.png; sourceTree = "<group>"; };
+		35CB92A71909A9DA002E03FA /* disc_repel@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "disc_repel@2x.png"; sourceTree = "<group>"; };
 		35DBD25B1904255C00116F8B /* Fissure.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Fissure.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		35DBD25E1904255C00116F8B /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		35DBD2601904255C00116F8B /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -343,6 +345,7 @@
 				35C0D0CD1905FF7F00E225D5 /* activity_disc_5.png */,
 				35C0D0CE1905FF7F00E225D5 /* activity_disc_6.png */,
 				35C0D0CF1905FF7F00E225D5 /* activity_disc_0.png */,
+				35CB92A71909A9DA002E03FA /* disc_repel@2x.png */,
 				3596FF5819096416001AC338 /* disc_attract@2x.png */,
 				3596FF5419095C29001AC338 /* disc_slow@2x.png */,
 				3596FF5519095C29001AC338 /* disc_propel@2x.png */,
@@ -454,6 +457,7 @@
 				35C0D0D11905FF7F00E225D5 /* activity_disc_2.png in Resources */,
 				35DBD2C7190430F100116F8B /* spark.png in Resources */,
 				35C0D0D61905FF7F00E225D5 /* activity_disc_0.png in Resources */,
+				35CB92A81909A9DA002E03FA /* disc_repel@2x.png in Resources */,
 				35DBD2CC19043AF600116F8B /* projectile@2x.png in Resources */,
 				3596FF5619095C29001AC338 /* disc_slow@2x.png in Resources */,
 				35C0D0D51905FF7F00E225D5 /* activity_disc_6.png in Resources */,

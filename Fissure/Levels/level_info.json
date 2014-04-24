@@ -56,6 +56,21 @@
 						  "canMove" : true
 						  
 						  
+						  },
+						  {
+						  "type" : "repel",
+						  "power" : 1.5,
+						  "angle" : -1.57079632,
+						  "canRotate" : false,
+						  "px" : 0.85,
+						  "py" : 0.85,
+						  "radius"  : 0.075,
+						  "minRadiusScale" : 1,
+						  "maxRadiusScale" : 3,
+						  "canScale" : true,
+						  "canMove" : true
+						  
+						  
 						  }
 			],
 			
