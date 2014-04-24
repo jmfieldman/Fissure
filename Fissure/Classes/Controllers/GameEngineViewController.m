@@ -27,6 +27,7 @@ SINGLETON_IMPL(GameEngineViewController);
 		_sceneView.showsFPS = YES;
 		_sceneView.showsNodeCount = YES;
 		_sceneView.showsDrawCount = YES;
+		_sceneView.showsPhysics   = NO;
 		[self.view addSubview:_sceneView];
 		
 		FissureScene *scene = [[FissureScene alloc] initWithSize:self.view.bounds.size];

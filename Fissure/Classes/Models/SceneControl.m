@@ -65,6 +65,7 @@ static NSString *s_controlStrings[NUM_CONTROL_TYPES] = {
 		_node.userData = [NSMutableDictionary dictionaryWithDictionary:@{@"isControl":@(YES), @"control":self}];
 		
 		_node.physicsBody = [SKPhysicsBody bodyWithCircleOfRadius:_radius];
+		_node.physicsBody.friction = 0;
 		_node.physicsBody.dynamic = YES;
 		_node.physicsBody.categoryBitMask = PHYS_CAT_CONTROL_TRANS;
 		_node.physicsBody.collisionBitMask = 0;
@@ -76,6 +77,22 @@ static NSString *s_controlStrings[NUM_CONTROL_TYPES] = {
 				_icon = [SKSpriteNode spriteNodeWithImageNamed:@"disc_push"];
 				_icon.zRotation = _angle - (M_PI/2); /* Because the icon is facing up */
 				_node.color = [UIColor colorWithRed:0 green:0.4 blue:1 alpha:1];
+				break;
+				
+			case CONTROL_TYPE_PROPEL:
+				_icon = [SKSpriteNode spriteNodeWithImageNamed:@"disc_propel"];
+				_node.color = [UIColor colorWithRed:0 green:1 blue:0.4 alpha:1];
+				break;
+			
+			case CONTROL_TYPE_SLOW:
+				_icon = [SKSpriteNode spriteNodeWithImageNamed:@"disc_slow"];
+				_node.color = [UIColor colorWithRed:1 green:0.4 blue:0.4 alpha:1];
+				break;
+				
+			case CONTROL_TYPE_GRAVITY:
+				_icon = [SKSpriteNode spriteNodeWithImageNamed:@"disc_attract"];
+				_icon.zRotation = M_PI / 2;
+				_node.color = [UIColor colorWithRed:1 green:0.4 blue:1 alpha:1];
 				break;
 				
 			default:
@@ -127,6 +144,64 @@ static NSString *s_controlStrings[NUM_CONTROL_TYPES] = {
 			for (SKNode *node in _affectedProjectiles) {
 				node.physicsBody.velocity = CGVectorMake(node.physicsBody.velocity.dx + xmag, node.physicsBody.velocity.dy + ymag);
 				node.zRotation = atan2(node.physicsBody.velocity.dy, node.physicsBody.velocity.dx);
+			}
+			break;
+		}
+			
+		case CONTROL_TYPE_PROPEL: {
+			float multiplier = 1 + _power * duration;
+			for (SKNode *node in _affectedProjectiles) {
+				node.physicsBody.velocity = CGVectorMake(node.physicsBody.velocity.dx * multiplier, node.physicsBody.velocity.dy * multiplier);
+			}
+			break;
+		}
+			
+		case CONTROL_TYPE_SLOW: {
+			float multiplier = 1 - _power * duration;
+			NSMutableArray *toRemove = [NSMutableArray array];
+			for (SKNode *node in _affectedProjectiles) {
+				node.physicsBody.velocity = CGVectorMake(node.physicsBody.velocity.dx * multiplier, node.physicsBody.velocity.dy * multiplier);
+				if (fabs(node.physicsBody.velocity.dx) < 3 && fabs(node.physicsBody.velocity.dy) < 3) {
+					[toRemove addObject:node];
+				}
+			}
+			if ([toRemove count]) {
+				for (SKNode *node in toRemove) {
+					[_affectedProjectiles removeObjectIdenticalTo:node];
+					[node removeFromParent];
+				}
+			}
+			break;
+		}
+			
+		case CONTROL_TYPE_GRAVITY: {
+			float multiplier = _power * duration;
+			NSMutableArray *toRemove = [NSMutableArray array];
+			for (SKNode *node in _affectedProjectiles) {
+				
+				float dx = _node.position.x - node.position.x;
+				float dy = _node.position.y - node.position.y;
+				int distance = FastIntSQRT((int)(dx * dx + dy * dy));
+				distance += _radius / 2;
+				
+				float force = multiplier * 1000 / (distance );
+				
+				node.physicsBody.velocity = CGVectorMake((node.physicsBody.velocity.dx + dx * force) * 0.98, (node.physicsBody.velocity.dy + dy * force) * 0.98);
+				node.zRotation = atan2(node.physicsBody.velocity.dy, node.physicsBody.velocity.dx);
+				
+				if (fabs(node.physicsBody.velocity.dx) < 3 && fabs(node.physicsBody.velocity.dy) < 3) {
+					[toRemove addObject:node];
+				} else if (fabs(dx) < 3 && fabs(dy) < 3) {
+					[toRemove addObject:node];
+				}
+				
+				
+			}
+			if ([toRemove count]) {
+				for (SKNode *node in toRemove) {
+					[_affectedProjectiles removeObjectIdenticalTo:node];
+					[node removeFromParent];
+				}
 			}
 			break;
 		}

@@ -34,6 +34,7 @@
 		self.physicsBody.categoryBitMask = PHYS_CAT_FISSURE;
 		self.physicsBody.collisionBitMask = 0;
 		self.physicsBody.contactTestBitMask = 0;
+		self.physicsBody.friction = 0;
 		
 		/* Create the particle effect */
 		SKEmitterNode *emitter = [NSKeyedUnarchiver unarchiveObjectWithFile:[[NSBundle mainBundle] pathForResource:@"fissure" ofType:@"sks"]];

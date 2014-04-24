@@ -29,8 +29,8 @@
 						  "canMove" : true
 						  },
 						  {
-						  "type" : "push",
-						  "power" : 1.15,
+						  "type" : "propel",
+						  "power" : 1.5,
 						  "angle" : 1.57079632,
 						  "canRotate" : false,
 						  "px" : 0.55,
@@ -43,8 +43,8 @@
 						  
 						  },
 						  {
-						  "type" : "push",
-						  "power" : 1.15,
+						  "type" : "gravity",
+						  "power" : 1.5,
 						  "angle" : -1.57079632,
 						  "canRotate" : false,
 						  "px" : 0.55,
@@ -69,7 +69,7 @@
 			"fissures" : [ {
 						  "px" : 0.35,
 						  "py" : 0.70,
-						  "color" : { "r" : 0, "g" : 0.4, "b" : 1, "a" : 1 },
+						  "color" : { "r" : 1, "g" : 0.4, "b" : 0, "a" : 1 },
 						  "radius" : 0.025
 						  }
 			]

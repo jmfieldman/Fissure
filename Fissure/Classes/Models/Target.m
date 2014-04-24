@@ -47,6 +47,7 @@
 		_node.physicsBody.categoryBitMask = PHYS_CAT_TARGET;
 		_node.physicsBody.collisionBitMask = 0;
 		_node.physicsBody.contactTestBitMask = 0;
+		_node.physicsBody.friction = 0;
 		
 		/* Create dials */
 		static float dial_factor[DIALS_PER_TARGET] = { 1, 0.8, 1, 0.4, 1, 0.6, 1 };
