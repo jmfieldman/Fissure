@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+@class FissureScene;
+
 typedef enum ControlType {
 	
 	CONTROL_TYPE_PUSH       = 0,
@@ -15,6 +17,7 @@ typedef enum ControlType {
 	CONTROL_TYPE_REPEL,
 	CONTROL_TYPE_PROPEL,
 	CONTROL_TYPE_SLOW,
+	CONTROL_TYPE_WARP,
 	
 	NUM_CONTROL_TYPES,
 	
@@ -42,6 +45,9 @@ typedef enum ControlType {
 @property (nonatomic, strong, readonly) SKSpriteNode *node;
 @property (nonatomic, strong, readonly) SKSpriteNode *icon;
 @property (nonatomic, strong, readonly) NSMutableArray *affectedProjectiles;
+
+@property (nonatomic, weak) SceneControl *connectedWarp;
+@property (nonatomic, weak) FissureScene *scene;
 
 - (id) initWithDictionary:(NSDictionary*)dictionary forSceneSize:(CGSize)sceneSize;
 

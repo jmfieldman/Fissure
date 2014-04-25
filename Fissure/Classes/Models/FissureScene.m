@@ -62,13 +62,17 @@
 	}
 	
 	NSArray *controlDics = level[@"controls"];
+	NSMutableArray *warps = [NSMutableArray array];
 	for (NSDictionary *dic in controlDics) {
 		SceneControl *control = [[SceneControl alloc] initWithDictionary:dic forSceneSize:self.size];
+		control.scene = self;
 		[_controls addObject:control];
 		EXLog(MODEL, DBG, @"Loaded control of type %d at (%.2f, %.2f)", control.controlType, control.position.x, control.position.y);
 		
-		[self addChild:control.node];
-		[self addChild:control.icon];
+		if (control.node) [self addChild:control.node];
+		if (control.icon) [self addChild:control.icon];
+		
+		if (control.controlType == CONTROL_TYPE_WARP) [warps addObject:control];
 	}
 	
 	NSArray *fissureDics = level[@"fissures"];
@@ -96,7 +100,19 @@
 		[self addChild:target.node];
 	}
 	
-	
+	/* This part connects the warp zones */
+	if ([warps count] == 0) {
+		EXLog(MODEL, DBG, @"No warp zones");
+	} else if ([warps count] % 2 == 0) {
+		for (int i = 0; i < [warps count]; i+=2) {
+			SceneControl *w1 = warps[i];
+			SceneControl *w2 = warps[i+1];
+			w1.connectedWarp = w2;
+			w2.connectedWarp = w1;
+		}
+	} else {
+		EXLog(MODEL, DBG, @"Invalid warp count: %d", [warps count]);
+	}
 	
 }
 
@@ -171,6 +187,22 @@
 	}
 }
 
+- (void) removeNodeFromAllControlsNotInRange:(SKNode*)node {
+	for (SceneControl *control in _controls) {
+		
+		if (control.controlType == CONTROL_TYPE_WARP) continue;
+		
+		float dx = node.position.x - control.position.x;
+		float dy = node.position.y - control.position.y;
+		float dist = sqrt(dx * dx + dy * dy);
+		
+		if (dist > control.radius) {
+			[control.affectedProjectiles removeObjectIdenticalTo:node];
+		}
+	}
+}
+
+
 #pragma mark Contact Checks
 
 - (void) didBeginContact:(SKPhysicsContact *)contact {
@@ -194,7 +226,7 @@
 	/* Check if a projectile hits a passable control */
 	if (firstBody.categoryBitMask & PHYS_CAT_PROJ) {
 		if (secondBody.categoryBitMask & PHYS_CAT_CONTROL_TRANS) {
-			SceneControl *control = secondBody.node.userData[@"control"];
+			SceneControl *control = secondBody.node.userData[@"control"];			
 			[control.affectedProjectiles addObject:firstBody.node];
 			return;
 		}
@@ -232,6 +264,7 @@
 		if (secondBody.categoryBitMask & PHYS_CAT_CONTROL_TRANS) {
 			SceneControl *control = secondBody.node.userData[@"control"];
 			[control.affectedProjectiles removeObjectIdenticalTo:firstBody.node];
+			if (control.controlType == CONTROL_TYPE_WARP) [firstBody.node.userData removeObjectForKey:@"warped"];
 			return;
 		}
 		

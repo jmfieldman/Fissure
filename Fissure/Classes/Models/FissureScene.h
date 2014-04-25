@@ -45,4 +45,6 @@
 
 - (void) loadFromLevelDictionary:(NSDictionary*)level;
 
+- (void) removeNodeFromAllControlsNotInRange:(SKNode*)node;
+
 @end

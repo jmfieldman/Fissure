@@ -11,12 +11,15 @@
 
 #define CHECK_VALUE(_v) if (!dictionary[_v]) { EXLog(MODEL, WARN, @"Control dictionary missing parameter %@", _v ); }
 
+#define WARP_NODE_RADIUS_UNIT 28.4
+
 static NSString *s_controlStrings[NUM_CONTROL_TYPES] = {
 	@"push",
 	@"gravity",
 	@"repel",
 	@"propel",
 	@"slow",
+	@"warp",
 };
 
 
@@ -101,6 +104,17 @@ static NSString *s_controlStrings[NUM_CONTROL_TYPES] = {
 				_icon.zRotation = M_PI / 2;
 				_node.color = [UIColor colorWithRed:1 green:0.4 blue:1 alpha:1];
 				break;
+				
+			case CONTROL_TYPE_WARP: {
+				//[_node setScale:(_radius / WARP_NODE_RADIUS_UNIT)];
+				_node.color = [UIColor clearColor];
+				SKEmitterNode *emitter = [NSKeyedUnarchiver unarchiveObjectWithFile:[[NSBundle mainBundle] pathForResource:@"warp" ofType:@"sks"]];
+				emitter.particleScale *= (_radius / WARP_NODE_RADIUS_UNIT);
+				emitter.particleScaleSpeed *= (_radius / WARP_NODE_RADIUS_UNIT);
+				emitter.particleSpeedRange *= (_radius / WARP_NODE_RADIUS_UNIT);
+				[_node addChild:emitter];
+			}
+				
 				
 			default:
 				break;
@@ -231,7 +245,34 @@ static NSString *s_controlStrings[NUM_CONTROL_TYPES] = {
 			}
 			break;
 		}
+			
+		case CONTROL_TYPE_WARP: {
+			
+			//NSMutableArray *toRemove = [NSMutableArray array];
+			for (SKNode *node in _affectedProjectiles) {
+				
+				if (node.userData[@"warped"]) {
+					[node.userData removeObjectForKey:@"warped"];
+					continue;
+				}
+				
+				float dx = node.position.x - self.position.x;
+				float dy = node.position.y - self.position.y;
+				node.userData[@"warped"] = @YES;
+				node.position = CGPointMake(self.connectedWarp.position.x + dx, self.connectedWarp.position.y + dy);
+								
+				[self.scene removeNodeFromAllControlsNotInRange:node];
+			}
+			
+			[_affectedProjectiles removeAllObjects];
+			//for (SKNode *node in toRemove) {
+			//	[_affectedProjectiles removeObjectIdenticalTo:node];
+			//}
+			
+			break;
+		}
 		
+			
 		default:
 			break;
 	}

@@ -6,8 +6,8 @@
 			"spawns" : [ {
 						"px" : 0.25,
 						"py" : 0.25,
-						"jx" : 0.01763125,
-						"jy" : 0.03125,
+						"jx" : 0.01,
+						"jy" : 0.02,
 						"angle" : 0.5,
 						"speed" : 0.5,
 						"friction" : 0.2,
@@ -54,12 +54,10 @@
 						  "maxRadiusScale" : 3,
 						  "canScale" : true,
 						  "canMove" : true
-						  
-						  
 						  },
 						  {
 						  "type" : "repel",
-						  "power" : 1.5,
+						  "power" : 0.5,
 						  "angle" : -1.57079632,
 						  "canRotate" : false,
 						  "px" : 0.85,
@@ -69,9 +67,33 @@
 						  "maxRadiusScale" : 3,
 						  "canScale" : true,
 						  "canMove" : true
-						  
-						  
-						  }
+						  },
+						  {
+						  "type" : "warp",
+						  "power" : 1.5,
+						  "angle" : -1.57079632,
+						  "canRotate" : false,
+						  "px" : 0.15,
+						  "py" : 0.15,
+						  "radius"  : 0.02,
+						  "minRadiusScale" : 1,
+						  "maxRadiusScale" : 3,
+						  "canScale" : true,
+						  "canMove" : true
+						  },
+						  {
+						  "type" : "warp",
+						  "power" : 1.5,
+						  "angle" : -1.57079632,
+						  "canRotate" : false,
+						  "px" : 0.45,
+						  "py" : 0.15,
+						  "radius"  : 0.02,
+						  "minRadiusScale" : 1,
+						  "maxRadiusScale" : 3,
+						  "canScale" : true,
+						  "canMove" : true
+						  },
 			],
 			
 			"targets" : [ {
