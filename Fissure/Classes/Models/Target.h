@@ -8,7 +8,9 @@
 
 #import <Foundation/Foundation.h>
 
-@interface Target : NSObject
+@interface Target : NSObject {
+	BOOL _wasHit;
+}
 
 @property (nonatomic, assign)   CGPoint        position;
 @property (nonatomic, assign)   float          progress;

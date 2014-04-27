@@ -30,7 +30,7 @@
 		/* Initial values */
 		_progress        = 0;
 		_hysteresis      = 1;
-		_progressPerHit  = 0.015;
+		_progressPerHit  = 2;
 		_lastHitTime     = 0;
 		_lossPerTime     = 0.6;
 		
@@ -89,19 +89,24 @@
 }
 
 - (void) hitByProjectile {
-	_lastHitTime = _currentTime;
-	
-	/* Don't do anything if already at 1 */
-	if (_progress >= 1) return;
-	
-	_progress += _progressPerHit;
-	if (_progress > 1) _progress = 1;
-	
-	[self updateDialSpeed];
+	_wasHit = YES;
 }
 
 - (void) updateForDuration:(CFTimeInterval)duration {
 	_currentTime += duration;
+	
+	/* Was hit? */
+	if (_wasHit) {
+		_wasHit = NO;
+		_lastHitTime = _currentTime;
+		
+		/* Don't do anything if already at 1 */
+		if (_progress < 1) {
+			_progress += _progressPerHit * duration;
+			if (_progress > 1) _progress = 1;
+		
+		}
+	}
 	
 	/* Full? */
 	if (_progress >= 1) {
