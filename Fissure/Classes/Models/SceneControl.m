@@ -246,8 +246,10 @@ static NSString *s_controlStrings[NUM_CONTROL_TYPES] = {
 			
 		case CONTROL_TYPE_GRAVITY: {
 			float multiplier = _power * duration;
+			float drag  = 1 - (0.5) * duration;
 			NSMutableArray *toRemove = [NSMutableArray array];
 			for (SKNode *node in _affectedProjectiles) {
+				if (!node.parent) [toRemove addObject:node];
 				
 				float dx = _node.position.x - node.position.x;
 				float dy = _node.position.y - node.position.y;
@@ -256,17 +258,21 @@ static NSString *s_controlStrings[NUM_CONTROL_TYPES] = {
 				
 				float force = multiplier * 50000 / (distance * distance);
 				
-				node.physicsBody.velocity = CGVectorMake((node.physicsBody.velocity.dx + dx * force) * 0.98, (node.physicsBody.velocity.dy + dy * force) * 0.98);
+				node.physicsBody.velocity = CGVectorMake((node.physicsBody.velocity.dx + dx * force) * drag, (node.physicsBody.velocity.dy + dy * force) * drag);
 				node.zRotation = atan2(node.physicsBody.velocity.dy, node.physicsBody.velocity.dx);
 				
-				if (fabs(node.physicsBody.velocity.dx) < 3 && fabs(node.physicsBody.velocity.dy) < 3) {
+				float vx = fabs(node.physicsBody.velocity.dx);
+				float vy = fabs(node.physicsBody.velocity.dy);
+				
+				if (vx < 3 && vy < 3) {
 					[toRemove addObject:node];
-				} else if (fabs(dx) < 6 && fabs(dy) < 6) {
+				} else if (fabs(dx) < 6 && fabs(dy) < 6 && vx < 40 && vy < 40) {
 					[toRemove addObject:node];
 				}
 				
 				
 			}
+			
 			if ([toRemove count]) {
 				for (SKNode *node in toRemove) {
 					[_affectedProjectiles removeObjectIdenticalTo:node];

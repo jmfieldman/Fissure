@@ -169,7 +169,7 @@
 		node.physicsBody.velocity = point.initialVelocity;
 		node.physicsBody.affectedByGravity = NO;
 		node.physicsBody.allowsRotation = YES;
-		node.physicsBody.linearDamping = 0.2;
+		node.physicsBody.linearDamping = point.friction;
 		node.physicsBody.restitution = 1;
 		node.zRotation = atan2(node.physicsBody.velocity.dy, node.physicsBody.velocity.dx);
 		
