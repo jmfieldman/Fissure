@@ -30,6 +30,7 @@
 	
 	/* Holds projectile particle effects */
 	SKNode *_projectileParticleLayerNode;
+	SKNode *_projectileLayerNode;
 	
 	/* Which control am I dragging/scaling? */
 	SceneControl *_draggedControl;

@@ -46,6 +46,10 @@
 		_projectileParticleLayerNode.position = CGPointMake(50, 200);
 		[self addChild:_projectileParticleLayerNode];
 		
+		_projectileLayerNode = [SKNode node];
+		_projectileLayerNode.zPosition = 0.5;
+		[self addChild:_projectileLayerNode];
+		
     }
     return self;
 }
@@ -177,7 +181,7 @@
 		node.physicsBody.collisionBitMask = PHYS_CAT_CONTROL_COLL;
 		node.physicsBody.contactTestBitMask = PHYS_CAT_EDGE | PHYS_CAT_CONTROL_TRANS | PHYS_CAT_TARGET | PHYS_CAT_FISSURE | PHYS_CAT_CONTROL_COLL;
 		
-		[self addChild:node];
+		[_projectileLayerNode addChild:node];
 		
 		/* Create the particle effect behind it */
 		SKEmitterNode *emitter = [NSKeyedUnarchiver unarchiveObjectWithFile:[[NSBundle mainBundle] pathForResource:@"projectile_trail" ofType:@"sks"]];
