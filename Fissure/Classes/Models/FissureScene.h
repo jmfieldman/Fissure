@@ -18,7 +18,7 @@
 #define PHYS_CAT_FISSURE           0x0008
 
 #define PHYS_CAT_CONTROL_TRANS     0x0100
-
+#define PHYS_CAT_CONTROL_COLL      0x0200
 
 
 #define PROJECTILE_PHYS_RADIUS 3

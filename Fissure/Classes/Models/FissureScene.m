@@ -69,8 +69,9 @@
 		[_controls addObject:control];
 		EXLog(MODEL, DBG, @"Loaded control of type %d at (%.2f, %.2f)", control.controlType, control.position.x, control.position.y);
 		
-		if (control.node) [self addChild:control.node];
-		if (control.icon) [self addChild:control.icon];
+		if (control.node)  [self addChild:control.node];
+		if (control.icon)  [self addChild:control.icon];
+		if (control.shape) [self addChild:control.shape];
 		
 		if (control.controlType == CONTROL_TYPE_WARP) [warps addObject:control];
 	}
@@ -167,13 +168,14 @@
 		node.physicsBody.friction = point.friction;
 		node.physicsBody.velocity = point.initialVelocity;
 		node.physicsBody.affectedByGravity = NO;
-		node.physicsBody.allowsRotation = NO;
+		node.physicsBody.allowsRotation = YES;
 		node.physicsBody.linearDamping = 0.2;
+		node.physicsBody.restitution = 1;
 		node.zRotation = atan2(node.physicsBody.velocity.dy, node.physicsBody.velocity.dx);
 		
 		node.physicsBody.categoryBitMask = PHYS_CAT_PROJ;
-		node.physicsBody.collisionBitMask = 0;
-		node.physicsBody.contactTestBitMask = PHYS_CAT_EDGE | PHYS_CAT_CONTROL_TRANS | PHYS_CAT_TARGET | PHYS_CAT_FISSURE;
+		node.physicsBody.collisionBitMask = PHYS_CAT_CONTROL_COLL;
+		node.physicsBody.contactTestBitMask = PHYS_CAT_EDGE | PHYS_CAT_CONTROL_TRANS | PHYS_CAT_TARGET | PHYS_CAT_FISSURE | PHYS_CAT_CONTROL_COLL;
 		
 		[self addChild:node];
 		
@@ -241,6 +243,18 @@
 			}
 			return;
 		}
+		
+		/* Change projectile rotation */
+		if (secondBody.categoryBitMask & PHYS_CAT_CONTROL_COLL) {
+			SKSpriteNode *proj = (SKSpriteNode*)firstBody.node;
+			
+			dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.0001 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+				proj.zRotation = atan2(proj.physicsBody.velocity.dy, proj.physicsBody.velocity.dx);
+			});
+			//proj.zRotation = atan2(proj.physicsBody.velocity.dy, proj.physicsBody.velocity.dx);
+			return;
+			//NSLog(@"vel: %f %f %f", proj.physicsBody.velocity.dx, proj.physicsBody.velocity.dy, proj.zRotation);
+		}
 				
 	}
 }
@@ -285,6 +299,7 @@
 																								 [UIColor colorWithRed:r green:g blue:b alpha:0]] times:@[@(0), @(1)]];;
 			return;
 		}
+				
 	}
 }
 

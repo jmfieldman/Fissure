@@ -18,6 +18,7 @@ typedef enum ControlType {
 	CONTROL_TYPE_PROPEL,
 	CONTROL_TYPE_SLOW,
 	CONTROL_TYPE_WARP,
+	CONTROL_TYPE_SHAPE,
 	
 	NUM_CONTROL_TYPES,
 	
@@ -44,6 +45,7 @@ typedef enum ControlType {
 
 @property (nonatomic, strong, readonly) SKSpriteNode *node;
 @property (nonatomic, strong, readonly) SKSpriteNode *icon;
+@property (nonatomic, strong, readonly) SKShapeNode  *shape;
 @property (nonatomic, strong, readonly) NSMutableArray *affectedProjectiles;
 
 @property (nonatomic, weak) SceneControl *connectedWarp;

@@ -20,6 +20,7 @@ static NSString *s_controlStrings[NUM_CONTROL_TYPES] = {
 	@"propel",
 	@"slow",
 	@"warp",
+	@"shape",
 };
 
 
@@ -113,8 +114,55 @@ static NSString *s_controlStrings[NUM_CONTROL_TYPES] = {
 				emitter.particleScaleSpeed *= (_radius / WARP_NODE_RADIUS_UNIT);
 				emitter.particleSpeedRange *= (_radius / WARP_NODE_RADIUS_UNIT);
 				[_node addChild:emitter];
-			}
+			} break;
 				
+			case CONTROL_TYPE_SHAPE: {
+				
+				_node.alpha = 0.0;
+				
+				_shape = [SKShapeNode node];
+				NSArray *points = dictionary[@"points"];
+				if (!points) {
+					_shape.path = [UIBezierPath bezierPathWithOvalInRect:CGRectMake(-_radius, -_radius, _radius*2, _radius*2)].CGPath;
+					_shape.physicsBody = [SKPhysicsBody bodyWithCircleOfRadius:_radius];
+				} else {
+					BOOL first = YES;
+					UIBezierPath *path = [UIBezierPath bezierPath];
+					for (NSDictionary *point in points) {
+						float angle  = [point[@"angle"] floatValue];
+						float radius = [point[@"radius"] floatValue];
+						float px = cos(angle) * radius * _radius;
+						float py = sin(angle) * radius * _radius;
+						if (first) {
+							[path moveToPoint:CGPointMake(px, py)];
+							first = NO;
+						} else {
+							[path addLineToPoint:CGPointMake(px, py)];
+						}
+					}
+					[path closePath];
+					_shape.path = path.CGPath;
+					_shape.physicsBody = [SKPhysicsBody bodyWithPolygonFromPath:path.CGPath];
+				}
+				
+				_shape.antialiased = YES;
+				_shape.fillColor = [UIColor colorWithWhite:0.5 alpha:0.3];
+				_shape.strokeColor = [UIColor colorWithWhite:0.5 alpha:0.7];
+				_shape.lineWidth = 1;
+				_shape.position = _position;
+				
+				
+				_shape.physicsBody.friction = 0;
+				_shape.physicsBody.dynamic = YES;
+				_shape.physicsBody.categoryBitMask    = PHYS_CAT_CONTROL_COLL;
+				_shape.physicsBody.collisionBitMask   = 0;
+				_shape.physicsBody.contactTestBitMask = 0;
+				
+				_node.physicsBody.categoryBitMask    = 0;
+				_node.physicsBody.collisionBitMask   = 0;
+				_node.physicsBody.contactTestBitMask = 0;
+				
+			} break;
 				
 			default:
 				break;
@@ -145,6 +193,7 @@ static NSString *s_controlStrings[NUM_CONTROL_TYPES] = {
 	/* Update node position */
 	_node.position = position;
 	_icon.position = position;
+	_shape.position = position;
 }
 
 - (void) setRadius:(float)radius {
@@ -212,7 +261,7 @@ static NSString *s_controlStrings[NUM_CONTROL_TYPES] = {
 				
 				if (fabs(node.physicsBody.velocity.dx) < 3 && fabs(node.physicsBody.velocity.dy) < 3) {
 					[toRemove addObject:node];
-				} else if (fabs(dx) < 3 && fabs(dy) < 3) {
+				} else if (fabs(dx) < 6 && fabs(dy) < 6) {
 					[toRemove addObject:node];
 				}
 				

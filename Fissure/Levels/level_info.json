@@ -94,6 +94,40 @@
 						  "canScale" : true,
 						  "canMove" : true
 						  },
+						  {
+						  "type" : "shape",
+						  "canRotate" : false,
+						  "px" : 0.75,
+						  "py" : 0.15,
+						  "radius"  : 0.1,
+						  "canMove" : true
+						  },
+						  {
+						  "type" : "shape",
+						  "canRotate" : false,
+						  "px" : 0.75,
+						  "py" : 0.35,
+						  "radius" : 0.1,
+						  "points" : [ {
+									  "angle" : 0,
+									  "radius" : 1
+									  },
+									  {
+									  "angle" : 1.57,
+									  "radius" : 1
+									  },
+									  {
+									  "angle" : 3.14,
+									  "radius" : 1
+									  },
+									  {
+									  "angle" : 5.69,
+									  "radius" : 1
+									  }
+						  ],
+						  "canMove" : true
+						  },
+
 			],
 			
 			"targets" : [ {
