@@ -56,9 +56,11 @@
 
 - (void) loadFromLevelDictionary:(NSDictionary*)level {
 	
+	CGSize screenSize = self.size;
+	
 	NSArray *spawnDics = level[@"spawns"];
 	for (NSDictionary *dic in spawnDics) {
-		SpawnPoint *spawn = [[SpawnPoint alloc] initWithDictionary:dic forSceneSize:self.size];
+		SpawnPoint *spawn = [[SpawnPoint alloc] initWithDictionary:dic forSceneSize:screenSize];
 		[_spawnPoints addObject:spawn];
 		EXLog(MODEL, DBG, @"Loaded spawn point at (%.2f, %.2f)", spawn.position.x, spawn.position.y);
 		
@@ -68,7 +70,7 @@
 	NSArray *controlDics = level[@"controls"];
 	NSMutableArray *warps = [NSMutableArray array];
 	for (NSDictionary *dic in controlDics) {
-		SceneControl *control = [[SceneControl alloc] initWithDictionary:dic forSceneSize:self.size];
+		SceneControl *control = [[SceneControl alloc] initWithDictionary:dic forSceneSize:screenSize];
 		control.scene = self;
 		[_controls addObject:control];
 		EXLog(MODEL, DBG, @"Loaded control of type %d at (%.2f, %.2f)", control.controlType, control.position.x, control.position.y);
@@ -83,7 +85,7 @@
 	NSArray *fissureDics = level[@"fissures"];
 	int fissureIndex = 1;
 	for (NSDictionary *dic in fissureDics) {
-		Fissure *fissure = [[Fissure alloc] initWithDictionary:dic forSceneSize:self.size];
+		Fissure *fissure = [[Fissure alloc] initWithDictionary:dic forSceneSize:screenSize];
 		fissure.fissureIndex = fissureIndex;
 		[_fissures addObject:fissure];
 		EXLog(MODEL, DBG, @"Loaded fissure at (%.2f, %.2f)", fissure.position.x, fissure.position.y);
@@ -94,7 +96,7 @@
 	
 	NSArray *targetDics = level[@"targets"];
 	for (NSDictionary *dic in targetDics) {
-		Target *target = [[Target alloc] initWithDictionary:dic forSceneSize:self.size];
+		Target *target = [[Target alloc] initWithDictionary:dic forSceneSize:screenSize];
 		if (target.matchedFissure) {
 			target.color = ((Fissure*)_fissures[target.matchedFissure-1]).color;
 		}
@@ -163,8 +165,11 @@
 		
 		/* Create the projectile */
 		SKSpriteNode *node = [[SKSpriteNode alloc] initWithImageNamed:@"line5x1"];
-		node.position = CGPointMake( point.position.x + (rand() % (int)point.positionJitter.width)  - point.positionJitter.width/2,
-									 point.position.y + (rand() % (int)point.positionJitter.height) - point.positionJitter.height/2);
+		//node.position = CGPointMake( point.position.x + (rand() % (int)point.positionJitter.width)  - point.positionJitter.width/2,
+		//							 point.position.y + (rand() % (int)point.positionJitter.height) - point.positionJitter.height/2);
+		node.position = CGPointMake( point.position.x + floatBetween(-point.positionJitter.width, point.positionJitter.width),
+									 point.position.y + floatBetween(-point.positionJitter.height, point.positionJitter.height) );
+		
 		node.color = [UIColor grayColor];
 		node.colorBlendFactor = 1;
 		

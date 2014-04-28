@@ -15,7 +15,10 @@
 - (id) initWithDictionary:(NSDictionary*)dictionary forSceneSize:(CGSize)sceneSize {
 	if ((self = [super init])) {
 		
-		_position        = CGPointMake( [dictionary[@"px"] floatValue] * sceneSize.width, [dictionary[@"py"] floatValue] * sceneSize.height );
+		float offset = (sceneSize.width > 481) ? 44 : 0;
+		sceneSize.width = 480;
+		
+		_position        = CGPointMake( [dictionary[@"px"] floatValue] * sceneSize.width + offset, [dictionary[@"py"] floatValue] * sceneSize.height );
 		_positionJitter  = CGSizeMake(  [dictionary[@"jx"] floatValue] * sceneSize.width, [dictionary[@"jy"] floatValue] * sceneSize.height );
 		_friction        = [dictionary[@"friction"] floatValue];
 		_frameInterval   = [dictionary[@"frameInterval"] intValue];

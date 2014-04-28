@@ -30,9 +30,12 @@ static NSString *s_controlStrings[NUM_CONTROL_TYPES] = {
 - (id) initWithDictionary:(NSDictionary*)dictionary forSceneSize:(CGSize)sceneSize {
 	if ((self = [super init])) {
 		
+		float offset = (sceneSize.width > 481) ? 44 : 0;
+		sceneSize.width = 480;
+		
 		_controlType     = [self controlTypeForString:dictionary[@"type"]];
 		_angle           = [dictionary[@"angle"] floatValue];
-		_position        = CGPointMake( [dictionary[@"px"] floatValue] * sceneSize.width, [dictionary[@"py"] floatValue] * sceneSize.height );
+		_position        = CGPointMake( [dictionary[@"px"] floatValue] * sceneSize.width + offset, [dictionary[@"py"] floatValue] * sceneSize.height );
 		_radius          = [dictionary[@"radius"] floatValue] * sceneSize.width;
 		_minRadius       = [dictionary[@"minRadiusScale"] floatValue] * _radius;
 		_maxRadius       = [dictionary[@"maxRadiusScale"] floatValue] * _radius;

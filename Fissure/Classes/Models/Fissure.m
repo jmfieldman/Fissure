@@ -17,7 +17,10 @@
 - (id) initWithDictionary:(NSDictionary*)dictionary forSceneSize:(CGSize)sceneSize {
 	if ((self = [super init])) {
 		
-		self.position        = CGPointMake( [dictionary[@"px"] floatValue] * sceneSize.width, [dictionary[@"py"] floatValue] * sceneSize.height );
+		float offset = (sceneSize.width > 481) ? 44 : 0;
+		sceneSize.width = 480;
+		
+		self.position        = CGPointMake( [dictionary[@"px"] floatValue] * sceneSize.width + offset, [dictionary[@"py"] floatValue] * sceneSize.height );
 		float radius         = [dictionary[@"radius"] floatValue] * sceneSize.width;
 		
 		NSDictionary *colorDic = dictionary[@"color"];
