@@ -1,4 +1,10 @@
 {
+	
+	"level_order" : [
+					  "test1",
+					  "test2"
+	],
+	
 	"levels" : {
 		
 		"test1" : {

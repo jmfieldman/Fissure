@@ -58,6 +58,10 @@
 	
 	CGSize screenSize = self.size;
 	
+	/* Show proj layers */
+	_projectileParticleLayerNode.alpha = 1;
+	_projectileLayerNode.alpha         = 1;
+	
 	/* Allow spawns after delay */
 	dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
 		_shouldSpawnProjectiles = YES;
@@ -199,6 +203,36 @@
 	if (!_canTriggerFull) return;
 	_canTriggerFull = NO;
 	
+	[self levelOverStageOne];
+}
+
+- (void) levelOverStageOne {
+	
+	/* Alpha-out controls */
+	int controlIndex = 0;
+	for (SceneControl *control in _controls) {
+		float delay = 0.5 + controlIndex * 0.15;
+		
+		[control.node  animateToAlpha:0 delay:delay duration:0.5];
+		[control.icon  animateToAlpha:0 delay:delay duration:0.5];
+		[control.shape animateToAlpha:0 delay:delay duration:0.5];
+		
+		[control.node  animateToScale:0.5 delay:delay duration:0.5];
+		[control.icon  animateToScale:0.5 delay:delay duration:0.5];
+		[control.shape animateToScale:0.5 delay:delay duration:0.5];
+		
+		controlIndex++;
+	}
+		
+	/* Alpha-out projectiles */
+	[_projectileLayerNode         animateToAlpha:0 delay:0 duration:0.75];
+	[_projectileParticleLayerNode animateToAlpha:0 delay:0 duration:0.75];
+	
+	dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+		_shouldSpawnProjectiles = NO;
+	});
+	
+	/* Alpha-out targets */
 	
 }
 

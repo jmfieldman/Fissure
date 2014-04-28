@@ -60,4 +60,23 @@
 	
 }
 
+- (void) animateToScale:(float)scale delay:(float)delay duration:(float)duration {
+	
+	CGFloat startScale = self.xScale;
+	CGFloat scaleDiff  = scale - startScale;
+	
+	dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+		[self runAction:[SKAction customActionWithDuration:duration actionBlock:^(SKNode *node, CGFloat elapsedTime) {
+			
+			CGFloat progress = elapsedTime / duration;
+			
+			CGFloat value = startScale + scaleDiff * progress;
+			
+			[node setScale:value];
+			
+		}]];
+	});
+	
+}
+
 @end
