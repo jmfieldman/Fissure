@@ -37,6 +37,9 @@
 	CGPoint       _dragOffset;
 	SceneControl *_scalingControl;
 	float         _scalingOffset;
+	
+	/* Can trigger full state? */
+	BOOL          _canTriggerFull;
 }
 
 @property (nonatomic, readonly) NSMutableArray *spawnPoints;

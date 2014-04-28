@@ -121,6 +121,9 @@
 		EXLog(MODEL, DBG, @"Invalid warp count: %d", [warps count]);
 	}
 	
+	
+	/* Allow full trigger! */
+	_canTriggerFull = YES;
 }
 
 
@@ -155,6 +158,9 @@
 
 
 - (void) allTargetsFull {
+	if (!_canTriggerFull) return;
+	_canTriggerFull = NO;
+	
 	
 }
 
