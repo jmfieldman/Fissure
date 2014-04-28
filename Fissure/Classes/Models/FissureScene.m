@@ -58,18 +58,32 @@
 	
 	CGSize screenSize = self.size;
 	
+	/* Allow spawns after delay */
+	dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+		_shouldSpawnProjectiles = YES;
+	});
+	
 	NSArray *spawnDics = level[@"spawns"];
+	int spawnIndex = 0;
 	for (NSDictionary *dic in spawnDics) {
 		SpawnPoint *spawn = [[SpawnPoint alloc] initWithDictionary:dic forSceneSize:screenSize];
 		[_spawnPoints addObject:spawn];
 		EXLog(MODEL, DBG, @"Loaded spawn point at (%.2f, %.2f)", spawn.position.x, spawn.position.y);
 		
 		[self addChild:spawn.node];
+		
+		/* Scale in */
+		float delay = 0.1 + (spawnIndex * 0.25); spawnIndex++;
+		spawn.node.alpha = 0;
+		[spawn.node bounceInAfterDelay:delay duration:0.9 bounces:5];
+		[spawn.node animateToAlpha:0.1 delay:delay duration:0.4];
 	}
 	
 	NSArray *controlDics = level[@"controls"];
 	NSMutableArray *warps = [NSMutableArray array];
+	int controlIndex = 0;
 	for (NSDictionary *dic in controlDics) {
+		if ([dic[@"ignore"] boolValue]) continue;
 		SceneControl *control = [[SceneControl alloc] initWithDictionary:dic forSceneSize:screenSize];
 		control.scene = self;
 		[_controls addObject:control];
@@ -80,6 +94,18 @@
 		if (control.shape) [self addChild:control.shape];
 		
 		if (control.controlType == CONTROL_TYPE_WARP) [warps addObject:control];
+		
+		/* Scale in */
+		float delay = 0.1 + (controlIndex * 0.1); controlIndex++;
+		control.node.alpha = 0;
+		control.icon.alpha = 0;
+		control.shape.alpha = 0;
+		[control.node  bounceInAfterDelay:delay duration:0.9 bounces:5];
+		if (control.controlType != CONTROL_TYPE_SHAPE) [control.node  animateToAlpha:0.1 delay:delay duration:0.4];
+		[control.icon  bounceInAfterDelay:delay duration:0.9 bounces:5];
+		[control.icon  animateToAlpha:1   delay:delay duration:0.4];
+		[control.shape bounceInAfterDelay:delay duration:0.9 bounces:5];
+		[control.shape animateToAlpha:1   delay:delay duration:0.4];
 	}
 	
 	NSArray *fissureDics = level[@"fissures"];
@@ -92,9 +118,14 @@
 		
 		[self addChild:fissure];
 		fissureIndex++;
+		
+		float delay = 0.25 + (fissureIndex * 0.25);
+		fissure.alpha = 0;
+		[fissure animateToAlpha:1 delay:delay duration:1.5];
 	}
 	
 	NSArray *targetDics = level[@"targets"];
+	int targetIndex = 0;
 	for (NSDictionary *dic in targetDics) {
 		Target *target = [[Target alloc] initWithDictionary:dic forSceneSize:screenSize];
 		if (target.matchedFissure) {
@@ -105,6 +136,13 @@
 		EXLog(MODEL, DBG, @"Loaded target at (%.2f, %.2f)", target.position.x, target.position.y);
 		
 		[self addChild:target.node];
+		
+		
+		/* Scale in */
+		float delay = 0.1 + (targetIndex * 0.15); targetIndex++;
+		target.node.alpha = 0;
+		[target.node bounceInAfterDelay:delay duration:0.9 bounces:5];
+		[target.node animateToAlpha:1 delay:delay duration:0.4];
 	}
 	
 	/* This part connects the warp zones */
@@ -118,7 +156,7 @@
 			w2.connectedWarp = w1;
 		}
 	} else {
-		EXLog(MODEL, DBG, @"Invalid warp count: %d", [warps count]);
+		EXLog(MODEL, DBG, @"Invalid warp count: %d", (int)[warps count]);
 	}
 	
 	
@@ -166,6 +204,8 @@
 
 
 - (void) spawnProjectiles {
+	if (!_shouldSpawnProjectiles) return;
+	
 	for (SpawnPoint *point in _spawnPoints) {
 		if (![point shouldSpawnThisFrame]) continue;
 		
@@ -236,7 +276,7 @@
     
 	/* If a projectile hits an edge, remove it */
 	if ((firstBody.categoryBitMask & PHYS_CAT_EDGE) && (secondBody.categoryBitMask & PHYS_CAT_PROJ)) {
-		[self removeChildrenInArray:@[secondBody.node]];
+		[_projectileLayerNode removeChildrenInArray:@[secondBody.node]];
 		return;
 	}
 	

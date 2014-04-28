@@ -32,7 +32,7 @@ SINGLETON_IMPL(GameEngineViewController);
 		
 		FissureScene *scene = [[FissureScene alloc] initWithSize:self.view.bounds.size];
 		PersistentDictionary *d = [PersistentDictionary dictionaryWithName:@"level_info"];
-		[scene loadFromLevelDictionary:(d.dictionary[@"levels"])[@"test2"]];
+		[scene loadFromLevelDictionary:(d.dictionary[@"levels"])[@"test1"]];
 		[_sceneView presentScene:scene];
 	}
 	return self;

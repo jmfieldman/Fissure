@@ -29,8 +29,8 @@
 	CFTimeInterval _lastFrameTime;
 	
 	/* Holds projectile particle effects */
-	SKNode *_projectileParticleLayerNode;
-	SKNode *_projectileLayerNode;
+	SKNode       *_projectileParticleLayerNode;
+	SKNode       *_projectileLayerNode;
 	
 	/* Which control am I dragging/scaling? */
 	SceneControl *_draggedControl;
@@ -40,6 +40,9 @@
 	
 	/* Can trigger full state? */
 	BOOL          _canTriggerFull;
+	
+	/* Should spawn projectiles? */
+	BOOL          _shouldSpawnProjectiles;
 }
 
 @property (nonatomic, readonly) NSMutableArray *spawnPoints;

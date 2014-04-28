@@ -24,4 +24,5 @@
 	#import "PersistentDictionary.h"
 	#import "SKBounceAnimation.h"
 	#import "SingletonHelper.h"
+	#import "SKNode+Animations.h"
 #endif

@@ -26,6 +26,7 @@
 		35C0D0D61905FF7F00E225D5 /* activity_disc_0.png in Resources */ = {isa = PBXBuildFile; fileRef = 35C0D0CF1905FF7F00E225D5 /* activity_disc_0.png */; };
 		35CB92A81909A9DA002E03FA /* disc_repel@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 35CB92A71909A9DA002E03FA /* disc_repel@2x.png */; };
 		35CB92AA190AAC4E002E03FA /* warp.sks in Resources */ = {isa = PBXBuildFile; fileRef = 35CB92A9190AAC4E002E03FA /* warp.sks */; };
+		35D26C05190DF16A0007E664 /* SKNode+Animations.m in Sources */ = {isa = PBXBuildFile; fileRef = 35D26C04190DF16A0007E664 /* SKNode+Animations.m */; };
 		35DBD25F1904255C00116F8B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 35DBD25E1904255C00116F8B /* Foundation.framework */; };
 		35DBD2611904255C00116F8B /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 35DBD2601904255C00116F8B /* CoreGraphics.framework */; };
 		35DBD2631904255C00116F8B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 35DBD2621904255C00116F8B /* UIKit.framework */; };
@@ -93,6 +94,8 @@
 		35C0D0CF1905FF7F00E225D5 /* activity_disc_0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = activity_disc_0.png; sourceTree = "<group>"; };
 		35CB92A71909A9DA002E03FA /* disc_repel@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "disc_repel@2x.png"; sourceTree = "<group>"; };
 		35CB92A9190AAC4E002E03FA /* warp.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = warp.sks; sourceTree = "<group>"; };
+		35D26C03190DF16A0007E664 /* SKNode+Animations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SKNode+Animations.h"; sourceTree = "<group>"; };
+		35D26C04190DF16A0007E664 /* SKNode+Animations.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SKNode+Animations.m"; sourceTree = "<group>"; };
 		35DBD25B1904255C00116F8B /* Fissure.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Fissure.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		35DBD25E1904255C00116F8B /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		35DBD2601904255C00116F8B /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -288,6 +291,8 @@
 				35DBD29E190425ED00116F8B /* SingletonHelper.m */,
 				35DBD29F190425ED00116F8B /* SKBounceAnimation.h */,
 				35DBD2A0190425ED00116F8B /* SKBounceAnimation.m */,
+				35D26C03190DF16A0007E664 /* SKNode+Animations.h */,
+				35D26C04190DF16A0007E664 /* SKNode+Animations.m */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -495,6 +500,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				35D26C05190DF16A0007E664 /* SKNode+Animations.m in Sources */,
 				35DBD2B6190427AC00116F8B /* FissureScene.m in Sources */,
 				35DBD2D51904C41B00116F8B /* SceneControl.m in Sources */,
 				35C0D0C81905F8D700E225D5 /* Target.m in Sources */,

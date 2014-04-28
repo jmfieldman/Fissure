@@ -292,11 +292,11 @@ static NSString *s_controlStrings[NUM_CONTROL_TYPES] = {
 				float dx = node.position.x - _node.position.x;
 				float dy = node.position.y - _node.position.y;
 				int distance = FastIntSQRT((int)(dx * dx + dy * dy));
-				distance += _radius / 2;
+				distance += _radius / 4;
 				
 				float force = multiplier * 50000 / (distance * distance);
 				
-				node.physicsBody.velocity = CGVectorMake((node.physicsBody.velocity.dx + dx * force) * 0.98, (node.physicsBody.velocity.dy + dy * force) * 0.98);
+				node.physicsBody.velocity = CGVectorMake((node.physicsBody.velocity.dx + dx * force), (node.physicsBody.velocity.dy + dy * force));
 				node.zRotation = atan2(node.physicsBody.velocity.dy, node.physicsBody.velocity.dx);
 				
 				

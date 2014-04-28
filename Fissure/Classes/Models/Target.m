@@ -33,7 +33,7 @@
 		/* Initial values */
 		_progress        = 0;
 		_hysteresis      = 1;
-		_progressPerHit  = 2;
+		_progressPerHit  = 0.5;
 		_lastHitTime     = 0;
 		_lossPerTime     = 0.6;
 		
