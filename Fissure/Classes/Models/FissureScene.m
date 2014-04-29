@@ -213,13 +213,17 @@
 	for (SceneControl *control in _controls) {
 		float delay = 0.5 + controlIndex * 0.15;
 		
+		[control.node  bounceOutAfterDelay:delay-0.25 duration:0.9 bounces:2];
+		[control.icon  bounceOutAfterDelay:delay-0.25 duration:0.9 bounces:2];
+		[control.shape bounceOutAfterDelay:delay-0.25 duration:0.9 bounces:2];
+		
 		[control.node  animateToAlpha:0 delay:delay duration:0.5];
 		[control.icon  animateToAlpha:0 delay:delay duration:0.5];
 		[control.shape animateToAlpha:0 delay:delay duration:0.5];
-		
-		[control.node  animateToScale:0.5 delay:delay duration:0.5];
-		[control.icon  animateToScale:0.5 delay:delay duration:0.5];
-		[control.shape animateToScale:0.5 delay:delay duration:0.5];
+						
+		//[control.node  animateToScale:0.5 delay:delay duration:0.5];
+		//[control.icon  animateToScale:0.5 delay:delay duration:0.5];
+		//[control.shape animateToScale:0.5 delay:delay duration:0.5];
 		
 		controlIndex++;
 	}
@@ -233,7 +237,31 @@
 	});
 	
 	/* Alpha-out targets */
+	int targetIndex = 0;
+	for (Target *target in _targets) {
+		float delay = 1 + targetIndex * 0.15;
+		[target.node animateToAlpha:0   delay:delay duration:0.5];
+		[target.node animateToScale:0.5 delay:delay duration:0.5];
+		targetIndex++;
+	}
 	
+	/* Alpha-out fissures */
+	int fissureIndex = 0;
+	for (Fissure *fissure in _fissures) {
+		float delay = 1 + fissureIndex * 0.15;
+		[fissure animateToAlpha:0   delay:delay duration:0.5];
+		[fissure animateToScale:0.5 delay:delay duration:0.5];
+		fissureIndex++;
+	}
+	
+	/* Alpha-out spawn points */
+	int spawnIndex = 0;
+	for (SpawnPoint *spawn in _spawnPoints) {
+		float delay = 1 + spawnIndex * 0.15;
+		[spawn.node animateToAlpha:0   delay:delay duration:0.5];
+		[spawn.node animateToScale:0.5 delay:delay duration:0.5];
+		spawnIndex++;
+	}
 }
 
 
