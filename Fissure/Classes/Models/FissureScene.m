@@ -189,7 +189,7 @@
 	BOOL allFull = YES;
 	for (Target *target in _targets) {
 		[target updateForDuration:elapsedTime];
-		if (target.timeFull < (target.hysteresis * 2)) allFull = NO;
+		if (target.timeFull < 1) allFull = NO;
 	}
 	
 	if (allFull) {
@@ -206,6 +206,7 @@
 	[self levelOverStageOne];
 }
 
+/* animate all objects out */
 - (void) levelOverStageOne {
 	
 	/* Alpha-out controls */
@@ -262,6 +263,34 @@
 		[spawn.node animateToScale:0.5 delay:delay duration:0.5];
 		spawnIndex++;
 	}
+	
+	/* Trigger stage 2 */
+	[self performSelector:@selector(levelOverStageTwo) withObject:nil afterDelay:2];
+}
+
+/* Kill all objects and remove from tree */
+- (void) levelOverStageTwo {
+	for (SceneControl *c in _controls) {
+		[c.node removeFromParent];
+		[c.icon removeFromParent];
+		[c.shape removeFromParent];
+	}
+	[_controls removeAllObjects];
+	
+	for (Fissure *f in _fissures) {
+		[f removeFromParent];
+	}
+	[_fissures removeAllObjects];
+	
+	for (SpawnPoint *s in _spawnPoints) {
+		[s.node removeFromParent];
+	}
+	[_spawnPoints removeAllObjects];
+	
+	for (Target *t in _targets) {
+		[t.node removeFromParent];
+	}
+	[_targets removeAllObjects];
 }
 
 
@@ -329,7 +358,7 @@
 		
 		dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
 			control.position = control.initialPosition;
-			control.radius   = control.initialRadius;			
+			control.radius   = control.initialRadius;
 		});
 	}
 }
