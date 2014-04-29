@@ -27,8 +27,7 @@ typedef enum ControlType {
 
 
 @interface SceneControl : NSObject {
-	/* Needed to change the scale */
-	float _initialRadius;
+
 }
 
 @property (nonatomic, assign) ControlType_t controlType;
@@ -47,6 +46,9 @@ typedef enum ControlType {
 @property (nonatomic, strong, readonly) SKSpriteNode *icon;
 @property (nonatomic, strong, readonly) SKShapeNode  *shape;
 @property (nonatomic, strong, readonly) NSMutableArray *affectedProjectiles;
+
+@property (nonatomic, readonly) CGPoint initialPosition;
+@property (nonatomic, readonly) float   initialRadius;
 
 @property (nonatomic, weak) SceneControl *connectedWarp;
 @property (nonatomic, weak) FissureScene *scene;

@@ -30,10 +30,32 @@ SINGLETON_IMPL(GameEngineViewController);
 		_sceneView.showsPhysics   = NO;
 		[self.view addSubview:_sceneView];
 		
-		FissureScene *scene = [[FissureScene alloc] initWithSize:self.view.bounds.size];
+		_scene = [[FissureScene alloc] initWithSize:self.view.bounds.size];
 		PersistentDictionary *d = [PersistentDictionary dictionaryWithName:@"level_info"];
-		[scene loadFromLevelDictionary:(d.dictionary[@"levels"])[@"test2"]];
-		[_sceneView presentScene:scene];
+		[_scene loadFromLevelDictionary:(d.dictionary[@"levels"])[@"test2"]];
+		[_sceneView presentScene:_scene];
+		
+		
+		/* Add buttons */
+		_menuButton = [UIButton buttonWithType:UIButtonTypeCustom];
+		_menuButton.frame = CGRectMake(self.view.bounds.size.width - 40, 0, 40, 40);
+		[self.view addSubview:_menuButton];
+		
+		UIImageView *mImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"icon_menu"]];
+		mImage.frame = CGRectMake(15, 5, 20, 20);
+		mImage.alpha = 0.25;
+		[_menuButton addSubview:mImage];
+		
+		_restartButton = [UIButton buttonWithType:UIButtonTypeCustom];
+		_restartButton.frame = CGRectMake(self.view.bounds.size.width - 40, self.view.bounds.size.height - 40, 40, 40);
+		[_restartButton addTarget:self action:@selector(pressedRestart:) forControlEvents:UIControlEventTouchUpInside];
+		[self.view addSubview:_restartButton];
+		
+		UIImageView *rImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"icon_restart"]];
+		rImage.frame = CGRectMake(15, 15, 20, 20);
+		rImage.alpha = 0.25;
+		[_restartButton addSubview:rImage];
+		
 	}
 	return self;
 }
@@ -41,6 +63,11 @@ SINGLETON_IMPL(GameEngineViewController);
 /* We don't want a status bar */
 - (BOOL)prefersStatusBarHidden {
     return YES;
+}
+
+
+- (void) pressedRestart:(UIButton*)button {
+	[_scene resetControlsToInitialPositions];
 }
 
 

@@ -59,6 +59,7 @@ static NSString *s_controlStrings[NUM_CONTROL_TYPES] = {
 		
 		/* Initial values */
 		_initialRadius = _radius;
+		_initialPosition = _position;
 		
 		/* Create affected array */
 		_affectedProjectiles = [NSMutableArray array];

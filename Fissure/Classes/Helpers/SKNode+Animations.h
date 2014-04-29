@@ -15,4 +15,6 @@
 - (void) animateToAlpha:(float)alpha delay:(float)delay duration:(float)duration;
 - (void) animateToScale:(float)scale delay:(float)delay duration:(float)duration;
 
+- (void) bounceToPosition:(CGPoint)point scale:(float)scale delay:(float)delay duration:(float)duration bounces:(int)bounces;
+
 @end

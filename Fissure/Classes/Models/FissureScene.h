@@ -54,4 +54,6 @@
 
 - (void) removeNodeFromAllControlsNotInRange:(SKNode*)node;
 
+- (void) resetControlsToInitialPositions;
+
 @end

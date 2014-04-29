@@ -321,6 +321,19 @@
 	}
 }
 
+- (void) resetControlsToInitialPositions {
+	for (SceneControl *control in _controls) {
+		[control.node  bounceToPosition:control.initialPosition scale:1 delay:0 duration:1.1 bounces:5];
+		[control.icon  bounceToPosition:control.initialPosition scale:1 delay:0 duration:1.1 bounces:5];
+		[control.shape bounceToPosition:control.initialPosition scale:1 delay:0 duration:1.1 bounces:5];
+		
+		dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+			control.position = control.initialPosition;
+			control.radius   = control.initialRadius;			
+		});
+	}
+}
+
 
 #pragma mark Contact Checks
 
@@ -427,7 +440,9 @@
 	if ([touches count] == 1) {
 		CGPoint touchPoint = [[touches anyObject] locationInNode:self];
 		NSArray *touchedNodes = [self nodesAtPoint:touchPoint];
-	
+		
+		NSLog(@"touched %d", [touchedNodes count]);
+		
 		NSMutableArray *touchedControls = [NSMutableArray array];
 		for (SKNode *node in touchedNodes) {
 			if (![node.userData[@"isControl"] boolValue]) continue;
