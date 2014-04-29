@@ -41,15 +41,6 @@
 		self.physicsBody = [SKPhysicsBody bodyWithEdgeLoopFromRect:CGRectInset(self.frame, -75, -75)];
 		self.physicsBody.categoryBitMask = PHYS_CAT_EDGE;
 		
-		/* Create the projectile particle layer */
-		_projectileParticleLayerNode = [SKNode node];
-		_projectileParticleLayerNode.position = CGPointMake(50, 200);
-		[self addChild:_projectileParticleLayerNode];
-		
-		_projectileLayerNode = [SKNode node];
-		_projectileLayerNode.zPosition = 0.5;
-		[self addChild:_projectileLayerNode];
-		
     }
     return self;
 }
@@ -57,6 +48,15 @@
 - (void) loadFromLevelDictionary:(NSDictionary*)level {
 	
 	CGSize screenSize = self.size;
+	
+	/* Create the projectile particle layer */
+	_projectileParticleLayerNode = [SKNode node];
+	_projectileParticleLayerNode.position = CGPointMake(50, 200);
+	[self addChild:_projectileParticleLayerNode];
+	
+	_projectileLayerNode = [SKNode node];
+	_projectileLayerNode.zPosition = 0.5;
+	[self addChild:_projectileLayerNode];
 	
 	/* Show proj layers */
 	_projectileParticleLayerNode.alpha = 1;
@@ -291,6 +291,13 @@
 		[t.node removeFromParent];
 	}
 	[_targets removeAllObjects];
+	
+	/* Particles */
+	[_projectileLayerNode removeFromParent];
+	[_projectileParticleLayerNode removeFromParent];
+
+	_projectileLayerNode = nil;
+	_projectileParticleLayerNode = nil;
 }
 
 
