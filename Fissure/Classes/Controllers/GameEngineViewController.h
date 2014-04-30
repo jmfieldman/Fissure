@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "FissureScene.h"
 
-@interface GameEngineViewController : UIViewController {
+@interface GameEngineViewController : UIViewController <FissureSceneDelegate> {
 	/* Scene view */
 	SKView *_sceneView;
 	

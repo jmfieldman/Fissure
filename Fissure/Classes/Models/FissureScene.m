@@ -189,7 +189,7 @@
 	BOOL allFull = YES;
 	for (Target *target in _targets) {
 		[target updateForDuration:elapsedTime];
-		if (target.timeFull < 1) allFull = NO;
+		if (target.timeFull < (target.hysteresis + 0.25)) allFull = NO;
 	}
 	
 	if (allFull) {
@@ -203,6 +203,7 @@
 	if (!_canTriggerFull) return;
 	_canTriggerFull = NO;
 	
+	[self.sceneDelegate sceneAllTargetsLit];
 	[self levelOverStageOne];
 }
 
@@ -298,8 +299,15 @@
 
 	_projectileLayerNode = nil;
 	_projectileParticleLayerNode = nil;
+	
+	dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.25 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+		[self levelOverStageThree];
+	});
 }
 
+- (void) levelOverStageThree {
+	[self.sceneDelegate sceneReadyToTransition];
+}
 
 - (void) spawnProjectiles {
 	if (!_shouldSpawnProjectiles) return;

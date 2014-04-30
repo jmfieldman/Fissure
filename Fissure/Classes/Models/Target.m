@@ -92,22 +92,20 @@
 }
 
 - (void) hitByProjectile {
-	_wasHit = YES;
+	_accelToTime = _currentTime + 0.1;
 }
 
 - (void) updateForDuration:(CFTimeInterval)duration {
 	_currentTime += duration;
 	
 	/* Was hit? */
-	if (_wasHit) {
-		_wasHit = NO;
+	if (_currentTime < _accelToTime) {
 		_lastHitTime = _currentTime;
 		
 		/* Don't do anything if already at 1 */
 		if (_progress < 1) {
 			_progress += _progressPerHit * duration;
 			if (_progress > 1) _progress = 1;
-		
 		}
 	}
 	

@@ -25,14 +25,14 @@ SINGLETON_IMPL(GameEngineViewController);
 		
 		_sceneView = [[SKView alloc] initWithFrame:self.view.bounds];
 		_sceneView.showsFPS = YES;
-		_sceneView.showsNodeCount = YES;
-		_sceneView.showsDrawCount = YES;
+		_sceneView.showsNodeCount = NO;
+		_sceneView.showsDrawCount = NO;
 		_sceneView.showsPhysics   = NO;
 		[self.view addSubview:_sceneView];
 		
 		_scene = [[FissureScene alloc] initWithSize:self.view.bounds.size];
 		PersistentDictionary *d = [PersistentDictionary dictionaryWithName:@"level_info"];
-		[_scene loadFromLevelDictionary:(d.dictionary[@"levels"])[@"test2"]];
+		[_scene loadFromLevelDictionary:(d.dictionary[@"levels"])[@"intro-1"]];
 		[_sceneView presentScene:_scene];
 		
 		
@@ -70,5 +70,15 @@ SINGLETON_IMPL(GameEngineViewController);
 	[_scene resetControlsToInitialPositions];
 }
 
+
+#pragma mark FissureSceneDelegate methods
+
+- (void) sceneAllTargetsLit {
+	[[UIApplication sharedApplication] beginIgnoringInteractionEvents];
+}
+
+- (void) sceneReadyToTransition {
+	[[UIApplication sharedApplication] endIgnoringInteractionEvents];
+}
 
 @end

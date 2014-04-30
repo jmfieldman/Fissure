@@ -228,6 +228,46 @@
 						  "radius" : 0.025
 						  }
 						  ]
+		},
+		
+		"intro-1" : {
+			
+			"spawns" : [ {
+						"px" : 0.1,
+						"py" : 0.2,
+						"jx" : 0.005,
+						"jy" : 0.008,
+						"angle" : 0.0,
+						"speed" : 0.5,
+						"friction" : 0.2,
+						"frameInterval" : 3
+						}
+						],
+			
+			"controls" : [ {
+						  "type" : "push",
+						  "power" : 1.15,
+						  "angle" : 1.57,
+						  "canRotate" : false,
+						  "px" : 0.75,
+						  "py" : 0.75,
+						  "radius"  : 0.075,
+						  "minRadiusScale" : 1,
+						  "maxRadiusScale" : 3,
+						  "canScale" : true,
+						  "canMove" : true
+						  }
+						  
+						  
+						  ],
+			
+			"targets" : [ {
+						 "px" : 0.75,
+						 "py" : 0.65
+						 },
+						 ]
+			
+			
 		}
 		
 	}

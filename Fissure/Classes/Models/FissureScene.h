@@ -24,6 +24,11 @@
 #define PROJECTILE_PHYS_RADIUS 3
 
 
+@protocol FissureSceneDelegate <NSObject>
+- (void) sceneAllTargetsLit;
+- (void) sceneReadyToTransition;
+@end
+
 @interface FissureScene : SKScene <SKPhysicsContactDelegate> {
 	/* Timing */
 	CFTimeInterval _lastFrameTime;
@@ -49,6 +54,8 @@
 @property (nonatomic, readonly) NSMutableArray *controls;
 @property (nonatomic, readonly) NSMutableArray *targets;
 @property (nonatomic, readonly) NSMutableArray *fissures;
+
+@property (nonatomic, weak) id<FissureSceneDelegate> sceneDelegate;
 
 - (void) loadFromLevelDictionary:(NSDictionary*)level;
 

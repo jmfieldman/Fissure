@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 
 @interface Target : NSObject {
-	BOOL _wasHit;
+	CFTimeInterval _accelToTime;
 }
 
 @property (nonatomic, assign)   CGPoint        position;
