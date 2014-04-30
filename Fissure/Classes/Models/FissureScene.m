@@ -34,6 +34,9 @@
 		/* Create fissures */
 		_fissures = [NSMutableArray array];
 		
+		/* Create static images */
+		_staticImages = [NSMutableArray array];
+		
 		/* Initialize timing */
 		_lastFrameTime = 0;
 		
@@ -48,6 +51,16 @@
 - (void) loadFromLevelDictionary:(NSDictionary*)level {
 	
 	CGSize screenSize = self.size;
+	
+	for (NSDictionary *staticDic in level[@"static"]) {
+		NSString *image = staticDic[@"image"];
+		SKSpriteNode *node = [SKSpriteNode spriteNodeWithImageNamed:image];
+		node.alpha = 0;
+		[self addChild:node];
+		node.position = CGPointMake(self.size.width/2, self.size.height/2);
+		[node animateToAlpha:0.65 delay:1.5 duration:1.5];
+		[_staticImages addObject:node];
+	}	
 	
 	/* Create the projectile particle layer */
 	_projectileParticleLayerNode = [SKNode node];
@@ -210,6 +223,11 @@
 /* animate all objects out */
 - (void) levelOverStageOne {
 	
+	/* Alpha-out statics */
+	for (SKNode *node in _staticImages) {
+		[node animateToAlpha:0 delay:0 duration:0.5];
+	}
+	
 	/* Alpha-out controls */
 	int controlIndex = 0;
 	for (SceneControl *control in _controls) {
@@ -271,6 +289,11 @@
 
 /* Kill all objects and remove from tree */
 - (void) levelOverStageTwo {
+	for (SKNode *node in _staticImages) {
+		[node removeFromParent];
+	}
+	[_staticImages removeAllObjects];
+	
 	for (SceneControl *c in _controls) {
 		[c.node removeFromParent];
 		[c.icon removeFromParent];
@@ -484,8 +507,6 @@
 	if ([touches count] == 1) {
 		CGPoint touchPoint = [[touches anyObject] locationInNode:self];
 		NSArray *touchedNodes = [self nodesAtPoint:touchPoint];
-		
-		NSLog(@"touched %d", [touchedNodes count]);
 		
 		NSMutableArray *touchedControls = [NSMutableArray array];
 		for (SKNode *node in touchedNodes) {

@@ -54,6 +54,7 @@
 @property (nonatomic, readonly) NSMutableArray *controls;
 @property (nonatomic, readonly) NSMutableArray *targets;
 @property (nonatomic, readonly) NSMutableArray *fissures;
+@property (nonatomic, readonly) NSMutableArray *staticImages;
 
 @property (nonatomic, weak) id<FissureSceneDelegate> sceneDelegate;
 

@@ -249,12 +249,12 @@
 						  "power" : 1.15,
 						  "angle" : 1.57,
 						  "canRotate" : false,
-						  "px" : 0.75,
-						  "py" : 0.75,
+						  "px" : 0.25,
+						  "py" : 0.65,
 						  "radius"  : 0.075,
 						  "minRadiusScale" : 1,
 						  "maxRadiusScale" : 3,
-						  "canScale" : true,
+						  "canScale" : false,
 						  "canMove" : true
 						  }
 						  
@@ -265,7 +265,12 @@
 						 "px" : 0.75,
 						 "py" : 0.65
 						 },
-						 ]
+						 ],
+			
+			"static" : [ {
+						"image" : "instr_intro1"
+			}
+			]
 			
 			
 		}

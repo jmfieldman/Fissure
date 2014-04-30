@@ -27,6 +27,7 @@
 		35CB92A81909A9DA002E03FA /* disc_repel@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 35CB92A71909A9DA002E03FA /* disc_repel@2x.png */; };
 		35CB92AA190AAC4E002E03FA /* warp.sks in Resources */ = {isa = PBXBuildFile; fileRef = 35CB92A9190AAC4E002E03FA /* warp.sks */; };
 		35D26C05190DF16A0007E664 /* SKNode+Animations.m in Sources */ = {isa = PBXBuildFile; fileRef = 35D26C04190DF16A0007E664 /* SKNode+Animations.m */; };
+		35D26C091911C3950007E664 /* instr_intro1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 35D26C071911C3950007E664 /* instr_intro1@2x.png */; };
 		35D7C7B3190EF4F4006CEFA8 /* LevelManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 35D7C7B2190EF4F4006CEFA8 /* LevelManager.m */; };
 		35D7C7B6190FF3AF006CEFA8 /* icon_restart@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 35D7C7B4190FF3AF006CEFA8 /* icon_restart@2x.png */; };
 		35D7C7B7190FF3AF006CEFA8 /* icon_menu@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 35D7C7B5190FF3AF006CEFA8 /* icon_menu@2x.png */; };
@@ -99,6 +100,7 @@
 		35CB92A9190AAC4E002E03FA /* warp.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = warp.sks; sourceTree = "<group>"; };
 		35D26C03190DF16A0007E664 /* SKNode+Animations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SKNode+Animations.h"; sourceTree = "<group>"; };
 		35D26C04190DF16A0007E664 /* SKNode+Animations.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SKNode+Animations.m"; sourceTree = "<group>"; };
+		35D26C071911C3950007E664 /* instr_intro1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "instr_intro1@2x.png"; sourceTree = "<group>"; };
 		35D7C7B1190EF4F4006CEFA8 /* LevelManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LevelManager.h; sourceTree = "<group>"; };
 		35D7C7B2190EF4F4006CEFA8 /* LevelManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LevelManager.m; sourceTree = "<group>"; };
 		35D7C7B4190FF3AF006CEFA8 /* icon_restart@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_restart@2x.png"; sourceTree = "<group>"; };
@@ -182,6 +184,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		35D26C061911C3950007E664 /* Instructions */ = {
+			isa = PBXGroup;
+			children = (
+				35D26C071911C3950007E664 /* instr_intro1@2x.png */,
+			);
+			path = Instructions;
+			sourceTree = "<group>";
+		};
 		35DBD2521904255C00116F8B = {
 			isa = PBXGroup;
 			children = (
@@ -345,6 +355,7 @@
 		35DBD2C819043AF600116F8B /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				35D26C061911C3950007E664 /* Instructions */,
 				35DBD2C919043AF600116F8B /* Game */,
 				35DBD2CB19043AF600116F8B /* UI */,
 			);
@@ -495,6 +506,7 @@
 				3596FF0C19057A03001AC338 /* disc.png in Resources */,
 				3596FF0B19057A03001AC338 /* disc@2x.png in Resources */,
 				35C0D0D21905FF7F00E225D5 /* activity_disc_3.png in Resources */,
+				35D26C091911C3950007E664 /* instr_intro1@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
