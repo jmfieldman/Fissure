@@ -1,8 +1,8 @@
 {
 	
 	"level_order" : [
-					  "test1",
-					  "test2"
+					  "intro-1",
+					  "intro-2"
 	],
 	
 	"levels" : {
@@ -273,7 +273,53 @@
 			]
 			
 			
+		},
+		
+		"intro-2" : {
+			
+			"spawns" : [ {
+						"px" : 0.1,
+						"py" : 0.5,
+						"jx" : 0.005,
+						"jy" : 0.008,
+						"angle" : 0.0,
+						"speed" : 0.2,
+						"friction" : 1.0,
+						"frameInterval" : 3
+						}
+						],
+			
+			"controls" : [ {
+						  "type" : "push",
+						  "power" : 0.55,
+						  "angle" : 0,
+						  "canRotate" : false,
+						  "px" : 0.25,
+						  "py" : 0.5,
+						  "radius"  : 0.075,
+						  "minRadiusScale" : 1,
+						  "maxRadiusScale" : 3,
+						  "canScale" : true,
+						  "canMove" : false
+						  }
+						  
+						  
+						  ],
+			
+			"targets" : [ {
+						 "px" : 0.85,
+						 "py" : 0.5
+						 },
+						 ],
+			
+			"static" : [ {
+						"image" : "instr_intro2"
+						}
+						]
+			
+			
 		}
+
 		
 	}
 	

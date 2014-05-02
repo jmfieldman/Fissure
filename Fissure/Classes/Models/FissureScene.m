@@ -209,6 +209,12 @@
 		[self allTargetsFull];
 	}
 	
+	/* Check for stopped nodes */
+	for (SKNode *node in _projectileLayerNode.children) {
+		if (node.physicsBody.velocity.dx < 10 && node.physicsBody.velocity.dy < 10) {
+			[node removeFromParent];
+		}
+	}
 }
 
 
@@ -512,7 +518,7 @@
 		for (SKNode *node in touchedNodes) {
 			if (![node.userData[@"isControl"] boolValue]) continue;
 			SceneControl *control = node.userData[@"control"];
-			if (!control.canMove) continue;
+			if (!control.canMove && !control.canScale) continue;
 			[touchedControls addObject:control];
 			/*
 			for (SceneControl *control in _controls) {
@@ -546,6 +552,8 @@
 		if (minDist > (_draggedControl.radius - SCALE_RADIUS_WIDTH)) {
 			_scalingControl = _draggedControl; _draggedControl = nil;
 			_scalingOffset  = _scalingControl.radius - minDist;
+		} else if (!_draggedControl.canMove) {
+			_draggedControl = nil;
 		}
 	}
 	

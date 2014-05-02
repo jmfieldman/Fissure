@@ -24,7 +24,7 @@ SINGLETON_IMPL(GameEngineViewController);
 		self.view.backgroundColor = [UIColor redColor];
 		
 		_sceneView = [[SKView alloc] initWithFrame:self.view.bounds];
-		_sceneView.showsFPS = YES;
+		_sceneView.showsFPS       = YES;
 		_sceneView.showsNodeCount = NO;
 		_sceneView.showsDrawCount = NO;
 		_sceneView.showsPhysics   = NO;
@@ -32,7 +32,7 @@ SINGLETON_IMPL(GameEngineViewController);
 		
 		_scene = [[FissureScene alloc] initWithSize:self.view.bounds.size];
 		PersistentDictionary *d = [PersistentDictionary dictionaryWithName:@"level_info"];
-		[_scene loadFromLevelDictionary:(d.dictionary[@"levels"])[@"intro-1"]];
+		[_scene loadFromLevelDictionary:(d.dictionary[@"levels"])[@"intro-2"]];
 		[_sceneView presentScene:_scene];
 		
 		

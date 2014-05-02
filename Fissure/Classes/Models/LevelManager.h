@@ -21,6 +21,8 @@ SINGLETON_INTR(LevelManager);
 - (int) levelCount;
 - (NSDictionary*) levelDictionaryForId:(NSString*)levelId;
 
+- (int) levelNumForId:(NSString*)levelId;
+
 - (BOOL) isAvailable:(NSString*)levelId;
 - (void) setAvailable:(NSString*)levelId;
 - (BOOL) isComplete:(NSString*)levelId;

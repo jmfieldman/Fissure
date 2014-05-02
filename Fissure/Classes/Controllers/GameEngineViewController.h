@@ -19,6 +19,9 @@
 	/* Controls */
 	UIButton *_menuButton;
 	UIButton *_restartButton;
+	
+	/* Current level */
+	NSString *_currentLevelId;
 }
 
 SINGLETON_INTR(GameEngineViewController);
