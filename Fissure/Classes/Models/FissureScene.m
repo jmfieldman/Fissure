@@ -211,7 +211,9 @@
 	
 	/* Check for stopped nodes */
 	for (SKNode *node in _projectileLayerNode.children) {
-		if (node.physicsBody.velocity.dx < 10 && node.physicsBody.velocity.dy < 10) {
+		float dx = node.physicsBody.velocity.dx;
+		float dy = node.physicsBody.velocity.dy;
+		if (dx < 10 && dy < 10 && dx > -10 && dy > -10) {
 			[node removeFromParent];
 		}
 	}
@@ -329,7 +331,7 @@
 	_projectileLayerNode = nil;
 	_projectileParticleLayerNode = nil;
 	
-	dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.25 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+	dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.05 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
 		[self levelOverStageThree];
 	});
 }

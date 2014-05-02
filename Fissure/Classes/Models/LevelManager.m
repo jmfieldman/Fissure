@@ -27,8 +27,8 @@ SINGLETON_IMPL(LevelManager);
 
 - (int) levelNumForId:(NSString*)levelId {
 	int levelIndex = 0;
-	for (NSString *levelId in _levelOrder) {
-		if ([levelId isEqualToString:_levelOrder[levelIndex]]) return levelIndex;
+	for (NSString *Id in _levelOrder) {
+		if ([levelId isEqualToString:Id]) return levelIndex;
 		levelIndex++;
 	}
 	return -1;

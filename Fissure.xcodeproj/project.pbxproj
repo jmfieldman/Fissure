@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		357F30B019131A70003BCACE /* instr_intro2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 357F30AF19131A70003BCACE /* instr_intro2@2x.png */; };
+		357F30B2191326F9003BCACE /* instr_intro4@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 357F30B1191326F9003BCACE /* instr_intro4@2x.png */; };
 		3596FF0B19057A03001AC338 /* disc@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3596FF0919057A03001AC338 /* disc@2x.png */; };
 		3596FF0C19057A03001AC338 /* disc.png in Resources */ = {isa = PBXBuildFile; fileRef = 3596FF0A19057A03001AC338 /* disc.png */; };
 		3596FF0F1906B6A1001AC338 /* fissure.sks in Resources */ = {isa = PBXBuildFile; fileRef = 3596FF0D1906B6A1001AC338 /* fissure.sks */; };
@@ -79,6 +80,7 @@
 
 /* Begin PBXFileReference section */
 		357F30AF19131A70003BCACE /* instr_intro2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "instr_intro2@2x.png"; sourceTree = "<group>"; };
+		357F30B1191326F9003BCACE /* instr_intro4@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "instr_intro4@2x.png"; sourceTree = "<group>"; };
 		3596FF0919057A03001AC338 /* disc@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "disc@2x.png"; sourceTree = "<group>"; };
 		3596FF0A19057A03001AC338 /* disc.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = disc.png; sourceTree = "<group>"; };
 		3596FF0D1906B6A1001AC338 /* fissure.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = fissure.sks; sourceTree = "<group>"; };
@@ -189,6 +191,7 @@
 		35D26C061911C3950007E664 /* Instructions */ = {
 			isa = PBXGroup;
 			children = (
+				357F30B1191326F9003BCACE /* instr_intro4@2x.png */,
 				357F30AF19131A70003BCACE /* instr_intro2@2x.png */,
 				35D26C071911C3950007E664 /* instr_intro1@2x.png */,
 			);
@@ -499,6 +502,7 @@
 				35DBD2C6190430F100116F8B /* projectile_trail.sks in Resources */,
 				35C0D0D01905FF7F00E225D5 /* activity_disc_1.png in Resources */,
 				3596FF0F1906B6A1001AC338 /* fissure.sks in Resources */,
+				357F30B2191326F9003BCACE /* instr_intro4@2x.png in Resources */,
 				3596FF101906B6A1001AC338 /* bokeh.png in Resources */,
 				35D7C7B7190FF3AF006CEFA8 /* icon_menu@2x.png in Resources */,
 				3596FF5919096416001AC338 /* disc_attract@2x.png in Resources */,

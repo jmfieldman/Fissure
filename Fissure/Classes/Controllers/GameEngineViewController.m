@@ -8,6 +8,7 @@
 
 #import "GameEngineViewController.h"
 #import "FissureScene.h"
+#import "LevelManager.h"
 
 @interface GameEngineViewController ()
 
@@ -31,8 +32,7 @@ SINGLETON_IMPL(GameEngineViewController);
 		[self.view addSubview:_sceneView];
 		
 		_scene = [[FissureScene alloc] initWithSize:self.view.bounds.size];
-		PersistentDictionary *d = [PersistentDictionary dictionaryWithName:@"level_info"];
-		[_scene loadFromLevelDictionary:(d.dictionary[@"levels"])[@"intro-2"]];
+		_scene.sceneDelegate = self;
 		[_sceneView presentScene:_scene];
 		
 		
@@ -55,7 +55,10 @@ SINGLETON_IMPL(GameEngineViewController);
 		rImage.frame = CGRectMake(15, 15, 20, 20);
 		rImage.alpha = 0.25;
 		[_restartButton addSubview:rImage];
+
 		
+		/* Load initial level */
+		[self loadLevelId:@"intro-3"];
 	}
 	return self;
 }
@@ -73,12 +76,26 @@ SINGLETON_IMPL(GameEngineViewController);
 
 #pragma mark FissureSceneDelegate methods
 
+- (void) loadLevelId:(NSString*)levelId {
+	_currentLevelId = levelId;
+	NSDictionary *levelDic = [[LevelManager sharedInstance] levelDictionaryForId:_currentLevelId];
+	
+	[_scene loadFromLevelDictionary:levelDic];
+	EXLog(MODEL, DBG, @"Loading level %@", _currentLevelId);
+}
+
 - (void) sceneAllTargetsLit {
 	[[UIApplication sharedApplication] beginIgnoringInteractionEvents];
+	
+	[[LevelManager sharedInstance] setComplete:_currentLevelId];
 }
 
 - (void) sceneReadyToTransition {
 	[[UIApplication sharedApplication] endIgnoringInteractionEvents];
+	
+	int currentLevelNum = [[LevelManager sharedInstance] levelNumForId:_currentLevelId];
+	currentLevelNum = (currentLevelNum + 1) % [LevelManager sharedInstance].levelCount;
+	[self loadLevelId:[[LevelManager sharedInstance] levelIdAtPosition:currentLevelNum]];
 }
 
 @end
