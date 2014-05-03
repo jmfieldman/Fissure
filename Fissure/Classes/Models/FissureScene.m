@@ -216,6 +216,7 @@
 		if (dx < 10 && dy < 10 && dx > -10 && dy > -10) {
 			BOOL found = NO;
 			for (SceneControl *control in _controls) {
+				if (control.controlType != CONTROL_TYPE_PUSH) continue;
 				if ([control.affectedProjectiles indexOfObjectIdenticalTo:node] != NSNotFound) {
 					found = YES;
 					break;

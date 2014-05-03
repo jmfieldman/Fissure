@@ -58,7 +58,7 @@ SINGLETON_IMPL(GameEngineViewController);
 
 		
 		/* Load initial level */
-		[self loadLevelId:@"intro-bounce-example"];
+		[self loadLevelId:@"gravity-push-hard"];
 	}
 	return self;
 }
