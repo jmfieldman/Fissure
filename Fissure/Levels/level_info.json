@@ -6,6 +6,7 @@
 					 "intro-3",
 					 "intro-4",
 					 "intro-5",
+					 "intro-6",
 	],
 	
 	"levels" : {
@@ -479,9 +480,83 @@
 						 },
 						 ],
 			
+		},
+		
+		"intro-6" : {
+			
+			"spawns" : [ {
+						"px" : 0.8,
+						"py" : 0.2,
+						"jx" : 0.005,
+						"jy" : 0.008,
+						"angle" : 2,
+						"speed" : 0.5,
+						"friction" : 0.5,
+						"frameInterval" : 3
+						}
+						],
+			
+			"controls" : [ {
+						  "type" : "push",
+						  "power" : 1.5,
+						  "angle" : 3.14,
+						  "canRotate" : false,
+						  "px" : 0.262,
+						  "py" : 0.231,
+						  "radius"  : 0.075,
+						  "minRadiusScale" : 1,
+						  "maxRadiusScale" : 3,
+						  "canScale" : true,
+						  "canMove" : true
+						  },
+						  {
+						  "type" : "push",
+						  "power" : 1.5,
+						  "angle" : 0,
+						  "canRotate" : false,
+						  "px" : 0.14,
+						  "py" : 0.5,
+						  "radius"  : 0.075,
+						  "minRadiusScale" : 1,
+						  "maxRadiusScale" : 3,
+						  "canScale" : true,
+						  "canMove" : true
+						  },
+						  {
+						  "type" : "push",
+						  "power" : 1.5,
+						  "angle" : 4.712,
+						  "canRotate" : false,
+						  "px" : 0.48,
+						  "py" : 0.3,
+						  "radius"  : 0.075,
+						  "minRadiusScale" : 1,
+						  "maxRadiusScale" : 3,
+						  "canScale" : true,
+						  "canMove" : true
+						  }
+						  
+						  
+						  ],
+			
+			"targets" : [ {
+						 "px" : 0.523958,
+						 "py" : 0.106250
+						 },
+						 {
+						 "px" : 0.696875,
+						 "py" : 0.371875
+						 },
+						 {
+						 "px" : 0.232292,
+						 "py" : 0.839063
+						 },
+						 ],
+			
 			
 			
 		}
+
 
 		
 	}

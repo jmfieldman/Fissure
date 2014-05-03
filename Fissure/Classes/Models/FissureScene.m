@@ -214,7 +214,14 @@
 		float dx = node.physicsBody.velocity.dx;
 		float dy = node.physicsBody.velocity.dy;
 		if (dx < 10 && dy < 10 && dx > -10 && dy > -10) {
-			[node removeFromParent];
+			BOOL found = NO;
+			for (SceneControl *control in _controls) {
+				if ([control.affectedProjectiles indexOfObjectIdenticalTo:node] != NSNotFound) {
+					found = YES;
+					break;
+				}
+			}
+			if (!found) [node removeFromParent];
 		}
 	}
 }
@@ -513,8 +520,14 @@
 
 -(void)touchesBegan:(NSSet*) touches withEvent:(UIEvent*) event {
 	if ([touches count] == 1) {
+			
 		CGPoint touchPoint = [[touches anyObject] locationInNode:self];
 		NSArray *touchedNodes = [self nodesAtPoint:touchPoint];
+		
+		/* Debug touch output */
+		#ifdef EXDEBUGENABLED
+		EXLog(ANY, DBG, @"%f %f", (touchPoint.x - 44)/480.0, touchPoint.y / 320.0);
+		#endif
 		
 		NSMutableArray *touchedControls = [NSMutableArray array];
 		for (SKNode *node in touchedNodes) {

@@ -58,7 +58,7 @@ SINGLETON_IMPL(GameEngineViewController);
 
 		
 		/* Load initial level */
-		[self loadLevelId:@"intro-5"];
+		[self loadLevelId:@"intro-6"];
 	}
 	return self;
 }
