@@ -5,6 +5,7 @@
 					 "intro-2",
 					 "intro-3",
 					 "intro-4",
+					 "intro-5",
 	],
 	
 	"levels" : {
@@ -420,6 +421,64 @@
 						"image" : "instr_intro4"
 						}
 						]
+			
+			
+		},
+		
+		"intro-5" : {
+			
+			"spawns" : [ {
+						"px" : 0.1,
+						"py" : 0.2,
+						"jx" : 0.005,
+						"jy" : 0.008,
+						"angle" : 0.35,
+						"speed" : 0.7,
+						"friction" : 0.02,
+						"frameInterval" : 3
+						}
+						],
+			
+			"controls" : [ {
+						  "type" : "push",
+						  "power" : 1.5,
+						  "angle" : 3.14,
+						  "canRotate" : false,
+						  "px" : 0.8,
+						  "py" : 0.35,
+						  "radius"  : 0.075,
+						  "minRadiusScale" : 1,
+						  "maxRadiusScale" : 3,
+						  "canScale" : true,
+						  "canMove" : true
+						  },
+						  {
+						  "type" : "push",
+						  "power" : 1.5,
+						  "angle" : 4.712,
+						  "canRotate" : false,
+						  "px" : 0.35,
+						  "py" : 0.55,
+						  "radius"  : 0.075,
+						  "minRadiusScale" : 1,
+						  "maxRadiusScale" : 3,
+						  "canScale" : true,
+						  "canMove" : true
+						  }
+						  
+						  
+						  ],
+			
+			"targets" : [ {
+						 "px" : 0.35,
+						 "py" : 0.15
+						 },
+						 {
+						 "px" : 0.55,
+						 "py" : 0.65
+						 },
+						 ],
+			
 			
 			
 		}
