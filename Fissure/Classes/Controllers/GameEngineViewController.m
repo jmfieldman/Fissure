@@ -58,7 +58,7 @@ SINGLETON_IMPL(GameEngineViewController);
 
 		
 		/* Load initial level */
-		[self loadLevelId:@"gravity-push-hard"];
+		[self loadLevelId:@"speed-gravity-2-push"];
 	}
 	return self;
 }
