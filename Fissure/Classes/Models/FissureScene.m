@@ -526,7 +526,7 @@
 		
 		/* Debug touch output */
 		#ifdef EXDEBUGENABLED
-		EXLog(ANY, DBG, @"%f %f", (touchPoint.x - 44)/480.0, touchPoint.y / 320.0);
+		EXLog(ANY, DBG, @"%f %f", (touchPoint.x - (([UIScreen mainScreen].bounds.size.height < 481)?0:44))/480.0, touchPoint.y / 320.0);
 		#endif
 		
 		NSMutableArray *touchedControls = [NSMutableArray array];

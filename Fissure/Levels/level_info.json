@@ -7,6 +7,10 @@
 					 "intro-4",
 					 "intro-5",
 					 "intro-6",
+					 "intro-bounce-example",
+					 "color-first-example",
+					 "color-second-example",
+					 "color-split-example",
 	],
 	
 	"levels" : {
@@ -553,11 +557,134 @@
 						 },
 						 ],
 			
-			
-			
-		}
+		},
 
+		
+		"intro-6" : {
+			
+			"spawns" : [ { "px" : 0.8, "py" : 0.2, "jx" : 0.005, "jy" : 0.008, "angle" : 2, "speed" : 0.5, "friction" : 0.5, "frameInterval" : 3 }
+						],
+			
+			"controls" : [ {
+						  "type" : "push", "power" : 1.5, "angle" : 3.14, "px" : 0.262, "py" : 0.231, "radius"  : 0.075,
+						  "minRadiusScale" : 1, "maxRadiusScale" : 3, "canScale" : true, "canMove" : true, "canRotate" : false,
+						  },
+						  {
+						  "type" : "push", "power" : 1.5, "angle" : 0, "px" : 0.14, "py" : 0.5, "radius"  : 0.075,
+						  "minRadiusScale" : 1, "maxRadiusScale" : 3, "canScale" : true, "canMove" : true, "canRotate" : false,
+						  },
+						  {
+						  "type" : "push", "power" : 1.5, "angle" : 4.712, "px" : 0.48, "py" : 0.3, "radius"  : 0.075,
+						  "minRadiusScale" : 1, "maxRadiusScale" : 3, "canScale" : true, "canMove" : true, "canRotate" : false,
+						  }
+						  						  
+						  ],
+			
+			"targets" : [ { "px" : 0.523958, "py" : 0.106250 },
+						  { "px" : 0.696875, "py" : 0.371875 },
+						  { "px" : 0.232292, "py" : 0.839063 },
+						 ],
+			
+		},
+		
+		"intro-bounce-example" : {
+			
+			"spawns" : [ { "px" : 0.095833, "py" : 0.864062, "jx" : 0.003, "jy" : 0.005, "angle" : -0.5, "speed" : 0.7, "friction" : 0.2, "frameInterval" : 3 }
+						],
+			
+			"controls" : [ {
+						  "type" : "push", "power" : 1.5, "angle" : 1.57, "px" : 0.210417, "py" : 0.475000, "radius"  : 0.075,
+						  "minRadiusScale" : 1, "maxRadiusScale" : 3, "canScale" : true, "canMove" : true, "canRotate" : false,
+						  },
+						  {
+						  "type" : "push", "power" : 1.5, "angle" : 0, "px" : 0.735417, "py" : 0.812500, "radius"  : 0.075,
+						  "minRadiusScale" : 1, "maxRadiusScale" : 3, "canScale" : true, "canMove" : true, "canRotate" : false,
+						  },
+						  {
+						  "type" : "push", "power" : 1.75, "angle" : 3.1415, "px" : 0.827083, "py" : 0.498437, "radius"  : 0.075,
+						  "minRadiusScale" : 1, "maxRadiusScale" : 3, "canScale" : true, "canMove" : true, "canRotate" : false,
+						  }
+						  
+						  ],
+			
+			"targets" : [ { "px" : 0.422917, "py" : 0.214062, "matchedFissure" : 0 },
+						  { "px" : 0.313542, "py" : 0.896875, "matchedFissure" : 0 },
+						  { "px" : 0.562500, "py" : 0.717187, "matchedFissure" : 0 },
+						 ],
+			
+		},
 
+		"color-first-example" : {
+			
+			"spawns" : [ { "px" : 0.873333, "py" : 0.570375, "jx" : 0.005, "jy" : 0.008, "angle" : 3.2415, "speed" : 0.5, "friction" : 0.5, "frameInterval" : 3 }
+						],
+			
+			"controls" : [ {
+						  "type" : "push", "power" : 1.5, "angle" : 0, "px" : 0.244792, "py" : 0.267187, "radius"  : 0.075,
+						  "minRadiusScale" : 1, "maxRadiusScale" : 3, "canScale" : true, "canMove" : true, "canRotate" : false,
+						  }
+						  
+						  ],
+			
+			"targets" : [ { "px" : 0.700417, "py" : 0.500050, "matchedFissure" : 1 },
+						 ],
+			
+			"fissures" : [ { "px" : 0.45, "py" : 0.5, "color" : { "r" : 1, "g" : 0.4, "b" : 0.4, "a" : 1 }, "radius" : 0.025 }
+						  ]
+			
+		},
+		
+		"color-second-example" : {
+			
+			"spawns" : [ { "px" : 0.088542, "py" : 0.320312, "jx" : 0.005, "jy" : 0.008, "angle" : 0.75, "speed" : 0.75, "friction" : 0.5, "frameInterval" : 3 }
+						],
+			
+			"controls" : [ {
+						  "type" : "push", "power" : 1.5, "angle" : 1.57, "px" : 0.244792, "py" : 0.267187, "radius"  : 0.075,
+						  "minRadiusScale" : 1, "maxRadiusScale" : 3, "canScale" : true, "canMove" : true, "canRotate" : false,
+						  },
+						  {
+						  "type" : "push", "power" : 1.5, "angle" : 4.7120, "px" : 0.444792, "py" : 0.267187, "radius"  : 0.075,
+						  "minRadiusScale" : 1, "maxRadiusScale" : 3, "canScale" : true, "canMove" : true, "canRotate" : false,
+						  }
+						  
+						  ],
+			
+			"targets" : [ { "px" : 0.443750, "py" : 0.512500, "matchedFissure" : 0 },
+						  { "px" : 0.807292, "py" : 0.656250, "matchedFissure" : 1 },
+						 ],
+			
+			"fissures" : [ { "px" : 0.602083, "py" : 0.323437, "color" : { "r" : 0, "g" : 0.4, "b" : 1, "a" : 1 }, "radius" : 0.025 }
+						  ]
+			
+		},
+		
+		"color-split-example" : {
+			
+			"spawns" : [ { "px" : 0.095833, "py" : 0.864062, "jx" : 0.025, "jy" : 0.028, "angle" : -0.5, "speed" : 0.5, "friction" : 0.5, "frameInterval" : 2 }
+						],
+			
+			"controls" : [ {
+						  "type" : "push", "power" : 1.5, "angle" : 1.57, "px" : 0.355208, "py" : 0.782813, "radius"  : 0.075,
+						  "minRadiusScale" : 1, "maxRadiusScale" : 3, "canScale" : true, "canMove" : true, "canRotate" : false,
+						  },
+						  {
+						  "type" : "push", "power" : 1.5, "angle" : 4.7120, "px" : 0.775000, "py" : 0.307812, "radius"  : 0.075,
+						  "minRadiusScale" : 1, "maxRadiusScale" : 3, "canScale" : true, "canMove" : true, "canRotate" : false,
+						  }
+						  
+						  ],
+			
+			"targets" : [ { "px" : 0.422917, "py" : 0.214062, "matchedFissure" : 0 },
+						  { "px" : 0.746875, "py" : 0.701562, "matchedFissure" : 1 },
+						 ],
+			
+			"fissures" : [ { "px" : 0.629167, "py" : 0.443750, "color" : { "r" : 0, "g" : 0.4, "b" : 1, "a" : 1 }, "radius" : 0.025 }
+						  ]
+			
+		},
+		
+		
 		
 	}
 	
