@@ -58,7 +58,7 @@ SINGLETON_IMPL(GameEngineViewController);
 
 		
 		/* Load initial level */
-		[self loadLevelId:@"repel-warp-intro"];
+		[self loadLevelId:@"shape-intro"];
 	}
 	return self;
 }
