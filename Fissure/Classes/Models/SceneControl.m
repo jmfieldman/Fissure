@@ -149,12 +149,12 @@ static NSString *s_controlStrings[NUM_CONTROL_TYPES] = {
 					_shape.physicsBody = [SKPhysicsBody bodyWithPolygonFromPath:path.CGPath];
 				}
 				
+				_shape.zRotation = _angle;
 				_shape.antialiased = YES;
 				_shape.fillColor = [UIColor colorWithWhite:0.5 alpha:0.3];
 				_shape.strokeColor = [UIColor colorWithWhite:0.5 alpha:0.7];
 				_shape.lineWidth = 1;
 				_shape.position = _position;
-				
 				
 				_shape.physicsBody.friction = 0;
 				_shape.physicsBody.dynamic = YES;
