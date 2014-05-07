@@ -19,10 +19,11 @@
 					 "gravity-push-hard",
 					 "speed-intro",
 					 "speed-gravity",
+					 "speed-test",
 					 "speed-gravity-push",
 					 "speed-gravity-2-push",
-					 "speed-gravity-push-2",
 					 
+					 "speed-gravity-push-2",
 					 "repel-intro",
 					 "repel-warp-intro",
 					 "warp-cross",
@@ -32,12 +33,13 @@
 					 "shape-warp-2",
 					 "double-spawn-intro",
 					 "double-spawn-2",
-					 "shape-warp-3",
 					 
+					 "shape-warp-3",					 
 					 "journey-1",
 					 "warp-trick-1",
 					 "warp-cross-3",
 					 "shape-journey-1",
+					 
 	],
 	
 	"levels" : {
@@ -1492,6 +1494,34 @@
 			
 			"fissures" : [ { "px" : 0.169792, "py" : 0.445312, "color" : { "r" : 1.0, "g" : 0.2, "b" : 0.2, "a" : 1 }, "radius" : 0.025 },
 						   { "px" : 0.775000, "py" : 0.431250, "color" : { "r" : 0.2, "g" : 0.2, "b" : 1.0, "a" : 1 }, "radius" : 0.025 },
+						  ]
+			
+		},
+		
+		"speed-test" : {
+			
+			"spawns" : [ { "px" : 0.750000, "py" : 0.20062, "jx" : 0.000, "jy" : 0.000, "angle" : 3.1415, "speed" : 0.7, "friction" : 0.5, "frameInterval" : 2 }
+						],
+			
+			"controls" : [ {
+						  "type" : "propel", "power" : 1.5, "angle" : 0, "px" : 0.593750, "py" : 0.664062, "radius"  : 0.075,
+						  "minRadiusScale" : 1, "maxRadiusScale" : 3, "canScale" : true, "canMove" : true, "canRotate" : false,
+						  },
+						  {
+						  "type" : "gravity", "power" : 1.5, "angle" : 0, "px" : 0.403125, "py" : 0.595313, "radius"  : 0.075,
+						  "minRadiusScale" : 1, "maxRadiusScale" : 3, "canScale" : true, "canMove" : true, "canRotate" : false,
+						  },
+						  ],
+			
+			"targets" : [ { "px" : 0.252083, "py" : 0.603125, "matchedFissure" : 0 },
+						 { "px" : 0.464583, "py" : 0.343750, "matchedFissure" : 0 },
+						 { "px" : 0.265625, "py" : 0.756250, "matchedFissure" : 0 },
+						 { "px" : 0.302083, "py" : 0.371875, "matchedFissure" : 0 },
+						 
+						 
+						 ],
+			
+			"fissures" : [
 						  ]
 			
 		},
