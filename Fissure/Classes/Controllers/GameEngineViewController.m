@@ -58,7 +58,7 @@ SINGLETON_IMPL(GameEngineViewController);
 
 		
 		/* Load initial level */
-		[self loadLevelId:@"intro-1"];
+		[self loadLevelId:@"shape-journey-1"];
 	}
 	return self;
 }
