@@ -1301,11 +1301,11 @@
 						  },
 						  {
 						  "type" : "warp", "power" : 1.5, "angle" : 0, "px" : 0.159375, "py" : 0.565625, "radius"  : 0.02,
-						  "minRadiusScale" : 1, "maxRadiusScale" : 3, "canScale" : false, "canMove" : true, "canRotate" : false,
+						  "minRadiusScale" : 1, "maxRadiusScale" : 3, "canScale" : false, "canMove" : false, "canRotate" : false,
 						  },
 						  {
 						  "type" : "warp", "power" : 1.5, "angle" : 0, "px" : 0.787500, "py" : 0.471875, "radius"  : 0.02,
-						  "minRadiusScale" : 1, "maxRadiusScale" : 3, "canScale" : false, "canMove" : true, "canRotate" : false,
+						  "minRadiusScale" : 1, "maxRadiusScale" : 3, "canScale" : false, "canMove" : false, "canRotate" : false,
 						  },
 						  ],
 			

@@ -128,6 +128,11 @@
 }
 
 
+- (void) controlMoved {
+	/* Moving control resets timers on all targets */
+	_timeFull = 0;
+}
+
 - (void) updateDialSpeed {
 	int i = 0;
 	for (SKSpriteNode *dial in _dials) {

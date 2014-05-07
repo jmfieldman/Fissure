@@ -585,6 +585,8 @@
 		/* Update position of control (this should update the node position as well */
 		_draggedControl.position = CGPointMake(touchPoint.x + _dragOffset.x, touchPoint.y + _dragOffset.y);
 		
+		[self resetTargetTimers];
+		
 	} else if (_scalingControl) {
 		
 		/* Update radius of control */
@@ -594,6 +596,14 @@
 		float radius = dist + _scalingOffset;
 		
 		_scalingControl.radius = radius;
+		
+		[self resetTargetTimers];
+	}
+}
+
+- (void) resetTargetTimers {
+	for (Target *t in _targets) {
+		[t controlMoved];
 	}
 }
 

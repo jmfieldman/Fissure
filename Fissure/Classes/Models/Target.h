@@ -31,5 +31,6 @@
 
 - (void) hitByProjectile;
 - (void) updateForDuration:(CFTimeInterval)duration;
+- (void) controlMoved;
 
 @end
