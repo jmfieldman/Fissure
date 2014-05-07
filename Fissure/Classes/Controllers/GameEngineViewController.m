@@ -58,7 +58,7 @@ SINGLETON_IMPL(GameEngineViewController);
 
 		
 		/* Load initial level */
-		[self loadLevelId:@"intro-1"];
+		[self loadLevelId:@"double-spawn-2"];
 	}
 	return self;
 }
