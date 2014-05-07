@@ -58,7 +58,7 @@ SINGLETON_IMPL(GameEngineViewController);
 
 		
 		/* Load initial level */
-		[self loadLevelId:@"double-spawn-2"];
+		[self loadLevelId:@"shape-warp-3"];
 	}
 	return self;
 }
