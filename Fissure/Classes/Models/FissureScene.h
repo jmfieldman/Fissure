@@ -64,4 +64,6 @@
 
 - (void) resetControlsToInitialPositions;
 
+- (void) forceWin;
+
 @end

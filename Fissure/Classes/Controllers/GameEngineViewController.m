@@ -56,6 +56,30 @@ SINGLETON_IMPL(GameEngineViewController);
 		rImage.alpha = 0.25;
 		[_restartButton addSubview:rImage];
 
+		/* Thumbnails */
+		#if 1
+		{
+		_snapButton = [UIButton buttonWithType:UIButtonTypeCustom];
+		_snapButton.frame = CGRectMake(0, 0, 40, 40);
+		[_snapButton addTarget:self action:@selector(pressedSnap:) forControlEvents:UIControlEventTouchUpInside];
+		[self.view addSubview:_snapButton];
+		
+		UIImageView *mImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"icon_menu"]];
+		mImage.frame = CGRectMake(15, 5, 20, 20);
+		mImage.alpha = 0.25;
+		[_snapButton addSubview:mImage];
+		
+		_nextButton = [UIButton buttonWithType:UIButtonTypeCustom];
+		_nextButton.frame = CGRectMake(0, self.view.bounds.size.height - 40, 40, 40);
+		[_nextButton addTarget:self action:@selector(pressedNext:) forControlEvents:UIControlEventTouchUpInside];
+		[self.view addSubview:_nextButton];
+		
+		UIImageView *rImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"icon_restart"]];
+		rImage.frame = CGRectMake(15, 15, 20, 20);
+		rImage.alpha = 0.25;
+		[_nextButton addSubview:rImage];
+		}
+		#endif
 		
 		/* Load initial level */
 		[self loadLevelId:@"warp-nonsense"];
@@ -73,6 +97,25 @@ SINGLETON_IMPL(GameEngineViewController);
 	[_scene resetControlsToInitialPositions];
 }
 
+- (void) pressedNext:(UIButton*)button {
+	[_scene forceWin];
+}
+
+- (void) pressedSnap:(UIButton*)button {
+	NSFileManager *fileManager = [NSFileManager defaultManager];
+	NSArray *paths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
+	NSString *documentsDirectory = [NSString stringWithFormat:@"%@/thumbs", [paths objectAtIndex:0]];
+	[fileManager createDirectoryAtPath:documentsDirectory withIntermediateDirectories:YES attributes:nil error:nil];
+	
+	CGSize imageSize = self.view.bounds.size;
+    UIGraphicsBeginImageContextWithOptions(imageSize, YES, 0.0);
+    [_sceneView drawViewHierarchyInRect:_sceneView.bounds afterScreenUpdates:YES];
+	UIImage *screenshot = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+	
+	NSData *imgData = UIImagePNGRepresentation(screenshot);
+	[imgData writeToFile:[NSString stringWithFormat:@"%@/%@-thumb.png", documentsDirectory, _currentLevelId] atomically:YES];
+}
 
 #pragma mark FissureSceneDelegate methods
 

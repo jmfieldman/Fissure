@@ -236,6 +236,10 @@
 	[self levelOverStageOne];
 }
 
+- (void) forceWin {
+	[self allTargetsFull];
+}
+
 /* animate all objects out */
 - (void) levelOverStageOne {
 	

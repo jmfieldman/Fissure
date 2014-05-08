@@ -20,8 +20,16 @@
 	UIButton *_menuButton;
 	UIButton *_restartButton;
 	
+	/* Making thumbnails */
+	UIButton *_snapButton;
+	UIButton *_nextButton;
+	
 	/* Current level */
 	NSString *_currentLevelId;
+	
+	/* Level menu */
+	UIView         *_levelMenuView;
+	NSMutableArray *_levelButtons;
 }
 
 SINGLETON_INTR(GameEngineViewController);
