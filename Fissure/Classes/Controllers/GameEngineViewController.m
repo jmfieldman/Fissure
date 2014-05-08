@@ -10,6 +10,16 @@
 #import "FissureScene.h"
 #import "LevelManager.h"
 
+
+
+#define NUM_LEVELS              36
+#define NUM_LEVEL_ROWS          6
+#define NUM_LEVEL_COLS          6
+#define MENU_BUTTON_VERT_INSET  10
+#define MENU_BUTTON_HORZ_INSET  10
+
+#define MENU_SIZE_RATIO         0.85
+
 @interface GameEngineViewController ()
 
 @end
@@ -81,8 +91,54 @@ SINGLETON_IMPL(GameEngineViewController);
 		}
 		#endif
 		
+		/* Create level menu */
+		_levelButtons = [NSMutableArray array];
+		
+		_levelMenuView = [[UIView alloc] initWithFrame:self.view.bounds];
+		_levelMenuView.alpha = 1;
+		_levelMenuView.backgroundColor = [UIColor colorWithWhite:0 alpha:0.3];
+		[self.view addSubview:_levelMenuView];
+		
+		int menuWidth    = self.view.bounds.size.width  * MENU_SIZE_RATIO;
+		int menuHeight   = self.view.bounds.size.height * MENU_SIZE_RATIO;
+		
+		int initialXOffset = (self.view.bounds.size.width - menuWidth) / 2;
+		int initialYOffset = self.view.bounds.size.height - menuHeight;
+		
+		int buttonWidth  = (menuWidth  - (NUM_LEVEL_COLS+1) * MENU_BUTTON_HORZ_INSET) / NUM_LEVEL_COLS;
+		int buttonHeight = (menuHeight - (NUM_LEVEL_ROWS+1) * MENU_BUTTON_VERT_INSET) / NUM_LEVEL_ROWS;
+		int buttonOffsetX = buttonWidth  + MENU_BUTTON_HORZ_INSET;
+		int buttonOffsetY = buttonHeight + MENU_BUTTON_VERT_INSET;
+		
+		int levelIndex = 0;
+		for (int r = 0; r < NUM_LEVEL_ROWS; r++) {
+			for (int c = 0; c < NUM_LEVEL_COLS; c++) {
+				UIButton *levelButton = [UIButton buttonWithType:UIButtonTypeCustom];
+				levelButton.backgroundColor = [UIColor redColor];
+				levelButton.frame = CGRectMake(c * buttonOffsetX + MENU_BUTTON_HORZ_INSET + initialXOffset,
+											   r * buttonOffsetY + MENU_BUTTON_VERT_INSET + initialYOffset,
+											   buttonWidth,
+											   buttonHeight);
+				NSString *levelName = [[LevelManager sharedInstance] levelIdAtPosition:levelIndex];
+				int dim = ([UIScreen mainScreen].bounds.size.height < 482) ? 480 : 568;
+				UIImage *bImage = [UIImage imageNamed:[NSString stringWithFormat:@"%@-%d-thumb", levelName, dim]];
+				[levelButton setImage:bImage forState:UIControlStateNormal];
+				
+				levelButton.layer.shadowColor   = [UIColor blackColor].CGColor;
+				levelButton.layer.shadowOffset  = CGSizeMake(0,0);
+				levelButton.layer.shadowOpacity = 0.5;
+				levelButton.layer.shadowRadius  = 2;
+				levelButton.layer.shouldRasterize = YES;
+				levelButton.layer.rasterizationScale = [UIScreen mainScreen].scale;
+				
+				[_levelMenuView addSubview:levelButton];
+				[_levelButtons addObject:levelButton];
+				levelIndex++;
+			}
+		}
+		
 		/* Load initial level */
-		[self loadLevelId:@"warp-nonsense"];
+		[self loadLevelId:@"intro-1"];
 	}
 	return self;
 }
@@ -102,19 +158,25 @@ SINGLETON_IMPL(GameEngineViewController);
 }
 
 - (void) pressedSnap:(UIButton*)button {
+	int menuWidth    = self.view.bounds.size.width  * MENU_SIZE_RATIO;
+	int menuHeight   = self.view.bounds.size.height * MENU_SIZE_RATIO;
+	
+	int buttonWidth  = (menuWidth  - (NUM_LEVEL_COLS+1) * MENU_BUTTON_HORZ_INSET) / NUM_LEVEL_COLS;
+	int buttonHeight = (menuHeight - (NUM_LEVEL_ROWS+1) * MENU_BUTTON_VERT_INSET) / NUM_LEVEL_ROWS;
+	
 	NSFileManager *fileManager = [NSFileManager defaultManager];
 	NSArray *paths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
 	NSString *documentsDirectory = [NSString stringWithFormat:@"%@/thumbs", [paths objectAtIndex:0]];
 	[fileManager createDirectoryAtPath:documentsDirectory withIntermediateDirectories:YES attributes:nil error:nil];
 	
-	CGSize imageSize = self.view.bounds.size;
+	CGSize imageSize = CGSizeMake(buttonWidth, buttonHeight);
     UIGraphicsBeginImageContextWithOptions(imageSize, YES, 0.0);
-    [_sceneView drawViewHierarchyInRect:_sceneView.bounds afterScreenUpdates:YES];
+    [_sceneView drawViewHierarchyInRect:CGRectMake(0, 0, imageSize.width, imageSize.height) afterScreenUpdates:YES];
 	UIImage *screenshot = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
 	
 	NSData *imgData = UIImagePNGRepresentation(screenshot);
-	[imgData writeToFile:[NSString stringWithFormat:@"%@/%@-thumb.png", documentsDirectory, _currentLevelId] atomically:YES];
+	[imgData writeToFile:[NSString stringWithFormat:@"%@/%@-%d-thumb@2x~iphone.png", documentsDirectory, _currentLevelId, ([UIScreen mainScreen].bounds.size.height < 482) ? 480 : 568] atomically:YES];
 }
 
 #pragma mark FissureSceneDelegate methods
