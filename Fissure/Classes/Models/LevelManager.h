@@ -15,6 +15,8 @@
 	NSArray      *_levelOrder;
 }
 
+@property (nonatomic, strong) NSString *currentLevelId;
+
 SINGLETON_INTR(LevelManager);
 
 - (NSString*) levelIdAtPosition:(int)position;
@@ -27,5 +29,6 @@ SINGLETON_INTR(LevelManager);
 - (void) setAvailable:(NSString*)levelId;
 - (BOOL) isComplete:(NSString*)levelId;
 - (void) setComplete:(NSString*)levelId;
+
 
 @end

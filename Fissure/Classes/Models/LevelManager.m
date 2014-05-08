@@ -71,5 +71,19 @@ SINGLETON_IMPL(LevelManager);
 }
 
 
+- (NSString*) currentLevelId {
+	PersistentDictionary *comp = [PersistentDictionary dictionaryWithName:@"current_level"];
+	if (!comp.dictionary[@"currentId"]) {
+		return @"intro-1";
+	}
+	return comp.dictionary[@"currentId"];
+}
+
+- (void) setCurrentLevelId:(NSString *)currentLevelId {
+	PersistentDictionary *comp = [PersistentDictionary dictionaryWithName:@"current_level"];
+	comp.dictionary[@"currentId"] = currentLevelId;
+	[comp saveToFile];
+}
+
 
 @end
