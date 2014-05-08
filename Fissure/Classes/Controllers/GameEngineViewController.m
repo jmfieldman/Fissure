@@ -58,7 +58,7 @@ SINGLETON_IMPL(GameEngineViewController);
 
 		
 		/* Load initial level */
-		[self loadLevelId:@"speed-test"];
+		[self loadLevelId:@"warp-nonsense"];
 	}
 	return self;
 }
