@@ -157,7 +157,9 @@ SINGLETON_IMPL(GameEngineViewController);
 }
 
 - (void) pressedLevel:(UIButton*)button {
-	
+	_menuToLevelId = [[LevelManager sharedInstance] levelIdAtPosition:button.tag];
+	[_scene forceWin];
+	[self pressedCloseMenu:nil];
 }
 
 - (void) pressedMenu:(UIButton*)button {
@@ -247,15 +249,22 @@ SINGLETON_IMPL(GameEngineViewController);
 - (void) sceneAllTargetsLit {
 	[[UIApplication sharedApplication] beginIgnoringInteractionEvents];
 	
-	[[LevelManager sharedInstance] setComplete:_currentLevelId];
+	if (!_menuToLevelId) {
+		[[LevelManager sharedInstance] setComplete:_currentLevelId];
+	}
 }
 
 - (void) sceneReadyToTransition {
 	[[UIApplication sharedApplication] endIgnoringInteractionEvents];
 	
-	int currentLevelNum = [[LevelManager sharedInstance] levelNumForId:_currentLevelId];
-	currentLevelNum = (currentLevelNum + 1) % [LevelManager sharedInstance].levelCount;
-	[self loadLevelId:[[LevelManager sharedInstance] levelIdAtPosition:currentLevelNum]];
+	if (_menuToLevelId) {
+		[self loadLevelId:_menuToLevelId];
+		_menuToLevelId = nil;
+	} else {
+		int currentLevelNum = [[LevelManager sharedInstance] levelNumForId:_currentLevelId];
+		currentLevelNum = (currentLevelNum + 1) % [LevelManager sharedInstance].levelCount;
+		[self loadLevelId:[[LevelManager sharedInstance] levelIdAtPosition:currentLevelNum]];
+	}
 }
 
 @end

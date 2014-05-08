@@ -30,6 +30,7 @@
 	/* Level menu */
 	UIView         *_levelMenuView;
 	NSMutableArray *_levelButtons;
+	NSString       *_menuToLevelId;
 }
 
 SINGLETON_INTR(GameEngineViewController);
