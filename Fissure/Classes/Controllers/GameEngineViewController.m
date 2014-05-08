@@ -49,6 +49,7 @@ SINGLETON_IMPL(GameEngineViewController);
 		/* Add buttons */
 		_menuButton = [UIButton buttonWithType:UIButtonTypeCustom];
 		_menuButton.frame = CGRectMake(self.view.bounds.size.width - 40, 0, 40, 40);
+		[_menuButton addTarget:self action:@selector(pressedMenu:) forControlEvents:UIControlEventTouchUpInside];
 		[self.view addSubview:_menuButton];
 		
 		UIImageView *mImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"icon_menu"]];
@@ -67,7 +68,7 @@ SINGLETON_IMPL(GameEngineViewController);
 		[_restartButton addSubview:rImage];
 
 		/* Thumbnails */
-		#if 1
+		#if 0
 		{
 		_snapButton = [UIButton buttonWithType:UIButtonTypeCustom];
 		_snapButton.frame = CGRectMake(0, 0, 40, 40);
@@ -95,9 +96,14 @@ SINGLETON_IMPL(GameEngineViewController);
 		_levelButtons = [NSMutableArray array];
 		
 		_levelMenuView = [[UIView alloc] initWithFrame:self.view.bounds];
-		_levelMenuView.alpha = 1;
+		_levelMenuView.alpha = 0;
 		_levelMenuView.backgroundColor = [UIColor colorWithWhite:0 alpha:0.3];
 		[self.view addSubview:_levelMenuView];
+		
+		UIButton *closeMenu = [UIButton buttonWithType:UIButtonTypeCustom];
+		closeMenu.frame = _levelMenuView.bounds;
+		[closeMenu addTarget:self action:@selector(pressedCloseMenu:) forControlEvents:UIControlEventTouchDown];
+		[_levelMenuView addSubview:closeMenu];
 		
 		int menuWidth    = self.view.bounds.size.width  * MENU_SIZE_RATIO;
 		int menuHeight   = self.view.bounds.size.height * MENU_SIZE_RATIO;
@@ -123,6 +129,8 @@ SINGLETON_IMPL(GameEngineViewController);
 				int dim = ([UIScreen mainScreen].bounds.size.height < 482) ? 480 : 568;
 				UIImage *bImage = [UIImage imageNamed:[NSString stringWithFormat:@"%@-%d-thumb", levelName, dim]];
 				[levelButton setImage:bImage forState:UIControlStateNormal];
+				levelButton.tag = levelIndex;
+				[levelButton addTarget:self action:@selector(pressedLevel:) forControlEvents:UIControlEventTouchUpInside];
 				
 				levelButton.layer.shadowColor   = [UIColor blackColor].CGColor;
 				levelButton.layer.shadowOffset  = CGSizeMake(0,0);
@@ -148,12 +156,59 @@ SINGLETON_IMPL(GameEngineViewController);
     return YES;
 }
 
+- (void) pressedLevel:(UIButton*)button {
+	
+}
+
+- (void) pressedMenu:(UIButton*)button {
+	for (UIButton *b in _levelButtons) {
+		b.alpha = 0;
+		
+		float delay = 0.2 + floatBetween(0, 0.25);
+		[UIView animateWithDuration:0.25
+							  delay:delay
+							options:UIViewAnimationOptionCurveEaseInOut
+						 animations:^{
+							 b.alpha = 1;
+						 } completion:nil];
+		
+		SKBounceAnimation *bounceAnimation = [SKBounceAnimation animationWithKeyPath:@"transform"];
+		bounceAnimation.fromValue = [NSValue valueWithCATransform3D:CATransform3DMakeScale(0.8, 0.8, 1)];
+		bounceAnimation.toValue = [NSValue valueWithCATransform3D:CATransform3DIdentity];
+		bounceAnimation.duration = 0.5f;
+		bounceAnimation.beginTime = CACurrentMediaTime() + delay + 0.1;
+		bounceAnimation.removedOnCompletion = NO;
+		bounceAnimation.fillMode = kCAFillModeForwards;
+		bounceAnimation.numberOfBounces = 3;
+		bounceAnimation.stiffness = SKBounceAnimationStiffnessLight;
+		
+		[b.layer addAnimation:bounceAnimation forKey:nil];
+		
+	}
+	
+	[UIView animateWithDuration:0.25
+						  delay:0
+						options:UIViewAnimationOptionCurveEaseInOut
+					 animations:^{
+						 _levelMenuView.alpha = 1;
+					 } completion:nil];
+}
+
+- (void) pressedCloseMenu:(UIButton*)button {
+	[UIView animateWithDuration:0.25
+						  delay:0
+						options:UIViewAnimationOptionCurveEaseInOut
+					 animations:^{
+						 _levelMenuView.alpha = 0;
+					 } completion:nil];
+}
 
 - (void) pressedRestart:(UIButton*)button {
 	[_scene resetControlsToInitialPositions];
 }
 
 - (void) pressedNext:(UIButton*)button {
+	[self pressedSnap:nil];
 	[_scene forceWin];
 }
 
