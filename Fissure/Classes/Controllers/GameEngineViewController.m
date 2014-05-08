@@ -25,7 +25,7 @@ SINGLETON_IMPL(GameEngineViewController);
 		self.view.backgroundColor = [UIColor redColor];
 		
 		_sceneView = [[SKView alloc] initWithFrame:self.view.bounds];
-		_sceneView.showsFPS       = YES;
+		_sceneView.showsFPS       = NO;
 		_sceneView.showsNodeCount = NO;
 		_sceneView.showsDrawCount = NO;
 		_sceneView.showsPhysics   = NO;
