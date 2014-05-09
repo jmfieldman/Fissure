@@ -94,6 +94,7 @@ SINGLETON_IMPL(GameEngineViewController);
 		
 		/* Create level menu */
 		_levelButtons = [NSMutableArray array];
+		_starImageViews = [NSMutableArray array];
 		
 		_levelMenuView = [[UIView alloc] initWithFrame:self.view.bounds];
 		_levelMenuView.alpha = 0;
@@ -142,13 +143,32 @@ SINGLETON_IMPL(GameEngineViewController);
 				[_levelMenuView addSubview:levelButton];
 				[_levelButtons addObject:levelButton];
 				levelIndex++;
+				
+				UIImageView *star = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"star_mini"]];
+				star.center = CGPointMake(buttonWidth-2, buttonHeight-3);
+				[levelButton addSubview:star];
+				[_starImageViews addObject:star];
 			}
 		}
 		
 		/* Load initial level */
-		[self loadLevelId:@"intro-1"];
+		[self loadLevelId:[LevelManager sharedInstance].currentLevelId];
 	}
 	return self;
+}
+
+/* Update stars */
+- (void) updateStars {
+	int index = 0;
+	for (UIImageView *star in _starImageViews) {
+		NSString *levelId = [[LevelManager sharedInstance] levelIdAtPosition:index];
+		if ([[LevelManager sharedInstance] isComplete:levelId]) {
+			star.alpha = 1;
+		} else {
+			star.alpha = 0;
+		}
+		index++;
+	}
 }
 
 /* We don't want a status bar */
@@ -163,6 +183,8 @@ SINGLETON_IMPL(GameEngineViewController);
 }
 
 - (void) pressedMenu:(UIButton*)button {
+	[self updateStars];
+	
 	for (UIButton *b in _levelButtons) {
 		b.alpha = 0;
 		
@@ -244,6 +266,8 @@ SINGLETON_IMPL(GameEngineViewController);
 	
 	[_scene loadFromLevelDictionary:levelDic];
 	EXLog(MODEL, DBG, @"Loading level %@", _currentLevelId);
+	
+	[LevelManager sharedInstance].currentLevelId = levelId;
 }
 
 - (void) sceneAllTargetsLit {
@@ -251,6 +275,7 @@ SINGLETON_IMPL(GameEngineViewController);
 	
 	if (!_menuToLevelId) {
 		[[LevelManager sharedInstance] setComplete:_currentLevelId];
+		[self updateStars];
 	}
 }
 

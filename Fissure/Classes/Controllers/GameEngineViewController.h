@@ -30,6 +30,7 @@
 	/* Level menu */
 	UIView         *_levelMenuView;
 	NSMutableArray *_levelButtons;
+	NSMutableArray *_starImageViews;
 	NSString       *_menuToLevelId;
 }
 
