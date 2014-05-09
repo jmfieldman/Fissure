@@ -17,6 +17,9 @@
 	Timing_MarkStartTime();
 	InitializeMathHelper();
 	
+	/* Flurry */
+	[Flurry startSession:@"2N892FQCVVDQVJHMD9B3"];
+	
 	self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
 	self.window.backgroundColor = [UIColor whiteColor];
 	self.window.rootViewController = [GameEngineViewController sharedInstance];

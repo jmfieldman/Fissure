@@ -288,6 +288,7 @@ SINGLETON_IMPL(GameEngineViewController);
 	if (!_menuToLevelId) {
 		[[LevelManager sharedInstance] setComplete:_currentLevelId];
 		[self updateStars];
+		[Flurry logEvent:@"Beat_Level" withParameters:@{@"levelId":_currentLevelId}];
 	}
 }
 

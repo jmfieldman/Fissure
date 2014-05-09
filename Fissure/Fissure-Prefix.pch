@@ -25,4 +25,5 @@
 	#import "SKBounceAnimation.h"
 	#import "SingletonHelper.h"
 	#import "SKNode+Animations.h"
+	#import "Flurry.h"
 #endif

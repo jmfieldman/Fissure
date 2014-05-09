@@ -94,6 +94,7 @@
 		35B26B4B191C5A7000189AAA /* title@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 35B26B4A191C5A7000189AAA /* title@2x.png */; };
 		35B26B4F191C5BEF00189AAA /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 35B26B4D191C5BEF00189AAA /* Default-568h@2x.png */; };
 		35B26B50191C5BEF00189AAA /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 35B26B4E191C5BEF00189AAA /* Default@2x.png */; };
+		35B26B55191D426500189AAA /* libFlurry_5.0.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 35B26B54191D426500189AAA /* libFlurry_5.0.0.a */; };
 		35C0D0C81905F8D700E225D5 /* Target.m in Sources */ = {isa = PBXBuildFile; fileRef = 35C0D0C71905F8D700E225D5 /* Target.m */; };
 		35C0D0D01905FF7F00E225D5 /* activity_disc_1.png in Resources */ = {isa = PBXBuildFile; fileRef = 35C0D0C91905FF7F00E225D5 /* activity_disc_1.png */; };
 		35C0D0D11905FF7F00E225D5 /* activity_disc_2.png in Resources */ = {isa = PBXBuildFile; fileRef = 35C0D0CA1905FF7F00E225D5 /* activity_disc_2.png */; };
@@ -243,6 +244,8 @@
 		35B26B4A191C5A7000189AAA /* title@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "title@2x.png"; sourceTree = "<group>"; };
 		35B26B4D191C5BEF00189AAA /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		35B26B4E191C5BEF00189AAA /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		35B26B53191D426500189AAA /* Flurry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Flurry.h; sourceTree = "<group>"; };
+		35B26B54191D426500189AAA /* libFlurry_5.0.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libFlurry_5.0.0.a; sourceTree = "<group>"; };
 		35C0D0C61905F8D700E225D5 /* Target.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Target.h; sourceTree = "<group>"; };
 		35C0D0C71905F8D700E225D5 /* Target.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Target.m; sourceTree = "<group>"; };
 		35C0D0C91905FF7F00E225D5 /* activity_disc_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = activity_disc_1.png; sourceTree = "<group>"; };
@@ -318,6 +321,7 @@
 			files = (
 				35DBD2AD1904261F00116F8B /* AVFoundation.framework in Frameworks */,
 				35DBD2AE1904261F00116F8B /* Security.framework in Frameworks */,
+				35B26B55191D426500189AAA /* libFlurry_5.0.0.a in Frameworks */,
 				35DBD2AF1904261F00116F8B /* SpriteKit.framework in Frameworks */,
 				35DBD2B01904261F00116F8B /* StoreKit.framework in Frameworks */,
 				35DBD2B11904261F00116F8B /* SystemConfiguration.framework in Frameworks */,
@@ -446,6 +450,23 @@
 			path = System;
 			sourceTree = "<group>";
 		};
+		35B26B51191D426500189AAA /* External */ = {
+			isa = PBXGroup;
+			children = (
+				35B26B52191D426500189AAA /* Flurry */,
+			);
+			path = External;
+			sourceTree = "<group>";
+		};
+		35B26B52191D426500189AAA /* Flurry */ = {
+			isa = PBXGroup;
+			children = (
+				35B26B53191D426500189AAA /* Flurry.h */,
+				35B26B54191D426500189AAA /* libFlurry_5.0.0.a */,
+			);
+			path = Flurry;
+			sourceTree = "<group>";
+		};
 		35D26C061911C3950007E664 /* Instructions */ = {
 			isa = PBXGroup;
 			children = (
@@ -494,6 +515,7 @@
 		35DBD2641904255C00116F8B /* Fissure */ = {
 			isa = PBXGroup;
 			children = (
+				35B26B51191D426500189AAA /* External */,
 				35DBD28D1904258D00116F8B /* Classes */,
 				35DBD26D1904255C00116F8B /* AppDelegate.h */,
 				35DBD26E1904255C00116F8B /* AppDelegate.m */,
@@ -1008,6 +1030,10 @@
 				GCC_PREFIX_HEADER = "Fissure/Fissure-Prefix.pch";
 				INFOPLIST_FILE = "Fissure/Fissure-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Fissure/External/Flurry",
+				);
 				OTHER_CFLAGS = "-DEXDEBUGENABLED";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
@@ -1027,6 +1053,10 @@
 				GCC_PREFIX_HEADER = "Fissure/Fissure-Prefix.pch";
 				INFOPLIST_FILE = "Fissure/Fissure-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Fissure/External/Flurry",
+				);
 				OTHER_CFLAGS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
