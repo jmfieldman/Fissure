@@ -101,6 +101,10 @@ SINGLETON_IMPL(GameEngineViewController);
 		_levelMenuView.backgroundColor = [UIColor colorWithWhite:0 alpha:0.3];
 		[self.view addSubview:_levelMenuView];
 		
+		_titleImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"title"]];
+		_titleImage.center = CGPointMake(self.view.bounds.size.width/2, 29);
+		[_levelMenuView addSubview:_titleImage];
+		
 		UIButton *closeMenu = [UIButton buttonWithType:UIButtonTypeCustom];
 		closeMenu.frame = _levelMenuView.bounds;
 		[closeMenu addTarget:self action:@selector(pressedCloseMenu:) forControlEvents:UIControlEventTouchDown];
@@ -184,6 +188,14 @@ SINGLETON_IMPL(GameEngineViewController);
 
 - (void) pressedMenu:(UIButton*)button {
 	[self updateStars];
+	
+	_titleImage.alpha = 0;
+	[UIView animateWithDuration:0.5
+						  delay:0.2
+						options:UIViewAnimationOptionCurveEaseInOut
+					 animations:^{
+						 _titleImage.alpha = 1;
+					 } completion:nil];
 	
 	for (UIButton *b in _levelButtons) {
 		b.alpha = 0;

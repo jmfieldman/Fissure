@@ -32,6 +32,7 @@
 	NSMutableArray *_levelButtons;
 	NSMutableArray *_starImageViews;
 	NSString       *_menuToLevelId;
+	UIImageView    *_titleImage;
 }
 
 SINGLETON_INTR(GameEngineViewController);
