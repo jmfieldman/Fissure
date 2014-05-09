@@ -95,6 +95,11 @@
 		35B26B4F191C5BEF00189AAA /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 35B26B4D191C5BEF00189AAA /* Default-568h@2x.png */; };
 		35B26B50191C5BEF00189AAA /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 35B26B4E191C5BEF00189AAA /* Default@2x.png */; };
 		35B26B55191D426500189AAA /* libFlurry_5.0.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 35B26B54191D426500189AAA /* libFlurry_5.0.0.a */; };
+		35B26B59191D430600189AAA /* AppIcon60x60@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 35B26B56191D430600189AAA /* AppIcon60x60@2x.png */; };
+		35B26B5A191D430600189AAA /* AppIcon57x57@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 35B26B57191D430600189AAA /* AppIcon57x57@2x.png */; };
+		35B26B5B191D430600189AAA /* AppIcon57x57.png in Resources */ = {isa = PBXBuildFile; fileRef = 35B26B58191D430600189AAA /* AppIcon57x57.png */; };
+		35B26B5E191D435800189AAA /* AppIcon40x40@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 35B26B5C191D435800189AAA /* AppIcon40x40@2x.png */; };
+		35B26B5F191D435800189AAA /* AppIcon29x29@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 35B26B5D191D435800189AAA /* AppIcon29x29@2x.png */; };
 		35C0D0C81905F8D700E225D5 /* Target.m in Sources */ = {isa = PBXBuildFile; fileRef = 35C0D0C71905F8D700E225D5 /* Target.m */; };
 		35C0D0D01905FF7F00E225D5 /* activity_disc_1.png in Resources */ = {isa = PBXBuildFile; fileRef = 35C0D0C91905FF7F00E225D5 /* activity_disc_1.png */; };
 		35C0D0D11905FF7F00E225D5 /* activity_disc_2.png in Resources */ = {isa = PBXBuildFile; fileRef = 35C0D0CA1905FF7F00E225D5 /* activity_disc_2.png */; };
@@ -246,6 +251,11 @@
 		35B26B4E191C5BEF00189AAA /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		35B26B53191D426500189AAA /* Flurry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Flurry.h; sourceTree = "<group>"; };
 		35B26B54191D426500189AAA /* libFlurry_5.0.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libFlurry_5.0.0.a; sourceTree = "<group>"; };
+		35B26B56191D430600189AAA /* AppIcon60x60@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AppIcon60x60@2x.png"; sourceTree = "<group>"; };
+		35B26B57191D430600189AAA /* AppIcon57x57@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AppIcon57x57@2x.png"; sourceTree = "<group>"; };
+		35B26B58191D430600189AAA /* AppIcon57x57.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AppIcon57x57.png; sourceTree = "<group>"; };
+		35B26B5C191D435800189AAA /* AppIcon40x40@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AppIcon40x40@2x.png"; sourceTree = "<group>"; };
+		35B26B5D191D435800189AAA /* AppIcon29x29@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AppIcon29x29@2x.png"; sourceTree = "<group>"; };
 		35C0D0C61905F8D700E225D5 /* Target.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Target.h; sourceTree = "<group>"; };
 		35C0D0C71905F8D700E225D5 /* Target.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Target.m; sourceTree = "<group>"; };
 		35C0D0C91905FF7F00E225D5 /* activity_disc_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = activity_disc_1.png; sourceTree = "<group>"; };
@@ -444,6 +454,11 @@
 		35B26B4C191C5BEF00189AAA /* System */ = {
 			isa = PBXGroup;
 			children = (
+				35B26B5C191D435800189AAA /* AppIcon40x40@2x.png */,
+				35B26B5D191D435800189AAA /* AppIcon29x29@2x.png */,
+				35B26B56191D430600189AAA /* AppIcon60x60@2x.png */,
+				35B26B57191D430600189AAA /* AppIcon57x57@2x.png */,
+				35B26B58191D430600189AAA /* AppIcon57x57.png */,
 				35B26B4D191C5BEF00189AAA /* Default-568h@2x.png */,
 				35B26B4E191C5BEF00189AAA /* Default@2x.png */,
 			);
@@ -770,6 +785,7 @@
 			files = (
 				35DBD2691904255C00116F8B /* InfoPlist.strings in Resources */,
 				35B26B49191C184600189AAA /* star_mini@2x.png in Resources */,
+				35B26B59191D430600189AAA /* AppIcon60x60@2x.png in Resources */,
 				35B26B43191C03BE00189AAA /* warp-cross-2-568-thumb@2x~iphone.png in Resources */,
 				35B26B2A191C03BE00189AAA /* gravity-double-push-568-thumb@2x~iphone.png in Resources */,
 				35B26B45191C03BE00189AAA /* warp-cross-568-thumb@2x~iphone.png in Resources */,
@@ -789,6 +805,7 @@
 				35B26B34191C03BE00189AAA /* intro-bounce-example-568-thumb@2x~iphone.png in Resources */,
 				35C0D0D31905FF7F00E225D5 /* activity_disc_4.png in Resources */,
 				35B26AFA191C003000189AAA /* warp-cross-2-480-thumb@2x~iphone.png in Resources */,
+				35B26B5E191D435800189AAA /* AppIcon40x40@2x.png in Resources */,
 				35B26B24191C03BE00189AAA /* color-bend-reverse-568-thumb@2x~iphone.png in Resources */,
 				3596FF5719095C29001AC338 /* disc_propel@2x.png in Resources */,
 				35B26B36191C03BE00189AAA /* repel-intro-568-thumb@2x~iphone.png in Resources */,
@@ -813,6 +830,7 @@
 				35C0D0D61905FF7F00E225D5 /* activity_disc_0.png in Resources */,
 				35CB92A81909A9DA002E03FA /* disc_repel@2x.png in Resources */,
 				35DBD2CC19043AF600116F8B /* projectile@2x.png in Resources */,
+				35B26B5A191D430600189AAA /* AppIcon57x57@2x.png in Resources */,
 				35B26B3C191C03BE00189AAA /* shape-warp-568-thumb@2x~iphone.png in Resources */,
 				35B26AE3191C003000189AAA /* gravity-push-480-thumb@2x~iphone.png in Resources */,
 				35B26B3F191C03BE00189AAA /* speed-gravity-push-2-568-thumb@2x~iphone.png in Resources */,
@@ -839,6 +857,7 @@
 				357F30B2191326F9003BCACE /* instr_intro4@2x.png in Resources */,
 				35B26AE7191C003000189AAA /* intro-3-480-thumb@2x~iphone.png in Resources */,
 				35B26ADC191C003000189AAA /* color-first-example-480-thumb@2x~iphone.png in Resources */,
+				35B26B5B191D430600189AAA /* AppIcon57x57.png in Resources */,
 				35B26AF7191C003000189AAA /* speed-gravity-push-480-thumb@2x~iphone.png in Resources */,
 				3596FF101906B6A1001AC338 /* bokeh.png in Resources */,
 				35B26B40191C03BE00189AAA /* speed-gravity-push-568-thumb@2x~iphone.png in Resources */,
@@ -850,6 +869,7 @@
 				35B26B42191C03BE00189AAA /* speed-test-568-thumb@2x~iphone.png in Resources */,
 				35CB92AA190AAC4E002E03FA /* warp.sks in Resources */,
 				35B26B30191C03BE00189AAA /* intro-3-568-thumb@2x~iphone.png in Resources */,
+				35B26B5F191D435800189AAA /* AppIcon29x29@2x.png in Resources */,
 				35B26B33191C03BE00189AAA /* intro-6-568-thumb@2x~iphone.png in Resources */,
 				35B26AEC191C003000189AAA /* journey-1-480-thumb@2x~iphone.png in Resources */,
 				35B26AF4191C003000189AAA /* speed-gravity-2-push-480-thumb@2x~iphone.png in Resources */,
