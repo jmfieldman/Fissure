@@ -92,6 +92,8 @@
 		35B26B47191C03BE00189AAA /* warp-trick-1-568-thumb@2x~iphone.png in Resources */ = {isa = PBXBuildFile; fileRef = 35B26B23191C03BE00189AAA /* warp-trick-1-568-thumb@2x~iphone.png */; };
 		35B26B49191C184600189AAA /* star_mini@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 35B26B48191C184600189AAA /* star_mini@2x.png */; };
 		35B26B4B191C5A7000189AAA /* title@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 35B26B4A191C5A7000189AAA /* title@2x.png */; };
+		35B26B4F191C5BEF00189AAA /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 35B26B4D191C5BEF00189AAA /* Default-568h@2x.png */; };
+		35B26B50191C5BEF00189AAA /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 35B26B4E191C5BEF00189AAA /* Default@2x.png */; };
 		35C0D0C81905F8D700E225D5 /* Target.m in Sources */ = {isa = PBXBuildFile; fileRef = 35C0D0C71905F8D700E225D5 /* Target.m */; };
 		35C0D0D01905FF7F00E225D5 /* activity_disc_1.png in Resources */ = {isa = PBXBuildFile; fileRef = 35C0D0C91905FF7F00E225D5 /* activity_disc_1.png */; };
 		35C0D0D11905FF7F00E225D5 /* activity_disc_2.png in Resources */ = {isa = PBXBuildFile; fileRef = 35C0D0CA1905FF7F00E225D5 /* activity_disc_2.png */; };
@@ -239,6 +241,8 @@
 		35B26B23191C03BE00189AAA /* warp-trick-1-568-thumb@2x~iphone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "warp-trick-1-568-thumb@2x~iphone.png"; sourceTree = "<group>"; };
 		35B26B48191C184600189AAA /* star_mini@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "star_mini@2x.png"; sourceTree = "<group>"; };
 		35B26B4A191C5A7000189AAA /* title@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "title@2x.png"; sourceTree = "<group>"; };
+		35B26B4D191C5BEF00189AAA /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		35B26B4E191C5BEF00189AAA /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		35C0D0C61905F8D700E225D5 /* Target.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Target.h; sourceTree = "<group>"; };
 		35C0D0C71905F8D700E225D5 /* Target.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Target.m; sourceTree = "<group>"; };
 		35C0D0C91905FF7F00E225D5 /* activity_disc_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = activity_disc_1.png; sourceTree = "<group>"; };
@@ -433,6 +437,15 @@
 			path = 568;
 			sourceTree = "<group>";
 		};
+		35B26B4C191C5BEF00189AAA /* System */ = {
+			isa = PBXGroup;
+			children = (
+				35B26B4D191C5BEF00189AAA /* Default-568h@2x.png */,
+				35B26B4E191C5BEF00189AAA /* Default@2x.png */,
+			);
+			path = System;
+			sourceTree = "<group>";
+		};
 		35D26C061911C3950007E664 /* Instructions */ = {
 			isa = PBXGroup;
 			children = (
@@ -606,6 +619,7 @@
 		35DBD2C819043AF600116F8B /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				35B26B4C191C5BEF00189AAA /* System */,
 				35B26AB5191C003000189AAA /* Menu */,
 				35D26C061911C3950007E664 /* Instructions */,
 				35DBD2C919043AF600116F8B /* Game */,
@@ -744,6 +758,7 @@
 				35B26B39191C03BE00189AAA /* shape-journey-1-568-thumb@2x~iphone.png in Resources */,
 				35B26B3A191C03BE00189AAA /* shape-warp-2-568-thumb@2x~iphone.png in Resources */,
 				35B26AFC191C003000189AAA /* warp-cross-480-thumb@2x~iphone.png in Resources */,
+				35B26B50191C5BEF00189AAA /* Default@2x.png in Resources */,
 				35B26B2B191C03BE00189AAA /* gravity-intro-568-thumb@2x~iphone.png in Resources */,
 				35B26B46191C03BE00189AAA /* warp-nonsense-568-thumb@2x~iphone.png in Resources */,
 				35B26B35191C03BE00189AAA /* journey-1-568-thumb@2x~iphone.png in Resources */,
@@ -793,6 +808,7 @@
 				35B26ADF191C003000189AAA /* double-spawn-2-480-thumb@2x~iphone.png in Resources */,
 				35DBD2D71905E64000116F8B /* disc_push@2x.png in Resources */,
 				35DBD2C6190430F100116F8B /* projectile_trail.sks in Resources */,
+				35B26B4F191C5BEF00189AAA /* Default-568h@2x.png in Resources */,
 				35B26B2D191C03BE00189AAA /* gravity-push-hard-568-thumb@2x~iphone.png in Resources */,
 				35B26AE4191C003000189AAA /* gravity-push-hard-480-thumb@2x~iphone.png in Resources */,
 				35C0D0D01905FF7F00E225D5 /* activity_disc_1.png in Resources */,
