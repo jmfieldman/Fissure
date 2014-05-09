@@ -41,7 +41,7 @@
 		_lastFrameTime = 0;
 		
 		/* Create boundary */
-		self.physicsBody = [SKPhysicsBody bodyWithEdgeLoopFromRect:CGRectInset(self.frame, -75, -75)];
+		self.physicsBody = [SKPhysicsBody bodyWithEdgeLoopFromRect:CGRectInset(self.frame, -150, -100)];
 		self.physicsBody.categoryBitMask = PHYS_CAT_EDGE;
 		
     }
