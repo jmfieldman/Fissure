@@ -20,7 +20,7 @@
 @property (nonatomic, assign) float    friction;
 @property (nonatomic, assign) int      frameInterval;
 
-@property (nonatomic, assign) SKSpriteNode *node;
+@property (nonatomic, strong) SKSpriteNode *node;
 
 - (id) initWithDictionary:(NSDictionary*)dictionary forSceneSize:(CGSize)sceneSize;
 
